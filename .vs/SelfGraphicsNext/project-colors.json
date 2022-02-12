@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d270b906-0b14-4cb2-951e-85764b22ddb4": {
+      "ProjectGuid": "d270b906-0b14-4cb2-951e-85764b22ddb4",
+      "DisplayName": "SelfGraphicsNext",
+      "ColorIndex": 0
+    },
+    "f6863746-1de4-486d-9071-6b39ce735b56": {
+      "ProjectGuid": "f6863746-1de4-486d-9071-6b39ce735b56",
+      "DisplayName": "SelfGraphicsNextLib",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    },
+    "d86b5df4-7b52-4974-8eb7-887fb588b900": {
+      "ProjectGuid": "d86b5df4-7b52-4974-8eb7-887fb588b900",
+      "DisplayName": "Circles",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

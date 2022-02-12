@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ow4jQM3zuGuGv4R4pmcz4+cIomUimgELFXcmd1i61NQxgbx0fGF3SEsHJnuvAtW94RjE13W5E/24xjz2JLa6AQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mmm60\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\mmm60\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\mmm60\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\mmm60\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\mmm60\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\mmm60\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

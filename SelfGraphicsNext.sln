@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfGraphicsNext", "SelfGraphicsNext\SelfGraphicsNext.csproj", "{D270B906-0B14-4CB2-951E-85764B22DDB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E937C1E6-D3C4-4D7D-BACB-00DE6FD77BE0}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM32 = Debug|ARM32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM32 = Release|ARM32
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|ARM32.ActiveCfg = Debug|ARM32
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|ARM32.Build.0 = Debug|ARM32
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|x64.ActiveCfg = Debug|x64
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|x64.Build.0 = Debug|x64
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|x86.ActiveCfg = Debug|x86
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Debug|x86.Build.0 = Debug|x86
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|ARM32.ActiveCfg = Release|ARM32
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|ARM32.Build.0 = Release|ARM32
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|x64.ActiveCfg = Release|x64
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|x64.Build.0 = Release|x64
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|x86.ActiveCfg = Release|x86
+		{D270B906-0B14-4CB2-951E-85764B22DDB4}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7316350D-6136-489E-9C60-5B3792E4069D}
+	EndGlobalSection
+EndGlobal

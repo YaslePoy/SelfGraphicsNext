@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS0659: Тип переопределяет Object.Equals(object o), но не переопределяет Object.GetHashCode()
+dotnet_diagnostic.CS0659.severity = none
+
+# CS0661: Тип определяет оператор == или оператор !=, но не переопределяет Object.GetHashCode()
+dotnet_diagnostic.CS0661.severity = none
