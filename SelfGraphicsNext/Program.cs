@@ -12,8 +12,8 @@ namespace SelfGraphicsNext
         public static RenderWindow _rw;
         public static Image rend;
         public static Camera3 camera;
-        public static uint x = 200;
-        public static uint y = 200;
+        public static uint x = 300;
+        public static uint y = 300;
         public const int mRatio = 6;
 
         public static void Main(string[] args)

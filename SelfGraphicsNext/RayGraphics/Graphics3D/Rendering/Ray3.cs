@@ -26,21 +26,26 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         {
             Position = new Point3(0, 0, 0);
             Direction = new Direction3();
-            
+
         }
 
-        public bool CollideInScene(Scene scene)
+        public ColisionResult CollideInScene(Scene scene)
         {
-            List<Point3> results = new List<Point3>();
-            foreach (PolygonGroup polygon in scene.Objects)
-                if (polygon.Colide(this, out Point3 col))
-                    results.Add(col);
+            List<ColisionResult> results = new List<ColisionResult>();
+            foreach (PolygonGroup groups in scene.Objects)
+            {
+                var res = groups.Colide(this);
+                if (res.Codiled)
+                    results.Add(res);
+            }
+
             if (results.Count > 0)
             {
-                Aim = results.MinBy(i => i.Distance);
-                return true;
+                var current = results.MinBy(i => i.Colision.Distance);
+                Aim = current.Colision;
+                return current;
             }
-            return false;
+            return new ColisionResult() { Codiled = false };
         }
         public override string ToString()
         {

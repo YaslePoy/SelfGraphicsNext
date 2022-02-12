@@ -32,14 +32,26 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var step = FOW / w;
             var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
             var startfy = Direction.Vertical.AngleGrads + (FOWV / 2);
-            Ray3 colider = new Ray3(new Direction3(-startfx, startfy), Position);
-
-            for (uint i = 0; i < h; i += 1)
+            var currentDir = new Direction3(startfx, startfy);
+            var fowHalf = FOW / 2;
+            var matrixSize = Utils.Tan(fowHalf);
+            var pixStep = matrixSize / (w / 2);
+            Ray3 colider = new Ray3(Direction, Position);
+            for (uint i = 0; i < h; i++)
             {
-
-                for (uint j = 0; j < w; j += 1)
+                var yabs = -(i - h / 2);
+                var ylen = yabs * pixStep;
+                var curV = Math.Atan(ylen).ToDegrees();
+                for (uint j = 0; j < w; j++)
                 {
-                    if (colider.CollideInScene(scene))
+                    var abs = j - w / 2;
+
+                    double curLen = abs * pixStep;
+
+                    var delta = new Direction3(Math.Atan(curLen).ToDegrees(), curV);
+                    colider.Direction = Direction + delta;
+                    var result = colider.CollideInScene(scene);
+                    if (result.Codiled)
                     {
                         try
                         {
@@ -64,11 +76,44 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                             outImg.SetPixel(j, i, new Color(0, 66, 66));
 
                     }
-                    colider.Direction.Horisontal -= step;
                 }
-                colider.Direction.Vertical -= step;
-                colider.Direction.Horisontal += FOW;
+
             }
+            //for (uint i = 0; i < h; i += 1)
+            //{
+
+            //    for (uint j = 0; j < w; j += 1)
+            //    {
+            //        if (colider.CollideInScene(scene))
+            //        {
+            //            try
+            //            {
+
+            //                var col = colider.Aim;
+
+            //                outImg.SetPixel(j, i, colider.Aim.Color);
+
+            //            }
+            //            catch (AccessViolationException ex)
+            //            {
+            //                Console.Error.WriteLine(ex.Message);
+            //                Console.WriteLine($"Render exept {i} {j} pixel");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
+            //            if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
+            //                outImg.SetPixel(j, i, new Color(0, 255, 255));
+            //            else
+            //                outImg.SetPixel(j, i, new Color(0, 66, 66));
+
+            //        }
+            //        colider.Direction.Horisontal -= step;
+            //    }
+            //    colider.Direction.Vertical -= step;
+            //    colider.Direction.Horisontal += FOW;
+            //}
 
             return outImg;
         }
@@ -88,7 +133,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 
                 for (uint j = 0; j < w; j += 1)
                 {
-                    if (colider.CollideInScene(scene))
+                    var result = colider.CollideInScene(scene);
+                    if (result.Codiled)
                     {
                         try
                         {
@@ -133,26 +179,27 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             List<Ray3> rays = new List<Ray3>();
             for (int i = 0; i < h; i++)
             {
-
+                var yabs = -(i - h / 2);
+                var ylen = yabs * pixStep;
+                var curV = Math.Atan(ylen).ToDegrees();
                 for (int j = 0; j < w; j++)
                 {
                     var abs = j - w / 2;
 
                     double curLen = abs * pixStep;
 
-                    //var delta = new Direction3(Math.Atan(curLen).ToDegrees(), -step * (i - h / 2));
-                    rays.Add(new Ray3(currentDir, Position) { ImagePosition = new Point(j, i) });
-                    currentDir.Horisontal += step;
+                    var delta = new Direction3(Math.Atan(curLen).ToDegrees(), curV);
+                    rays.Add(new Ray3(Direction + delta, Position) { ImagePosition = new Point(j, i) });
                 }
-                currentDir.Vertical -= step;
-                currentDir.Horisontal -= FOW;
+
             }
             var chunks = rays.Chunk((int)Math.Floor((decimal)(w * h / k)));
             void renderPool(Ray3[] rays)
             {
                 foreach (Ray3 colider in rays)
                 {
-                    if (colider.CollideInScene(scene))
+                    var result = colider.CollideInScene(scene);
+                    if (result.Codiled)
                     {
                         try
                         {

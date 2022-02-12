@@ -1,10 +1,12 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
+using SFML.Graphics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public class Polygon : Colideble
+    public class Polygon
     {
+        public Color Color { get; set; }
         public readonly List<Point3> points;
         public readonly Point3 Normal;
         public double DRatio => (-points.First().X) * Normal.X + (-points.First().Y) * Normal.Y + (-points.First().Z) * Normal.Z;
@@ -15,7 +17,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Normal = normal;
         }
 
-        public override bool Colide(Ray3 ray, out Point3 colision)
+        public bool Colide(Ray3 ray, out Point3 colision)
         {
             colision = null;
             var mpl = ray.Direction.GetVector();
