@@ -12,16 +12,25 @@ namespace SelfGraphicsNext
         public static RenderWindow _rw;
         public static Image rend;
         public static Camera3 camera;
-        public static uint x = 300;
-        public static uint y = 300;
-        public const int mRatio = 6;
+        public static uint x = 500;
+        public static uint y = 500;
+        public const int mRatio = 10;
 
         public static void Main(string[] args)
         {
-            scene = Scene.LoadSceneObj(@"C:\Users\mmm60\Desktop\AppDatas\2cubesRB.obj");
+            scene = Scene.LoadSceneObj(@"C:\Users\mmm60\Desktop\AppDatas\sferes.obj");
             camera = new Camera3(120, new Point3(-5, 0, 0), new Direction3(0, 0));
-            rend = camera.RenderSceneMulti(scene, x, y, mRatio);
-            _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test");
+            Stopwatch sw = new Stopwatch();
+            for (int i = 0; i < 10; i++)
+            {
+                sw.Start();
+                rend = camera.RenderSceneMulti(scene, x, y, mRatio);
+                sw.Stop();
+                Console.WriteLine($"{i + 1}. {sw.ElapsedMilliseconds}");
+                sw.Reset();
+            }
+            Console.WriteLine(sw.ElapsedMilliseconds);
+            _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test", Styles.None);
             //camera.RendImgAsync(scene, x, y);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);
