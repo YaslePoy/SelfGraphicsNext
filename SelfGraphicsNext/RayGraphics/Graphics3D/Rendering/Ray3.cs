@@ -32,13 +32,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         public ColisionResult CollideInScene(Scene scene)
         {
             List<ColisionResult> results = new List<ColisionResult>();
-            foreach (PolygonGroup groups in scene.Objects)
+            for (int i = 0; i < scene.Objects.Count; i++)
             {
+                PolygonGroup groups = scene.Objects[i];
                 var res = groups.Colide(this);
                 if (res.Codiled)
                     results.Add(res);
             }
-
             if (results.Count > 0)
             {
                 var current = results.MinBy(i => i.Colision.Distance);

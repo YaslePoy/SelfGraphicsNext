@@ -156,3 +156,4 @@ C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGrap
 C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Release\net6.0\ref\SelfGraphicsNext.dll
 C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Release\net6.0\SelfGraphicsNext.pdb
 C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Release\net6.0\SelfGraphicsNext.genruntimeconfig.cache
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Release\net6.0\SelfGraphicsNext.csproj.AssemblyReference.cache

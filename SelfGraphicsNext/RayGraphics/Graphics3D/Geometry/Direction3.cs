@@ -23,6 +23,17 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             vec.Y = Horisontal.Sin * vertRatio;
             return vec;
         }
+
+        public void SetDirection(Point3 vector)
+        {
+            var vec = vector.Normalised();
+            Horisontal = new Direction(Math.Atan(vec.Y / vec.X).ToDegrees());
+            if (vec.X > 0 && vec.Y > 0)
+                Vertical = new Direction(Math.Asin(vec.Z).ToDegrees());
+            else
+                Vertical = new Direction(Math.Asin(vec.Z).ToDegrees());
+        }
+
         public override string ToString()
         {
             return $"H:{Horisontal.ToString()}; V:{Vertical.ToString()}";

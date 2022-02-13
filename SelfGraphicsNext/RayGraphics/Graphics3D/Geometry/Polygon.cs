@@ -4,7 +4,7 @@ using SFML.Graphics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public class Polygon
+    public struct Polygon
     {
         public Color Color { get; set; }
         public readonly List<Point3> points;
@@ -15,6 +15,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             points = ends;
             Normal = normal;
+            Color = Color.White;
         }
 
         public bool Colide(Ray3 ray, out Point3 colision)

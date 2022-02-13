@@ -10,50 +10,47 @@ namespace SelfGraphicsNext
     {
         public static Scene scene;
         public static RenderWindow _rw;
-        public static Image rend;
+        public static Task<Image> rend;
         public static Camera3 camera;
-        public static uint x = 500;
-        public static uint y = 500;
-        public const int mRatio = 10;
+        public static uint x = 300;
+        public static uint y = 300;
+        public const int mRatio = 15;
 
         public static void Main(string[] args)
         {
-            scene = Scene.LoadSceneObj(@"C:\Users\mmm60\Desktop\AppDatas\sferes.obj");
-            camera = new Camera3(120, new Point3(-5, 0, 0), new Direction3(0, 0));
-            Stopwatch sw = new Stopwatch();
-            for (int i = 0; i < 10; i++)
-            {
-                sw.Start();
-                rend = camera.RenderSceneMulti(scene, x, y, mRatio);
-                sw.Stop();
-                Console.WriteLine($"{i + 1}. {sw.ElapsedMilliseconds}");
-                sw.Reset();
-            }
-            Console.WriteLine(sw.ElapsedMilliseconds);
-            _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test", Styles.None);
-            //camera.RendImgAsync(scene, x, y);
-            _rw.Closed += (o, e) => _rw.Close();
-            _rw.SetActive(true);
-            new List<int>().Any();
-            //_rw.Draw(new Sprite(new Texture(rend)));
-            _rw.Display();
+            //scene = Scene.LoadSceneObj(@"C:\Users\mmm60\Desktop\AppDatas\2cubesRB.obj");
+            //scene.Light = new LightSouce() { Position = new Point3(0, 10, 10)};
+            //camera = new Camera3(120, new Point3(-5, 0, 0), new Direction3(0, 0));
+            ///*rend = Task.Run(() => */camera.RenderSceneMulti(scene, x, y, mRatio);
+            //_rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test");
+            ////camera.RendImgAsync(scene, x, y);
+            //_rw.Closed += (o, e) => _rw.Close();
+            //_rw.SetActive(true);
+            //new List<int>().Any();
+            ////_rw.Draw(new Sprite(new Texture(rend)));
+            //_rw.Display();
 
-            //_rw.SetFramerateLimit(30);
-            while (_rw.IsOpen)
-            {
-                _rw.Clear();
-                _rw.DispatchEvents();
-                {
-                    _rw_MouseMoved();
-                    {
-                        _rw.SetTitle($"{camera.Position} : {camera.Direction}");
-                        if (rend != null)
-                            _rw.Draw(new Sprite(new Texture(rend)));
-                    }
-                }
-                _rw.Display();
-            }
-
+            ////_rw.SetFramerateLimit(30);
+            //while (_rw.IsOpen)
+            //{
+            //    _rw.Clear();
+            //    _rw.DispatchEvents();
+            //    {
+            //        _rw_MouseMoved();
+            //        {
+            //            _rw.SetTitle($"{camera.Position} : {camera.Direction}");
+            //            if (rend != null && rend.IsCompleted)
+            //                _rw.Draw(new Sprite(new Texture(rend.Result)));
+            //        }
+            //    }
+            //    _rw.Display();
+            //}
+            var dir = new Direction3(50, 100);
+            var vec = dir.GetVector();
+            dir = new Direction3();
+            dir.SetDirection(vec);
+            var newvec = dir.GetVector();
+            Console.WriteLine(dir.ToString());
             //public static void DrawFrame(List<Point> img, double maxDist, RenderWindow window)
             //{
             //    double height(double dist)
@@ -78,7 +75,7 @@ namespace SelfGraphicsNext
             {
                 void updateImg()
                 {
-                    rend = camera.RenderSceneMulti(scene, x, y, mRatio);
+                    rend = Task.Run(() => camera.RenderSceneMulti(scene, x, y, mRatio));
                 }
                 //var currentCursorPosition = Mouse.GetPosition(_rw);
                 //if (currentCursorPosition.X + 10 > _rw.Size.X)

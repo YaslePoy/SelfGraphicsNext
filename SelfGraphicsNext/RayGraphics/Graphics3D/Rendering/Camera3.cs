@@ -118,51 +118,51 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             return outImg;
         }
 
-        public void RenderSceneNonOut(Scene scene, uint w, uint h)
-        {
+        //public void RenderSceneNonOut(Scene scene, uint w, uint h)
+        //{
 
-            Run.rend = new Image(w, h);
-            var FOWV = FOW / w * h;
-            var step = FOW / w;
-            var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
-            var startfy = Direction.Vertical.AngleGrads + (FOWV / 2);
-            Ray3 colider = new Ray3(new Direction3(-startfx, startfy), Position);
+        //    Run.rend = new Image(w, h);
+        //    var FOWV = FOW / w * h;
+        //    var step = FOW / w;
+        //    var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
+        //    var startfy = Direction.Vertical.AngleGrads + (FOWV / 2);
+        //    Ray3 colider = new Ray3(new Direction3(-startfx, startfy), Position);
 
-            for (uint i = 0; i < h; i += 1)
-            {
+        //    for (uint i = 0; i < h; i += 1)
+        //    {
 
-                for (uint j = 0; j < w; j += 1)
-                {
-                    var result = colider.CollideInScene(scene);
-                    if (result.Codiled)
-                    {
-                        try
-                        {
+        //        for (uint j = 0; j < w; j += 1)
+        //        {
+        //            var result = colider.CollideInScene(scene);
+        //            if (result.Codiled)
+        //            {
+        //                try
+        //                {
 
-                            Run.rend.SetPixel(j, i, colider.Aim.Color);
+        //                    Run.rend.SetPixel(j, i, colider.Aim.Color);
 
-                        }
-                        catch (AccessViolationException ex)
-                        {
-                            Console.Error.WriteLine(ex.Message);
-                            Console.WriteLine($"Render exept {i} {j} pixel");
-                        }
-                    }
-                    else
-                    {
-                        //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
-                        if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
-                            Run.rend.SetPixel(j, i, new Color(0, 255, 255));
-                        else
-                            Run.rend.SetPixel(j, i, new Color(0, 66, 66));
+        //                }
+        //                catch (AccessViolationException ex)
+        //                {
+        //                    Console.Error.WriteLine(ex.Message);
+        //                    Console.WriteLine($"Render exept {i} {j} pixel");
+        //                }
+        //            }
+        //            else
+        //            {
+        //                //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
+        //                if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
+        //                    Run.rend.SetPixel(j, i, new Color(0, 255, 255));
+        //                else
+        //                    Run.rend.SetPixel(j, i, new Color(0, 66, 66));
 
-                    }
-                    colider.Direction.Horisontal -= step;
-                }
-                colider.Direction.Vertical -= step;
-                colider.Direction.Horisontal += FOW;
-            }
-        }
+        //            }
+        //            colider.Direction.Horisontal -= step;
+        //        }
+        //        colider.Direction.Vertical -= step;
+        //        colider.Direction.Horisontal += FOW;
+        //    }
+        //}
 
         public Image RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
         {
@@ -203,8 +203,25 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     {
                         try
                         {
+                            if(scene.Light != null)
+                            {
+                                var ang = Utils.AngleBetweenVecs(result.ColidedPoligon.Normal, scene.Light.Position - result.Colision);
 
+                            }
+                            //if(ang == 1)
+                            //{
+                            //    outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, result.Color);
+                            //    continue;
+                            //}
+                            //if (ang == -1)
+                            //{
+                            //    outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, Color.Black);
+                            //    continue;
+                            //}
+
+                            //var precolor = result.Color.Mult(0.5);
                             outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, colider.Aim.Color);
+                            
 
                         }
                         catch (AccessViolationException ex)
@@ -228,9 +245,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             return outImg;
         }
 
-        public void RendImgAsync(Scene scene, uint w, uint h)
-        {
-            Task.Run(() => RenderSceneNonOut(scene, w, h));
-        }
+        //public void RendImgAsync(Scene scene, uint w, uint h)
+        //{
+        //    Task.Run(() => RenderSceneNonOut(scene, w, h));
+        //}
     }
 }

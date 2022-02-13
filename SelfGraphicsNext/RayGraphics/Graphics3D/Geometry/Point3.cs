@@ -79,6 +79,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Point3 p = (Point3)obj;
             return p.X == X && p.Y == Y && p.Z == Z;
         }
-
+        public Point3 Normalised()
+        {
+            var len = this.GetDistanceTo(Point3.Zero);
+            return this * (1 / len);
+        }
     }
 }
