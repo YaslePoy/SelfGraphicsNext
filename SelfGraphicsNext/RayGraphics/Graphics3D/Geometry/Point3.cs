@@ -57,7 +57,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public static bool operator ==(Point3 point1, Point3 point2) => point1.Equals(point2);
 
-        public static bool operator !=(Point3 point1, Point3 point2) => point1.Equals(point2);
+        public static bool operator !=(Point3 point1, Point3 point2) => !point1.Equals(point2);
 
         public void SetDistanceTo(Point3 p) => Distance = (this - p).Lenght;
 

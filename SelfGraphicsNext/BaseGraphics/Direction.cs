@@ -112,7 +112,7 @@
             var len = halfFow.Sin();
             len *= 2;
             var step = len / count;
-            var stepped = Utils.Range(-len * 2, len * 2, step);
+            var stepped = Utils.Range(-len / 2, len / 2, step);
             List<Direction> result = new List<Direction>();
             foreach (var current in stepped)
             {

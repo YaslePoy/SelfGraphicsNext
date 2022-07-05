@@ -76,9 +76,22 @@ namespace SelfGraphicsNext
         public static List<double> Range(double s, double f, double step = 1)
         {
             List<double> list = new List<double>();
-            for (double i = 0; i <= f; i += step)
+            for (double i = s; i <= f; i += step)
                 list.Add(i);
             return list;
+        }
+
+        public static List<int[]> DoubleIndexStartFinish(int xs, int xf, int ys, int yf)
+        {
+            List<int[]> f = new List<int[]>();
+            for (int j = ys; j < yf; j++)
+            {
+                for (int i = xs; i < xf; i++)
+                {
+                    f.Add(new int[] { i, j });
+                }
+            }
+            return f;
         }
 
         public static Direction GetDirectionBetween(Point start, Point end)
@@ -149,6 +162,17 @@ namespace SelfGraphicsNext
         {
             return new Color((byte)(color.R * k), (byte)(color.G * k), (byte)(color.B * k), color.A);
         }
+
+        public static List<T> Merge<T>(List<T[]> muliList)
+        {
+            var final = new List<T>();
+            foreach (var item in muliList)
+            {
+                final.AddRange(item);
+            }
+            return final;
+        }
+
         //public static int CircleColision(Circle c1, Circle c2, out List<Point> cols)
         //{
         //    cols = new List<Point>();
@@ -166,6 +190,6 @@ namespace SelfGraphicsNext
 
         //        return 2;
         //    }
-        //}
+        //}        
     }
 }

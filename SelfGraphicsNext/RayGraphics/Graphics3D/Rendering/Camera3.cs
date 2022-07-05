@@ -166,7 +166,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 
         public void RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
         {
-
             LiveRenderInage = new Image(w, h);
             var FOWV = FOW / w * h;
             var step = FOW / w;
@@ -176,7 +175,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var fowHalf = FOW / 2;
             var matrixSize = Utils.Tan(fowHalf);
             var pixStep = matrixSize / (w / 2);
-            List<Ray3> rays = new List<Ray3>();
+            Ray3[,] rays = new Ray3[w, h];
             //for (int i = 0; i < h; i++)
             //{
             //    var yabs = -(i - h / 2);
@@ -187,15 +186,39 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             //        var abs = j - w / 2;
 
             //        double curLen = abs * pixStep;
-                 
+
             //        var delta = new Direction3(Math.Atan(curLen).ToDegrees()/*abs * step*/, curV);
             //        rays.Add(new Ray3(Direction + delta, Position) { ImagePosition = new Point(j, i), });
             //    }
 
             //}
+            var dirs = Direction.GetDirectionsByResolution((int)w, (int)h, FOW, FOWV);
+            for (int i = 0; i < w; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    rays[i, j] = new Ray3(dirs[i, j], Position) { ImagePosition = new Point(i, j) };
+                }
+            }
+            List<Ray3[]> renderRecs = new List<Ray3[]>();
+            if (w % 10 == 0 && h % 10 == 0)
+            {
+                for (int i = 0; i < h / 10; i++)
+                {
+                    for (int j = 0; j < w / 10; j++)
+                    {
+                        var inds = Utils.DoubleIndexStartFinish(j * 10, j * 10 + 10, i * 10, i * 10 + 10);
+                        var localRays = new List<Ray3>();
+                        foreach (var index in inds)
+                        {
+                            localRays.Add(rays[index[0], index[1]]);
+                        }
+                        renderRecs.Add(localRays.ToArray());
+                    }
+                }
+            }
 
-            var chunks = rays.Chunk((int)Math.Floor((decimal)(w * h / k)));
-            void renderPool(Ray3[] rays)
+            void renderPool(List<Ray3> rays)
             {
                 foreach (Ray3 colider in rays)
                 {
@@ -205,15 +228,19 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                         try
                         {
                             Color finalColor = colider.Aim.Color;
-                            var norm = result.ColidedPoligon.Normal;
-                            var toLight = scene.Light - result.Colision;
-                            double kRatio = norm.ScalarMul(toLight);
-                            kRatio /= norm.Lenght * toLight.Lenght;
-                            Console.WriteLine(kRatio);
-                            kRatio = kRatio.Abs();
-                            if(kRatio > 0)
+                            if (scene.Light != null)
                             {
-                                finalColor = Utils.Mult(finalColor, kRatio);
+                                var norm = result.ColidedPoligon.Normal;
+                                var toLight = scene.Light - result.Colision;
+                                double kRatio = norm.ScalarMul(toLight);
+                                kRatio /= norm.Lenght * toLight.Lenght;
+                                if (kRatio < 0)
+                                {
+                                    kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 5;
+                                    if (norm.Z < 0)
+                                        kRatio /= 4;
+                                }
+                                finalColor = Utils.Mult(finalColor, kRatio.Abs());
                             }
                             LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, finalColor);
                         }
@@ -225,21 +252,15 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     }
                     else
                     {
-                        //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
                         if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
                             LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 255, 255));
                         else
                             LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 66, 66));
-
                     }
                 }
             }
-            var res = Parallel.ForEach(chunks, renderPool);
+            var rendGroups = renderRecs.GroupBy(i => renderRecs.IndexOf(i) % k).ToList().Select(i => Utils.Merge(i.ToList())).ToList();
+            Parallel.ForEach(rendGroups, renderPool);
         }
-
-        //public void RendImgAsync(Scene scene, uint w, uint h)
-        //{
-        //    Task.Run(() => RenderSceneNonOut(scene, w, h));
-        //}
     }
 }

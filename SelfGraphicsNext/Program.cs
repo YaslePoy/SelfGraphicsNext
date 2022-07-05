@@ -10,27 +10,24 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static uint x = 300;
-        public static uint y = 300;
+        public static uint x = 700;
+        public static uint y = 700;
         public const int mRatio = 15;
 
         public static void Main(string[] args)
         {
 
             {
-                scene = Scene.LoadSceneObj(@"C:\Users\MikhailOri\Projects\BlenderProjects\outs\plane.obj");
-                scene.Light = new Point3(0, -2, 0);
+                scene = Scene.LoadSceneObj(@"C:\Users\MikhailOri\Projects\BlenderProjects\outs\ShadowTest.obj");
+                scene.Light = new Point3(0, 2, 2);
                 camera = new Camera3(120, new Point3(-5, 0, 0), new Direction3(0, 0));
-                Task.Run(() => camera.RenderSceneMulti(scene, x, y, mRatio));
-                _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test");
-                //camera.RendImgAsync(scene, x, y);
+                _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test", Styles.Close);
                 _rw.Closed += (o, e) => _rw.Close();
                 _rw.SetActive(true);
-                new List<int>().Any();
-                //_rw.Draw(new Sprite(new Texture(rend)));
                 _rw.Display();
-
                 //_rw.SetFramerateLimit(30);
+                Task.Run(() => camera.RenderSceneMulti(scene, x, y, mRatio));
+                camera.LiveRenderInage = new Image(x, y);
                 while (_rw.IsOpen)
                 {
                     _rw.Clear();

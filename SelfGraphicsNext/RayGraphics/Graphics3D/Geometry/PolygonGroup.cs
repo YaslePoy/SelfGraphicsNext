@@ -21,7 +21,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             Point3 colision = new Point3();
             ColisionResult colResult = new ColisionResult();
-            List<Point3> results = new List<Point3>();
+            List<ColisionResult> results = new List<ColisionResult>();
             //var tasks = Surface.Select(Surf => Task.Run(() => CollideByRes(ray, Surf))).ToList();
             //while (tasks.Any(i => !i.IsCompleted))
             //    continue;
@@ -32,15 +32,14 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 Polygon polygon = Surface[i];
                 if (polygon.Colide(ray, out Point3 col))
                 {
-                    results.Add(col);
+                    results.Add(new ColisionResult() { ColidedPoligon = polygon, Colision = col});
                     //ppp.Add(col, polygon);
                 }
             }                
             if (results.Count > 0)
             {
-                colision = results.MinBy(i => i.Distance);
+                colResult = results.MinBy(i => i.Colision.Distance);
                 //colResult.ColidedPoligon = ppp[colision];
-                colResult.Colision = colision;
                 colResult.GroupName = Name;
                 colResult.RaySource = ray.Position;
                 colResult.Color = Color;
@@ -50,19 +49,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colResult.Codiled = false;
             return colResult;
         }
-
-        public CollisionResult CollideByRes(Ray3 ray, Polygon polygon)
-        {
-            CollisionResult result = new CollisionResult();
-            result.IsColided = polygon.Colide(ray, out Point3 col);
-            result.Collision = ray.Aim;
-            return result;
-        }
-    }
-    public class CollisionResult
-    {
-        public bool IsColided;
-
-        public Point3 Collision;
+       
     }
 }
