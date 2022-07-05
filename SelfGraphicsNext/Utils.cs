@@ -45,7 +45,7 @@ namespace SelfGraphicsNext
             return nums.Select(n => Convert.ToDouble(n)).Sum() / nums.Count;
         }
 
-        public static List<double[]> DoubleRange(double x, double y, int step = 1)
+        public static List<double[]> DoubleRange(double x, double y, double step = 1)
         {
             List<double[]> f = new List<double[]>();
             for (double i = -x; i < x; i++)
@@ -71,6 +71,14 @@ namespace SelfGraphicsNext
             }
 
             return f;
+        }
+
+        public static List<double> Range(double s, double f, double step = 1)
+        {
+            List<double> list = new List<double>();
+            for (double i = 0; i <= f; i += step)
+                list.Add(i);
+            return list;
         }
 
         public static Direction GetDirectionBetween(Point start, Point end)
@@ -141,5 +149,23 @@ namespace SelfGraphicsNext
         {
             return new Color((byte)(color.R * k), (byte)(color.G * k), (byte)(color.B * k), color.A);
         }
+        //public static int CircleColision(Circle c1, Circle c2, out List<Point> cols)
+        //{
+        //    cols = new List<Point>();
+        //    if (c1.Radius + c2.Radius > c1.GetDistanceTo(c2) || Math.Abs(c1.Radius - c2.Radius) < c1.GetDistanceTo(c2))
+        //        return 0;
+        //    if (c1.Radius + c2.Radius == c1.GetDistanceTo(c2))
+        //    {
+        //        return 1;
+        //    }
+        //    if (c1.Radius + c2.Radius < c1.GetDistanceTo(c2))
+        //    {
+        //        double hp = (c1.Radius + c2.Radius + c1.GetDistanceTo(c2)) / 2;
+        //        var area = Math.Sqrt(hp * (hp - c1.Radius) * (hp - c1.Radius) * (hp - c1.GetDistanceTo(c2)));
+        //        var h = area * 2 / c1.GetDistanceTo(c2);
+
+        //        return 2;
+        //    }
+        //}
     }
 }

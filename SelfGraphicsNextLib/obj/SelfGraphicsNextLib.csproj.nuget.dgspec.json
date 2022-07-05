@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj": {}
+    "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj": {
+    "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
+        "projectUniqueName": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
         "projectName": "SelfGraphicsNextLib",
-        "projectPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
-        "packagesPath": "C:\\Users\\mmm60\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNextLib\\obj\\",
+        "projectPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
+        "packagesPath": "C:\\Users\\MikhailOri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mmm60\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\MikhailOri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

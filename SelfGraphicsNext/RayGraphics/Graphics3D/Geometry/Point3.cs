@@ -84,5 +84,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             var len = this.GetDistanceTo(Point3.Zero);
             return this * (1 / len);
         }
+
+        public double ScalarMul(Point3 vec)
+        {
+            return X * vec.X + Y * vec.Y + Z * vec.Z;
+        }
     }
 }

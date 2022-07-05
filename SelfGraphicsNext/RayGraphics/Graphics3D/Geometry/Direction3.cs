@@ -31,7 +31,16 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             if (vec.X > 0 && vec.Y > 0)
                 Vertical = new Direction(Math.Asin(vec.Z).ToDegrees());
             else
-                Vertical = new Direction(Math.Asin(vec.Z).ToDegrees());
+            {
+                double finalH = 0;
+                var preH = new Direction(Math.Asin(vec.Z).ToDegrees()).AngleGrads;
+                if (preH is > 0 and < 180)
+                    finalH = 90 + (90 - preH);
+                else
+                    finalH = 180 + (360 - preH);
+                Vertical = new Direction(finalH);
+
+            }
         }
 
         public override string ToString()
@@ -65,6 +74,19 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public static Direction3 operator -(Direction3 d1, Direction3 d2)
         {
             return new Direction3(d1.Horisontal.AngleGrads - d2.Horisontal.AngleGrads, d1.Vertical.AngleGrads - d2.Vertical.AngleGrads);
+        }
+
+        public Direction3[,] GetDirectionsByResolution(int xRes, int yRes, double xFow, double yFow)
+        {
+            Direction3[,] result = new Direction3[xRes, yRes];
+            var hors = Horisontal.GetDirectionsByCount(xRes, xFow);
+            var vers = Vertical.GetDirectionsByCount(yRes, yFow);
+            vers.Reverse();
+            for (int i = 0; i < yRes; i++)
+                for (int j = 0; j < xRes; j++)
+                    result[j, i]=new Direction3(hors[j].AngleGrads, vers[i].AngleGrads);
+            
+            return result;
         }
     }
 }

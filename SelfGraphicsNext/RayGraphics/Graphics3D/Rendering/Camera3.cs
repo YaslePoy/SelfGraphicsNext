@@ -9,7 +9,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         public readonly double FOW;
         public Point3 Position { get; set; }
         public Direction3 Direction;
-
+        public Image LiveRenderInage;
         public Camera3(Point3 position, Direction3 direction)
         {
             Position = position;
@@ -164,10 +164,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         //    }
         //}
 
-        public Image RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
+        public void RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
         {
 
-            Image outImg = new Image(w, h);
+            LiveRenderInage = new Image(w, h);
             var FOWV = FOW / w * h;
             var step = FOW / w;
             var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
@@ -177,22 +177,23 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var matrixSize = Utils.Tan(fowHalf);
             var pixStep = matrixSize / (w / 2);
             List<Ray3> rays = new List<Ray3>();
-            for (int i = 0; i < h; i++)
-            {
-                var yabs = -(i - h / 2);
-                var ylen = yabs * pixStep;
-                var curV = Math.Atan(ylen).ToDegrees();
-                for (int j = 0; j < w; j++)
-                {
-                    var abs = j - w / 2;
+            //for (int i = 0; i < h; i++)
+            //{
+            //    var yabs = -(i - h / 2);
+            //    var ylen = yabs * pixStep;
+            //    var curV = Math.Atan(ylen).ToDegrees();/* yabs * step;*/
+            //    for (int j = 0; j < w; j++)
+            //    {
+            //        var abs = j - w / 2;
 
-                    double curLen = abs * pixStep;
+            //        double curLen = abs * pixStep;
+                 
+            //        var delta = new Direction3(Math.Atan(curLen).ToDegrees()/*abs * step*/, curV);
+            //        rays.Add(new Ray3(Direction + delta, Position) { ImagePosition = new Point(j, i), });
+            //    }
 
-                    var delta = new Direction3(Math.Atan(curLen).ToDegrees(), curV);
-                    rays.Add(new Ray3(Direction + delta, Position) { ImagePosition = new Point(j, i) });
-                }
+            //}
 
-            }
             var chunks = rays.Chunk((int)Math.Floor((decimal)(w * h / k)));
             void renderPool(Ray3[] rays)
             {
@@ -203,26 +204,18 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     {
                         try
                         {
-                            if(scene.Light != null)
+                            Color finalColor = colider.Aim.Color;
+                            var norm = result.ColidedPoligon.Normal;
+                            var toLight = scene.Light - result.Colision;
+                            double kRatio = norm.ScalarMul(toLight);
+                            kRatio /= norm.Lenght * toLight.Lenght;
+                            Console.WriteLine(kRatio);
+                            kRatio = kRatio.Abs();
+                            if(kRatio > 0)
                             {
-                                var ang = Utils.AngleBetweenVecs(result.ColidedPoligon.Normal, scene.Light.Position - result.Colision);
-
+                                finalColor = Utils.Mult(finalColor, kRatio);
                             }
-                            //if(ang == 1)
-                            //{
-                            //    outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, result.Color);
-                            //    continue;
-                            //}
-                            //if (ang == -1)
-                            //{
-                            //    outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, Color.Black);
-                            //    continue;
-                            //}
-
-                            //var precolor = result.Color.Mult(0.5);
-                            outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, colider.Aim.Color);
-                            
-
+                            LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, finalColor);
                         }
                         catch (AccessViolationException ex)
                         {
@@ -234,15 +227,14 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     {
                         //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
                         if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
-                            outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 255, 255));
+                            LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 255, 255));
                         else
-                            outImg.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 66, 66));
+                            LiveRenderInage.SetPixel((uint)colider.ImagePosition.X, (uint)colider.ImagePosition.Y, new Color(0, 66, 66));
 
                     }
                 }
             }
             var res = Parallel.ForEach(chunks, renderPool);
-            return outImg;
         }
 
         //public void RendImgAsync(Scene scene, uint w, uint h)

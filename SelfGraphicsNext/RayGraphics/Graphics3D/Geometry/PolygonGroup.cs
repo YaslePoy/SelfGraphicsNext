@@ -26,20 +26,20 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             //while (tasks.Any(i => !i.IsCompleted))
             //    continue;
             //results = tasks.Where(i => !(i.Result.Collision is null)).Select(i => i.Result.Collision).ToList();
-            Dictionary<Point3, Polygon> ppp = new Dictionary<Point3, Polygon>();
+            //Dictionary<Point3, Polygon> ppp = new Dictionary<Point3, Polygon>();
             for (int i = 0; i < Surface.Count; i++)
             {
                 Polygon polygon = Surface[i];
                 if (polygon.Colide(ray, out Point3 col))
                 {
                     results.Add(col);
-                    ppp.Add(col, polygon);
+                    //ppp.Add(col, polygon);
                 }
             }                
             if (results.Count > 0)
             {
                 colision = results.MinBy(i => i.Distance);
-                colResult.ColidedPoligon = ppp[colision];
+                //colResult.ColidedPoligon = ppp[colision];
                 colResult.Colision = colision;
                 colResult.GroupName = Name;
                 colResult.RaySource = ray.Position;

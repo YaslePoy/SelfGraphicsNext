@@ -5,6 +5,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
     public class Scene
     {
+        public LightSouce Light;
         public List<PolygonGroup> Objects;
 
         public Scene(List<PolygonGroup> objects)

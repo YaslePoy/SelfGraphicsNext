@@ -1,0 +1,12 @@
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\bin\Debug\net6.0\SelfGraphicsNextLib.deps.json
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\bin\Debug\net6.0\SelfGraphicsNextLib.dll
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\bin\Debug\net6.0\SelfGraphicsNextLib.pdb
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.csproj.AssemblyReference.cache
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.AssemblyInfoInputs.cache
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.AssemblyInfo.cs
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.csproj.CoreCompileInputs.cache
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.dll
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\refint\SelfGraphicsNextLib.dll
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\SelfGraphicsNextLib.pdb
+C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNextLib\obj\Debug\net6.0\ref\SelfGraphicsNextLib.dll

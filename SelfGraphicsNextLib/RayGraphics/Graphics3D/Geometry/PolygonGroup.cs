@@ -1,9 +1,12 @@
 ﻿using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
+using SFML.Graphics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public class PolygonGroup : Colideble
+    public class PolygonGroup
     {
+        public Color Color { get; set; }
+
         public List<Polygon> Surface;
 
         public string Name;
@@ -14,23 +17,38 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         }
 
         public PolygonGroup() => Surface = new List<Polygon>();
-        public override bool Colide(Ray3 ray, out Point3 colision)
+        public ColisionResult Colide(Ray3 ray)
         {
+            Point3 colision = new Point3();
+            ColisionResult colResult = new ColisionResult();
             List<Point3> results = new List<Point3>();
             //var tasks = Surface.Select(Surf => Task.Run(() => CollideByRes(ray, Surf))).ToList();
             //while (tasks.Any(i => !i.IsCompleted))
             //    continue;
             //results = tasks.Where(i => !(i.Result.Collision is null)).Select(i => i.Result.Collision).ToList();
-            foreach (Polygon polygon in Surface)
+            //Dictionary<Point3, Polygon> ppp = new Dictionary<Point3, Polygon>();
+            for (int i = 0; i < Surface.Count; i++)
+            {
+                Polygon polygon = Surface[i];
                 if (polygon.Colide(ray, out Point3 col))
+                {
                     results.Add(col);
+                    //ppp.Add(col, polygon);
+                }
+            }                
             if (results.Count > 0)
             {
                 colision = results.MinBy(i => i.Distance);
-                return true;
+                //colResult.ColidedPoligon = ppp[colision];
+                colResult.Colision = colision;
+                colResult.GroupName = Name;
+                colResult.RaySource = ray.Position;
+                colResult.Color = Color;
+                colResult.Codiled = true;
+                return colResult;
             }
-            colision = null;
-            return false;
+            colResult.Codiled = false;
+            return colResult;
         }
 
         public CollisionResult CollideByRes(Ray3 ray, Polygon polygon)

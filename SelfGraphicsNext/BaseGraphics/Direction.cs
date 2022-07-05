@@ -106,6 +106,19 @@
                 return 4;
             return 0;
         }
-
+        public List<Direction> GetDirectionsByCount(int count, double fow)
+        {
+            var halfFow = fow / 2;
+            var len = halfFow.Sin();
+            len *= 2;
+            var step = len / count;
+            var stepped = Utils.Range(-len * 2, len * 2, step);
+            List<Direction> result = new List<Direction>();
+            foreach (var current in stepped)
+            {
+                result.Add(this + new Direction(Math.Asin(current).ToDegrees()));
+            }
+            return result;
+        }
     }
 }

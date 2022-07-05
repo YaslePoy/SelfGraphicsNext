@@ -20,7 +20,12 @@
       "ProjectGuid": "d86b5df4-7b52-4974-8eb7-887fb588b900",
       "DisplayName": "Circles",
       "ColorIndex": 2
+    },
+    "fa9931bd-f67f-486f-bb0f-b7305124de56": {
+      "ProjectGuid": "fa9931bd-f67f-486f-bb0f-b7305124de56",
+      "DisplayName": "SelfGrTester",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

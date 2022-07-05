@@ -10,7 +10,7 @@ namespace SelfGrTester
         [TestMethod]
         public void AngleTest50x30()
         {
-            Direction3 startDir = new Direction3(50, 30);
+            Direction3 startDir = new Direction3(150, 30);
             var vec = startDir.GetVector();
             Direction3 nextDir = new Direction3();
             nextDir.SetDirection(vec);
@@ -20,7 +20,7 @@ namespace SelfGrTester
         [TestMethod]
         public void AngleTest50X100()
         {
-            Direction3 startDir = new Direction3(50, 100);
+            Direction3 startDir = new Direction3(150, 100);
             var vec = startDir.GetVector();
             Direction3 nextDir = new Direction3();
             nextDir.SetDirection(vec);
@@ -30,7 +30,7 @@ namespace SelfGrTester
         [TestMethod]
         public void AngleTest50X200()
         {
-            Direction3 startDir = new Direction3(50, 200);
+            Direction3 startDir = new Direction3(150, 200);
             var vec = startDir.GetVector();
             Direction3 nextDir = new Direction3();
             nextDir.SetDirection(vec);
@@ -40,7 +40,7 @@ namespace SelfGrTester
         [TestMethod]
         public void AngleTest50X300()
         {
-            Direction3 startDir = new Direction3(50, 300);
+            Direction3 startDir = new Direction3(150, 300);
             var vec = startDir.GetVector();
             Direction3 nextDir = new Direction3();
             nextDir.SetDirection(vec);

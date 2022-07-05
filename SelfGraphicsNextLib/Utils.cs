@@ -24,7 +24,7 @@ namespace SelfGraphicsNext
         {
             return ToRads(a);
         }
-        public static double FromRads(this double radians)
+        public static double ToDegrees(this double radians)
         {
             var pre = radians;
             pre *= 180;
@@ -84,7 +84,7 @@ namespace SelfGraphicsNext
                     return new Direction(90);
             }
             var tang = (start - end).Y / (start - end).X;
-            var ang = Math.Atan(tang).FromRads();
+            var ang = Math.Atan(tang).ToDegrees();
             Direction final = new Direction(ang);
             switch (final.Quater())
             {
@@ -141,5 +141,23 @@ namespace SelfGraphicsNext
         {
             return new Color((byte)(color.R * k), (byte)(color.G * k), (byte)(color.B * k), color.A);
         }
+        //public static int CircleColision(Circle c1, Circle c2, out List<Point> cols)
+        //{
+        //    cols = new List<Point>();
+        //    if (c1.Radius + c2.Radius > c1.GetDistanceTo(c2) || Math.Abs(c1.Radius - c2.Radius) < c1.GetDistanceTo(c2))
+        //        return 0;
+        //    if (c1.Radius + c2.Radius == c1.GetDistanceTo(c2))
+        //    {
+        //        return 1;
+        //    }
+        //    if (c1.Radius + c2.Radius < c1.GetDistanceTo(c2))
+        //    {
+        //        double hp = (c1.Radius + c2.Radius + c1.GetDistanceTo(c2)) / 2;
+        //        var area = Math.Sqrt(hp * (hp - c1.Radius) * (hp - c1.Radius) * (hp - c1.GetDistanceTo(c2)));
+        //        var h = area * 2 / c1.GetDistanceTo(c2);
+
+        //        return 2;
+        //    }
+        //}
     }
 }

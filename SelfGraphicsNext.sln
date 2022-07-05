@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfGraphicsNext", "SelfGraphicsNext\SelfGraphicsNext.csproj", "{D270B906-0B14-4CB2-951E-85764B22DDB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfGrTester", "SelfGrTester\SelfGrTester.csproj", "{FA9931BD-F67F-486F-BB0F-B7305124DE56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfGrTester", "SelfGrTester\SelfGrTester.csproj", "{FA9931BD-F67F-486F-BB0F-B7305124DE56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfGraphicsNextLib", "SelfGraphicsNextLib\SelfGraphicsNextLib.csproj", "{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,22 @@ Global
 		{FA9931BD-F67F-486F-BB0F-B7305124DE56}.Release|x64.Build.0 = Release|Any CPU
 		{FA9931BD-F67F-486F-BB0F-B7305124DE56}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA9931BD-F67F-486F-BB0F-B7305124DE56}.Release|x86.Build.0 = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|x64.Build.0 = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Debug|x86.Build.0 = Debug|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|ARM32.Build.0 = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|x64.ActiveCfg = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|x64.Build.0 = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|x86.ActiveCfg = Release|Any CPU
+		{98EF6A9D-C5B1-4317-96A6-ACA201BA19FA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

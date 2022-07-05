@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {}
+    "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
+    "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+        "projectUniqueName": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
         "projectName": "SelfGraphicsNext",
-        "projectPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
-        "packagesPath": "C:\\Users\\mmm60\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
+        "projectPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+        "packagesPath": "C:\\Users\\MikhailOri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mmm60\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\MikhailOri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,25 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {
+    "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
+        "projectUniqueName": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
         "projectName": "SelfGrTester",
-        "projectPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
-        "packagesPath": "C:\\Users\\mmm60\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\obj\\",
+        "projectPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
+        "packagesPath": "C:\\Users\\MikhailOri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mmm60\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\MikhailOri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,8 +88,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
-                "projectPath": "C:\\Users\\mmm60\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj"
+              "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
+                "projectPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj"
               }
             }
           }
@@ -144,7 +136,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
