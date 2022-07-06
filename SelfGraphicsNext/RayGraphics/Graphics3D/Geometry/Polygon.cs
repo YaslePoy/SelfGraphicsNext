@@ -4,7 +4,7 @@ using SFML.Graphics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public struct Polygon
+    public class Polygon
     {
         public Color Color { get; set; }
         public readonly List<Point3> points;
@@ -36,7 +36,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision = xyz + (mpl * tRatio);
             colision.Color = Color;
             colision.SetDistanceTo(ray.Position);
-           
             if (Normal.X != 0)
                 return Utils.PoinInTringle(points.Select(i => new Point(i.Y, i.Z)).ToList(), new Point(colision.Y, colision.Z));
             else if(Normal.Y != 0)
@@ -44,6 +43,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             else
                 return Utils.PoinInTringle(points.Select(i => new Point(i.X, i.Y)).ToList(), new Point(colision.X, colision.Y));
         }
-
+        
     }
 }

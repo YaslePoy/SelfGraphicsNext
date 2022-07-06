@@ -47,6 +47,25 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             }
             return new ColisionResult() { Codiled = false };
         }
+
+        public ColisionResult CollideInSceneIns(Scene scene, Polygon pol)
+        {
+            List<ColisionResult> results = new List<ColisionResult>();
+            for (int i = 0; i < scene.Objects.Count; i++)
+            {
+                PolygonGroup groups = scene.Objects[i];
+                var res = groups.ColideIns(this, pol);
+                if (res.Codiled)
+                    results.Add(res);
+            }
+            if (results.Count > 0)
+            {
+                var current = results.MinBy(i => i.Colision.Distance);
+                Aim = current.Colision;
+                return current;
+            }
+            return new ColisionResult() { Codiled = false };
+        }
         public override string ToString()
         {
             return $"Ray 3d[Position : {Position.ToString()}, Direction : {Direction.ToString()}]";

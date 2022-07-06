@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public struct Direction3
+    public struct Direction3 
     {
         public Direction Horisontal { get; set; }
         public Direction Vertical { get; set; }
@@ -12,6 +12,12 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             Horisontal = new Direction(horisontal);
             Vertical = new Direction(vertical);
+        }
+
+        public Direction3()
+        {
+            Horisontal = new Direction(0);
+            Vertical = new Direction(0);
         }
 
         public Point3 GetVector()

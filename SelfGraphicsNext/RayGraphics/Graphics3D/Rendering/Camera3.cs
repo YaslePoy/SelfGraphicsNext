@@ -163,8 +163,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         //        colider.Direction.Horisontal += FOW;
         //    }
         //}
-
-        public void RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
+        public Task RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
         {
             LiveRenderInage = new Image(w, h);
             var FOWV = FOW / w * h;
@@ -176,22 +175,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var matrixSize = Utils.Tan(fowHalf);
             var pixStep = matrixSize / (w / 2);
             Ray3[,] rays = new Ray3[w, h];
-            //for (int i = 0; i < h; i++)
-            //{
-            //    var yabs = -(i - h / 2);
-            //    var ylen = yabs * pixStep;
-            //    var curV = Math.Atan(ylen).ToDegrees();/* yabs * step;*/
-            //    for (int j = 0; j < w; j++)
-            //    {
-            //        var abs = j - w / 2;
-
-            //        double curLen = abs * pixStep;
-
-            //        var delta = new Direction3(Math.Atan(curLen).ToDegrees()/*abs * step*/, curV);
-            //        rays.Add(new Ray3(Direction + delta, Position) { ImagePosition = new Point(j, i), });
-            //    }
-
-            //}
             var dirs = Direction.GetDirectionsByResolution((int)w, (int)h, FOW, FOWV);
             for (int i = 0; i < w; i++)
             {
@@ -220,8 +203,12 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 
             void renderPool(List<Ray3> rays)
             {
-                foreach (Ray3 colider in rays)
+                for (int i = 0; i < rays.Count; i++)
                 {
+                    var colider = rays[i];
+                //}
+                //foreach (Ray3 colider in rays)
+                //{
                     var result = colider.CollideInScene(scene);
                     if (result.Codiled)
                     {
@@ -239,6 +226,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                     kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 5;
                                     if (norm.Z < 0)
                                         kRatio /= 4;
+                                }
+                                Ray3 shadowRay = new Ray3(result.Colision);
+                                shadowRay.Direction.SetDirection(toLight);
+                                var shadowRes = shadowRay.CollideInSceneIns(scene, result.ColidedPoligon);
+                                if (shadowRes.Codiled)
+                                {
+                                    kRatio /= 2;
                                 }
                                 finalColor = Utils.Mult(finalColor, kRatio.Abs());
                             }
@@ -260,7 +254,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             var rendGroups = renderRecs.GroupBy(i => renderRecs.IndexOf(i) % k).ToList().Select(i => Utils.Merge(i.ToList())).ToList();
-            Parallel.ForEach(rendGroups, renderPool);
+            return Task.Run(() => Parallel.ForEach(rendGroups, renderPool));
         }
     }
 }
