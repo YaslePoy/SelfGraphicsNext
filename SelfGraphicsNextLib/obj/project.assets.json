@@ -444,19 +444,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MikhailOri\\.nuget\\packages\\": {}
+    "C:\\Users\\Mical\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
+      "projectUniqueName": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
       "projectName": "SelfGraphicsNextLib",
-      "projectPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
-      "packagesPath": "C:\\Users\\MikhailOri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MikhailOri\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\obj\\",
+      "projectPath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\SelfGraphicsNextLib.csproj",
+      "packagesPath": "C:\\Users\\Mical\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNextLib\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\MikhailOri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mical\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -502,7 +507,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

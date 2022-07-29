@@ -78,91 +78,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     }
                 }
 
-            }
-            //for (uint i = 0; i < h; i += 1)
-            //{
-
-            //    for (uint j = 0; j < w; j += 1)
-            //    {
-            //        if (colider.CollideInScene(scene))
-            //        {
-            //            try
-            //            {
-
-            //                var col = colider.Aim;
-
-            //                outImg.SetPixel(j, i, colider.Aim.Color);
-
-            //            }
-            //            catch (AccessViolationException ex)
-            //            {
-            //                Console.Error.WriteLine(ex.Message);
-            //                Console.WriteLine($"Render exept {i} {j} pixel");
-            //            }
-            //        }
-            //        else
-            //        {
-            //            //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
-            //            if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
-            //                outImg.SetPixel(j, i, new Color(0, 255, 255));
-            //            else
-            //                outImg.SetPixel(j, i, new Color(0, 66, 66));
-
-            //        }
-            //        colider.Direction.Horisontal -= step;
-            //    }
-            //    colider.Direction.Vertical -= step;
-            //    colider.Direction.Horisontal += FOW;
-            //}
-
+            }          
             return outImg;
         }
-
-        //public void RenderSceneNonOut(Scene scene, uint w, uint h)
-        //{
-
-        //    Run.rend = new Image(w, h);
-        //    var FOWV = FOW / w * h;
-        //    var step = FOW / w;
-        //    var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
-        //    var startfy = Direction.Vertical.AngleGrads + (FOWV / 2);
-        //    Ray3 colider = new Ray3(new Direction3(-startfx, startfy), Position);
-
-        //    for (uint i = 0; i < h; i += 1)
-        //    {
-
-        //        for (uint j = 0; j < w; j += 1)
-        //        {
-        //            var result = colider.CollideInScene(scene);
-        //            if (result.Codiled)
-        //            {
-        //                try
-        //                {
-
-        //                    Run.rend.SetPixel(j, i, colider.Aim.Color);
-
-        //                }
-        //                catch (AccessViolationException ex)
-        //                {
-        //                    Console.Error.WriteLine(ex.Message);
-        //                    Console.WriteLine($"Render exept {i} {j} pixel");
-        //                }
-        //            }
-        //            else
-        //            {
-        //                //Console.WriteLine($"direcrion : {colider.Direction}, pixel : ({i}:{j})");
-        //                if (colider.Direction.Vertical.AngleGrads is > 0 and < 180)
-        //                    Run.rend.SetPixel(j, i, new Color(0, 255, 255));
-        //                else
-        //                    Run.rend.SetPixel(j, i, new Color(0, 66, 66));
-
-        //            }
-        //            colider.Direction.Horisontal -= step;
-        //        }
-        //        colider.Direction.Vertical -= step;
-        //        colider.Direction.Horisontal += FOW;
-        //    }
-        //}
         public Task RenderSceneMulti(Scene scene, uint w, uint h, int k = 2)
         {
             LiveRenderInage = new Image(w, h);
@@ -223,9 +141,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 kRatio /= norm.Lenght * toLight.Lenght;
                                 if (kRatio < 0)
                                 {
-                                    kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 5;
+                                    kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 2;
                                     if (norm.Z < 0)
-                                        kRatio /= 4;
+                                        kRatio /= 2;
                                 }
                                 Ray3 shadowRay = new Ray3(result.Colision);
                                 shadowRay.Direction.SetDirection(toLight);
