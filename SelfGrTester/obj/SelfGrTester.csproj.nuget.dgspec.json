@@ -31,7 +31,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj": {
+                "projectPath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -146,6 +150,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj",
+        "projectName": "SelfGToolsLib",
+        "projectPath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj",
+        "frameworks": {
+          "native": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "native": {}
       }
     }
   }

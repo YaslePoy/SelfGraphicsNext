@@ -301,6 +301,15 @@
         "runtime": {
           "lib/netstandard2.0/SFML.Window.dll": {}
         }
+      },
+      "SelfGToolsLib/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/SelfGToolsLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SelfGToolsLib.dll": {}
+        }
       }
     }
   },
@@ -436,11 +445,17 @@
         "sfml.window.2.5.0.nupkg.sha512",
         "sfml.window.nuspec"
       ]
+    },
+    "SelfGToolsLib/1.0.0": {
+      "type": "project",
+      "path": "../SelfGToolsLib/SelfGToolsLib.vcxproj",
+      "msbuildProject": "../SelfGToolsLib/SelfGToolsLib.vcxproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "SFML.Net >= 2.5.0"
+      "SFML.Net >= 2.5.0",
+      "SelfGToolsLib >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -474,7 +489,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj": {
+              "projectPath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGToolsLib\\SelfGToolsLib.vcxproj"
+            }
+          }
         }
       },
       "warningProperties": {

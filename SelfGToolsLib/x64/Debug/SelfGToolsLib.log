@@ -1,0 +1,3 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(500,5): warning MSB8004: каталог Output заканчивается не косой чертой.  Этот экземпляр сборки добавит косую черту, поскольку она необходима для правильного определения каталога Output.
+  LINK : не найден или не выполнена сборка ..\SelfGraphicsNext\bin\x64\Debug\net6.0\SelfGToolsLib.dll при последней инкрементной компоновке; выполняется полная компоновка
+  SelfGToolsLib.vcxproj -> C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\SelfGToolsLib.dll

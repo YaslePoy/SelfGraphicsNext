@@ -8,7 +8,7 @@ Point3 Point3::Mul(double k)
     out.Y = this->Y * k;
     out.Z = this->Z * k;
     return out;
-}
+};
 
 Point3 Point3::Plus(Point3 k)
 {
@@ -16,7 +16,8 @@ Point3 Point3::Plus(Point3 k)
     out.X = this->X + k.X;
     out.Y = this->Y + k.Y;
     out.Z = this->Z + k.Z;
-}
+    return out;
+};
 
 bool Tools::PoinInTringle(Point3 p1, Point3 p2, Point3 p3, Point3 p0)
 {
@@ -26,4 +27,4 @@ bool Tools::PoinInTringle(Point3 p1, Point3 p2, Point3 p3, Point3 p0)
 
     return (a >= 0 && b >= 0 && c >= 0) ||
         (a <= 0 && b <= 0 && c <= 0) ? 1 : 0;
-}
+};
