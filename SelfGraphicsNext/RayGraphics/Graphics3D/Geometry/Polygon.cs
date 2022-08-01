@@ -38,11 +38,11 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision.SetDistanceTo(ray.Position);
             if (Normal.X != 0)
                 return Utils.PoinInTringle(points.Select(i => new Point(i.Y, i.Z)).ToList(), new Point(colision.Y, colision.Z));
-            else if(Normal.Y != 0)
+            else if (Normal.Y != 0)
                 return Utils.PoinInTringle(points.Select(i => new Point(i.X, i.Z)).ToList(), new Point(colision.X, colision.Z));
             else
                 return Utils.PoinInTringle(points.Select(i => new Point(i.X, i.Y)).ToList(), new Point(colision.X, colision.Y));
         }
-        
+
     }
 }

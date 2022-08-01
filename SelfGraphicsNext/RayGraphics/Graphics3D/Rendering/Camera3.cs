@@ -172,7 +172,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             var rendGroups = renderRecs.GroupBy(i => renderRecs.IndexOf(i) % k).ToList().Select(i => Utils.Merge(i.ToList())).ToList();
-            return Task.Run(() => Parallel.ForEach(rendGroups, renderPool));
+            var process = Task.Run(() => Parallel.ForEach(rendGroups, renderPool));
+            while (!process.IsCompleted) ;
+            return process;
         }
     }
 }

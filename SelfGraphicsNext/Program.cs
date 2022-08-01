@@ -18,9 +18,8 @@ namespace SelfGraphicsNext
 
         public static void Main(string[] args)
         {
-
             {
-                scene = Scene.LoadSceneObj(@"C:\Users\MikhailOri\Projects\BlenderProjects\outs\sphere2Level.obj");
+                scene = Scene.LoadSceneObj(@"C:\Users\Mical\Projects\BlenderProjects\outs\sphere2Level.obj");
                 scene.Light = new Point3(0, 2, 2);
                 camera = new Camera3(50, new Point3(-5, 0, 0), new Direction3(0, 0));
                 _rw = new RenderWindow(new VideoMode(x * 1, y * 1), "SGN test", Styles.Close);
@@ -29,6 +28,7 @@ namespace SelfGraphicsNext
                 _rw.Display();
                 _rw.SetFramerateLimit(60);
                 process = camera.RenderSceneMulti(scene, x, y, mRatio);
+                while (!process.IsCompleted) ;
                 camera.LiveRenderInage = new Image(x, y);
                 Stopwatch time = new Stopwatch();
                 while (_rw.IsOpen)

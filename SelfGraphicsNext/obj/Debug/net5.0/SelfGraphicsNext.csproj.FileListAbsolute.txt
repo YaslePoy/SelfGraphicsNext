@@ -1,5 +1,0 @@
-C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\obj\Debug\net5.0\SelfGraphicsNext.csproj.AssemblyReference.cache
-C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\obj\Debug\net5.0\SelfGraphicsNext.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\obj\Debug\net5.0\SelfGraphicsNext.AssemblyInfoInputs.cache
-C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\obj\Debug\net5.0\SelfGraphicsNext.AssemblyInfo.cs
-C:\Users\mmm60\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\obj\Debug\net5.0\SelfGraphicsNext.csproj.CoreCompileInputs.cache
