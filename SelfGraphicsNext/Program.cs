@@ -15,10 +15,12 @@ namespace SelfGraphicsNext
         public static uint y = 300;
         public const int mRatio = 9;
         public static Task process;
+        public static bool deb = false;
 
         public static void Main(string[] args)
         {
-            {
+
+            if(!deb){
                 scene = Scene.LoadSceneObj(@"C:\Users\Mical\Projects\BlenderProjects\outs\sphere2Level.obj");
                 scene.Light = new Point3(0, 2, 2);
                 camera = new Camera3(50, new Point3(-5, 0, 0), new Direction3(0, 0));

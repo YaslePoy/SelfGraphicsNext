@@ -1,25 +1,25 @@
 #include "pch.h"
 #include "Tools.h"
 
-Point3 Point3::Mul(double k)
+Point3C Point3C::Mul(double k)
 {
-    Point3 out;
+    Point3C out;
     out.X = this->X * k;
     out.Y = this->Y * k;
     out.Z = this->Z * k;
     return out;
 };
 
-Point3 Point3::Plus(Point3 k)
+Point3C Point3C::Plus(Point3C k)
 {
-    Point3 out;
+    Point3C out;
     out.X = this->X + k.X;
     out.Y = this->Y + k.Y;
     out.Z = this->Z + k.Z;
     return out;
 };
 
-bool Tools::PoinInTringle(Point3 p1, Point3 p2, Point3 p3, Point3 p0)
+bool Tools::PoinInTringle(Point3C p1, Point3C p2, Point3C p3, Point3C p0)
 {
     int a = (p1.X - p0.X) * (p2.Y - p1.Y) * (p1.Y - p0.Y),
         b = (p2.X - p0.X) * (p3.Y - p2.Y) * (p2.Y - p0.Y),

@@ -1,6 +1,8 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
+using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
+using System.Runtime.InteropServices;
 
 namespace SelfGraphicsNext
 {
@@ -190,6 +192,78 @@ namespace SelfGraphicsNext
 
         //        return 2;
         //    }
-        //}        
+        //}
+        [DllImport("SelfGToolsLib.dll")]
+        public static extern IntPtr CalcColision(IntPtr p, IntPtr r);
+
+        public struct Polygon3C
+        {
+            public Point3C Normal;
+            public Point3C p1;
+            public Point3C p2;
+            public Point3C p3;
+            public double DRatio;
+            public Polygon3C(Polygon polygon)
+            {
+                Normal = new Point3C(polygon.Normal);
+                p1 = new Point3C(polygon.points[0]);
+                p2 = new Point3C(polygon.points[2]);
+                p3 = new Point3C(polygon.points[3]);
+                DRatio = polygon.DRatio;
+
+            }
+        }
+
+        public struct Point3C
+        {
+           public double X, Y, Z;
+            public Point3C(Point3 p)
+            {
+                X = p.X;
+                Y = p.Y;
+                Z = p.Z;
+            }
+            public Point3 ToDefault()
+            {
+                return new Point3(X, Y, Z);
+            }
+        }
+        public struct Ray3C
+        {
+            public Point3C Direction;
+            public Point3C Position;
+            public Ray3C(Ray3 ray)
+            {
+                Direction = new Point3C(ray.Direction.GetVector());
+                Position = new Point3C(ray.Position);
+            }
+        }
+        public struct ColisionResultC
+        {
+            public bool isColided;
+            public Point3C colPoint;
+            public ColisionResult GetOk()
+            {
+                ColisionResult res = new ColisionResult();
+                res.Codiled = isColided;
+                if (isColided)
+                    res.Colision = colPoint.ToDefault();
+                return res;
+            }
+        }
+
+        public static ColisionResult EasyColisionCalc(Polygon polygon, Ray3 ray)
+        {
+            var pol = new Polygon3C(polygon);
+            var r = new Ray3C(ray);
+            IntPtr polInt = Marshal.AllocHGlobal(Marshal.SizeOf(pol));
+            Marshal.StructureToPtr(polInt, polInt, false);
+            IntPtr rInt = Marshal.AllocHGlobal(Marshal.SizeOf(r));
+            Marshal.StructureToPtr(r, rInt, false);
+            IntPtr resInt = CalcColision(polInt, rInt);
+            ColisionResultC resC = Marshal.PtrToStructure<ColisionResultC>(resInt);
+            ColisionResult final = resC.GetOk();
+            return final;
+        }
     }
 }
