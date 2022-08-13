@@ -248,10 +248,14 @@
           "SFML.Window": "2.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/SFML.Audio.dll": {}
+          "lib/netstandard2.0/SFML.Audio.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/SFML.Audio.dll": {}
+          "lib/netstandard2.0/SFML.Audio.dll": {
+            "related": ".xml"
+          }
         }
       },
       "SFML.Graphics/2.5.0": {
@@ -262,10 +266,14 @@
           "SFML.Window": "2.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/SFML.Graphics.dll": {}
+          "lib/netstandard2.0/SFML.Graphics.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/SFML.Graphics.dll": {}
+          "lib/netstandard2.0/SFML.Graphics.dll": {
+            "related": ".xml"
+          }
         }
       },
       "SFML.Net/2.5.0": {
@@ -283,10 +291,14 @@
           "CSFML": "2.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/SFML.System.dll": {}
+          "lib/netstandard2.0/SFML.System.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/SFML.System.dll": {}
+          "lib/netstandard2.0/SFML.System.dll": {
+            "related": ".xml"
+          }
         }
       },
       "SFML.Window/2.5.0": {
@@ -296,10 +308,14 @@
           "SFML.System": "2.5.0"
         },
         "compile": {
-          "lib/netstandard2.0/SFML.Window.dll": {}
+          "lib/netstandard2.0/SFML.Window.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/SFML.Window.dll": {}
+          "lib/netstandard2.0/SFML.Window.dll": {
+            "related": ".xml"
+          }
         }
       },
       "SelfGToolsLib/1.0.0": {
@@ -517,7 +533,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -526,7 +543,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
