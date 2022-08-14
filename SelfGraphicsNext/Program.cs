@@ -2,6 +2,7 @@
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using SFML.Window;
+using System.Numerics;
 using System.Diagnostics;
 
 namespace SelfGraphicsNext
@@ -11,7 +12,7 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static int k = 100;
+        public static int k = 50;
         public static int x = 16 * k;
         public static int y = 9 * k;
         public const int mRatio = 9;
@@ -20,7 +21,6 @@ namespace SelfGraphicsNext
 
         public static void Main(string[] args)
         {
-
             scene = Scene.LoadSceneObj(@"C:\Users\Mical\Projects\BlenderProjects\outs\Tests\ReShadowTest.obj");
             scene.Light = new Point3(0, 2, 2);
             camera = new Camera3(new Viewer(70, new Point3(-10, 0, 0), new Direction3(0, 0), x, y));
@@ -56,6 +56,7 @@ namespace SelfGraphicsNext
                             Text infoText = new Text(info, font, 18);
                             _rw.Draw(infoText);
                         }
+                        
                     }
                 }
                 _rw.Display();

@@ -98,6 +98,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 {
                                     kRatio =0;
                                 }
+                                kRatio = Math.Pow(kRatio, 0.45);
                                 finalColor = Utils.Mult(finalColor, kRatio.Abs());
                             }
                             Rendering.SetPixel(colider.ImagePosition, finalColor);

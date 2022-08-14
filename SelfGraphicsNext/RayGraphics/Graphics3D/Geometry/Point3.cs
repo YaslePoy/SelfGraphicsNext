@@ -1,5 +1,6 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SFML.Graphics;
+using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
@@ -8,30 +9,25 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public static Point3 Zero = new Point3(0, 0, 0);
         public static Point3 One = new Point3(1, 1, 1);
         public double Lenght => (X.Pow() + Y.Pow() + Z.Pow()).Sqrt();
-        public double X { get; set; }
+        Vector3 data;
+        public double X { get => data.X; set => data.X = (float)value; }
         public double Y { get; set; }
         public double Z { get; set; }
         public double Distance { get; set; }
         public Color Color { get; set; } = Color.White;
         public Point3()
         {
-            X = 0;
-            Y = 0;
-            Z = 0;
+            data = new Vector3();
         }
 
 
         public Point3(Point xy)
         {
-            X = xy.X;
-            Y = xy.Y;
-            Z = 0;
+            data = new Vector3((float)xy.X, (float)xy.Y, 0);
         }
         public Point3(double x, double y, double z)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            data = new Vector3((float)x, (float)y, (float)z);
         }
 
         public Point3(double x, double y, double z, Color color) : this(x, y, z)
