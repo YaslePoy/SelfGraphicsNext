@@ -11,10 +11,10 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static int k = 60;
-        public static int x = 16 * k;
-        public static int y = 9 * k;
-        public const int mRatio = 9;
+        public static int k = 300;
+        public static int x = 1 * k;
+        public static int y = 1 * k;
+        public const int mRatio = 12;
         public static Task process;
         public static bool deb = false;
 
@@ -48,7 +48,7 @@ namespace SelfGraphicsNext
                         if (drawInfo)
                         {
                             string info = $"Resolution: {camera.ViewState.Width}x{camera.ViewState.Height}\n" +
-                                $"Rendering: {camera.Rendering.TotalPixels} of {camera.Rendering.RenderedPixels}\n" +
+                                $"Rendering: {camera.Rendering.TotalPixels} / {camera.Rendering.RenderedPixels}\n" +
                                 $"% : {Math.Round((decimal)camera.Rendering.RenderedPixels / (decimal)camera.Rendering.TotalPixels * (decimal)100, 3)}\n" +
                                 $"Render time: {camera.Rendering.RenderTime}\n" +
                                 $"State: {Enum.GetName(camera.Rendering.State)}";

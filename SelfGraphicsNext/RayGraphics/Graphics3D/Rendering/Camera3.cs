@@ -1,6 +1,7 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SFML.Graphics;
+using System.Collections.Generic;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 {
@@ -23,33 +24,40 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var fowHalf = ViewState.FOW / 2;
             var matrixSize = Utils.Tan(fowHalf);
             var pixStep = matrixSize / (ViewState.Width / 2);
-            Ray3[,] rays = new Ray3[ViewState.Width, ViewState.Height];
+            List<Ray3> rays = new List<Ray3>();
             var dirs = ViewState.Direction.GetDirectionsByResolution((int)ViewState.Width, (int)ViewState.Height, ViewState.FOW, FOWV);
+            int gID = 0;
+            List<List<Ray3>> renderGroups = new List<List<Ray3>>();
             for (int i = 0; i < ViewState.Width; i++)
             {
                 for (int j = 0; j < ViewState.Height; j++)
                 {
-                    rays[i, j] = new Ray3(dirs[i, j], ViewState.Position) { ImagePosition = new Point(i, j) };
-                }
-            }
-            List<Ray3[]> renderRecs = new List<Ray3[]>();
-            if (ViewState.Width % 10 == 0 && ViewState.Height % 10 == 0)
-            {
-                for (int i = 0; i < ViewState.Height / 10; i++)
-                {
-                    for (int j = 0; j < ViewState.Width / 10; j++)
-                    {
-                        var inds = Utils.DoubleIndexStartFinish(j * 10, j * 10 + 10, i * 10, i * 10 + 10);
-                        var localRays = new List<Ray3>();
-                        foreach (var index in inds)
-                        {
-                            localRays.Add(rays[index[0], index[1]]);
-                        }
-                        renderRecs.Add(localRays.ToArray());
-                    }
-                }
-            }
+                    if(renderGroups.Count == gID)
+                        renderGroups.Add(new List<Ray3>());
+                        renderGroups[gID].Add(new Ray3(dirs[i, j], ViewState.Position) { ImagePosition = new Point(i, j) });
+                    gID++;
+                    if (gID == k)
+                        gID = 0;
 
+                }
+            }
+            //if (ViewState.Width % 10 == 0 && ViewState.Height % 10 == 0)
+            //{
+            //    for (int i = 0; i < ViewState.Height / 10; i++)
+            //    {
+            //        for (int j = 0; j < ViewState.Width / 10; j++)
+            //        {
+            //            var inds = Utils.DoubleIndexStartFinish(j * 10, j * 10 + 10, i * 10, i * 10 + 10);
+            //            var localRays = new List<Ray3>();
+            //            foreach (var index in inds)
+            //            {
+            //                localRays.Add(rays[index[0], index[1]]);
+            //            }
+            //            renderRecs.Add(localRays.ToArray());
+            //        }
+            //    }
+            //}
+            
             void renderPool(List<Ray3> rays)
             {
                 for (int i = 0; i < rays.Count; i++)
@@ -102,9 +110,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     }
                 }
             }
-            var rendGroups = renderRecs.GroupBy(i => renderRecs.IndexOf(i) % k).ToList().Select(i => Utils.Merge(i.ToList())).ToList();
             Rendering.Start();
-            Task.Run(() => Parallel.ForEach(rendGroups, renderPool));
+            Task.Run(() => Parallel.ForEach(renderGroups, renderPool));
  
         }
     }

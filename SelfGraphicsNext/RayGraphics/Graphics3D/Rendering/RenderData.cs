@@ -1,11 +1,6 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SFML.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 {
@@ -18,15 +13,16 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
     }
     public class RenderData
     {
+        public object lk = new object();
         public RenderState State;
         public readonly int TotalPixels;
         public int RenderedPixels { get => rendPixels; }
         int rendPixels;
         public Image OutputImage { get => image; }
         Image image;
-        public TimeSpan RenderTime => timer == null? TimeSpan.Zero : timer.Elapsed;
+        public TimeSpan RenderTime => timer == null ? TimeSpan.Zero : timer.Elapsed;
         Stopwatch timer;
-        
+
         public RenderData(int xRes, int yRes)
         {
             State = RenderState.Prepairing;
@@ -35,14 +31,19 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         }
         public void SetPixel(Point pixelXY, Color color)
         {
-            if (State != RenderState.Active)
-                throw new Exception("This method should be used just when State is Active");
-            image.SetPixel((uint)pixelXY.X, (uint)pixelXY.Y, color);
-            rendPixels += 1;
-            if (rendPixels == TotalPixels)
+            lock (lk)
             {
-                State = RenderState.Ready;
+                if (State != RenderState.Active)
+                    throw new Exception("This method should be used just when State is Active");
+                image.SetPixel((uint)pixelXY.X, (uint)pixelXY.Y, color);
+                rendPixels++;
+                if (rendPixels == TotalPixels)
+                {
+                    State = RenderState.Ready;
+                    timer.Stop();
+                }
             }
+
         }
         public void Start()
         {
