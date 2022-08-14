@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  dllmain.cpp
+  Tools.cpp
+C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGToolsLib\Tools.cpp(24,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGToolsLib\Tools.cpp(25,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGToolsLib\Tools.cpp(26,11): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+     Создается библиотека C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\x64\Release\SelfGToolsLib.lib и объект C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\x64\Release\SelfGToolsLib.exp
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 9 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  SelfGToolsLib.vcxproj -> C:\Users\Mical\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\x64\Release\SelfGToolsLib.dll
