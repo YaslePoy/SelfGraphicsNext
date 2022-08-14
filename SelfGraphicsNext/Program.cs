@@ -11,7 +11,7 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static int k = 300;
+        public static int k = 200;
         public static int x = 1 * k;
         public static int y = 1 * k;
         public const int mRatio = 12;
@@ -23,7 +23,7 @@ namespace SelfGraphicsNext
 
             scene = Scene.LoadSceneObj(@"C:\Users\Mical\Projects\BlenderProjects\outs\Tests\ReShadowTest.obj");
             scene.Light = new Point3(0, 2, 2);
-            camera = new Camera3(new Viewer(70, new Point3(-8, 0, 0), new Direction3(0, 0), x, y));
+            camera = new Camera3(new Viewer(70, new Point3(-10, 0, 0), new Direction3(0, 0), x, y));
             _rw = new RenderWindow(new VideoMode((uint)x, (uint)y), "SGN test", Styles.Close);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);

@@ -16,6 +16,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         }
         public void RenderSceneMulti(Scene scene, int k = 2)
         {
+            if (Rendering.State == RenderState.Active)
+                Rendering.Stop();
+            if (Rendering.State == RenderState.Ready || Rendering.State == RenderState.Stopped)
+                Rendering.Clear();
             var FOWV = ViewState.FOWVertical;
             var step = ViewState.FOW / ViewState.Width;
             var startfx = ViewState.Direction.Horisontal.AngleGrads - (ViewState.FOW / 2);
