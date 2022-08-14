@@ -11,10 +11,10 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static int k = 200;
-        public static int x = 1 * k;
-        public static int y = 1 * k;
-        public const int mRatio = 12;
+        public static int k = 100;
+        public static int x = 16 * k;
+        public static int y = 9 * k;
+        public const int mRatio = 9;
         public static Task process;
         public static bool deb = false;
 
@@ -30,6 +30,7 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             camera.RenderSceneMulti(scene, mRatio);
+            //while (camera.Rendering.State != RenderState.Ready) ;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             bool drawInfo = false;
             while (_rw.IsOpen)

@@ -138,17 +138,14 @@ namespace SelfGraphicsNext
 
         public static bool PoinInTringle(List<Point> trn, Point point)
         {
-            List<double> results = new List<double>();
-            var delta = trn[1] - trn.First();
-            var pointDelta = point - trn.First();
-            results.Add(delta.X * pointDelta.Y - delta.Y * pointDelta.X);
-            delta = trn.Last() - trn[1];
-            pointDelta = point - trn[1];
-            results.Add(delta.X * pointDelta.Y - delta.Y * pointDelta.X);
-            delta = trn.First() - trn.Last();
-            pointDelta = point - trn[2];
-            results.Add(delta.X * pointDelta.Y - delta.Y * pointDelta.X);
-            return !(results.Any(x => x > 0) && results.Any(x => x < 0));
+            var pts = new List<Point>();
+            pts.Add(point);
+            pts.AddRange(trn);
+            double a = (pts[1].X - pts[0].X) * (pts[2].Y - pts[1].Y) - (pts[2].X - pts[1].X) * (pts[1].Y - pts[0].Y);
+            double b = (pts[2].X - pts[0].X) * (pts[3].Y - pts[2].Y) - (pts[3].X - pts[2].X) * (pts[2].Y - pts[0].Y);
+            double c = (pts[3].X - pts[0].X) * (pts[1].Y - pts[3].Y) - (pts[1].X - pts[3].X) * (pts[3].Y - pts[0].Y);
+            return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
+       
         }
 
         public static double AngleBetweenVecs(Point3 v1, Point3 v2)
