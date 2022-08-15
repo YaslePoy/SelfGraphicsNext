@@ -14,7 +14,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             ViewState = view;
             Rendering = new RenderData(view.Width, view.Height);
         }
-        public void RenderSceneMulti(Scene scene, int k = 2)
+        public void RenderSceneMulti(Scene scene, int k = 2, bool wait = false)
         {
             if (Rendering.State == RenderState.Active)
                 Rendering.Stop();
@@ -116,8 +116,12 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             Rendering.Start();
-            Task.Run(() => Parallel.ForEach(renderGroups, renderPool));
- 
+
+            var renderTask =Task.Run(() => Parallel.ForEach(renderGroups, renderPool));
+            if (wait)
+                while (!renderTask.IsCompleted) ;
+
+            
         }
     }
 }

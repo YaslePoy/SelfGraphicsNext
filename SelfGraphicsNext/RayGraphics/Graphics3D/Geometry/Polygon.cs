@@ -38,12 +38,29 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision = xyz + (mpl * tRatio);
             colision.Color = Color;
             colision.SetDistanceTo(ray.Position);
+            Point[] poins = new Point[4];
             if (Normal.X != 0)
-                return Utils.PoinInTringle(points.Select(i => new Point(i.Y, i.Z)).ToList(), new Point(colision.Y, colision.Z));
+            {
+                poins[0] = new Point(colision.Y, colision.Z);
+                poins[1] = new Point(points[0].Y, points[0].Z);
+                poins[2] = new Point(points[1].Y, points[1].Z);
+                poins[3] = new Point(points[2].Y, points[2].Z);
+            }    
             else if (Normal.Y != 0)
-                return Utils.PoinInTringle(points.Select(i => new Point(i.X, i.Z)).ToList(), new Point(colision.X, colision.Z));
+            {
+                poins[0] = new Point(colision.X, colision.Z);
+                poins[1] = new Point(points[0].X, points[0].Z);
+                poins[2] = new Point(points[1].X, points[1].Z);
+                poins[3] = new Point(points[2].X, points[2].Z);
+            }
             else
-                return Utils.PoinInTringle(points.Select(i => new Point(i.X, i.Y)).ToList(), new Point(colision.X, colision.Y));
+            {
+                poins[0] = new Point(colision.X, colision.Y);
+                poins[1] = new Point(points[0].X, points[0].Y);
+                poins[2] = new Point(points[1].X, points[1].Y);
+                poins[3] = new Point(points[2].X, points[2].Y);
+            }
+            return Utils.PoinInTringle(poins);
         }
 
     }

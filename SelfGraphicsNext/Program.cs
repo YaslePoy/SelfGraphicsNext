@@ -29,8 +29,8 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio);
-            //while (camera.Rendering.State != RenderState.Ready) 
+            camera.RenderSceneMulti(scene, mRatio, true);
+            //while (camera.Rendering.State != RenderState.Ready) ;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             while (_rw.IsOpen)

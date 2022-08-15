@@ -15,11 +15,11 @@ namespace SelfGraphicsNext
 
         public static double Round(this double a, int r = 4) => Math.Round(a, r);
 
-        public static double Sin(this double a) => Math.Sin(a.ToRadians());
+        public static double Sin(this double a) => Math.Sin(a * ToRad);
 
-        public static double Cos(this double a) => Math.Cos(a.ToRadians());
+        public static double Cos(this double a) => Math.Cos(a * ToRad);
 
-        public static double Tan(this double a) => Math.Tan(a.ToRadians());
+        public static double Tan(this double a) => Math.Tan(a * ToRad);
 
         public static double Sqrt(this double a) => Math.Sqrt(a);
 
@@ -134,16 +134,12 @@ namespace SelfGraphicsNext
             return final;
         }
 
-        public static bool PoinInTringle(List<Point> trn, Point point)
+        public static bool PoinInTringle(Point[] pts)
         {
-            var pts = new List<Point>();
-            pts.Add(point);
-            pts.AddRange(trn);
             double a = (pts[1].X - pts[0].X) * (pts[2].Y - pts[1].Y) - (pts[2].X - pts[1].X) * (pts[1].Y - pts[0].Y);
             double b = (pts[2].X - pts[0].X) * (pts[3].Y - pts[2].Y) - (pts[3].X - pts[2].X) * (pts[2].Y - pts[0].Y);
             double c = (pts[3].X - pts[0].X) * (pts[1].Y - pts[3].Y) - (pts[1].X - pts[3].X) * (pts[3].Y - pts[0].Y);
             return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
-       
         }
 
         public static double AngleBetweenVecs(Point3 v1, Point3 v2)
