@@ -9,6 +9,10 @@ namespace Bencher
     {
         public int Prop { get; set; }
         public int Field;
+        public static double FiveSqrtRoot(double a)
+        {
+            return a * 5;
+        }
     }
     public static class Utils
     {
@@ -122,20 +126,26 @@ namespace Bencher
             b = new Data();
         }
         [Benchmark]
-        public void Property()
+        public void Method()
         {
-            a.Prop = 5;
-            a.Prop = 6;
-            a.Prop = 7;
+            double x = 0;
+            x = Data.FiveSqrtRoot(1);
+            x = Data.FiveSqrtRoot(2);
+            x = Data.FiveSqrtRoot(3);
+            x = Data.FiveSqrtRoot(4);
+            x = Data.FiveSqrtRoot(5);
+
         }
 
         [Benchmark]
-        public void Field()
+        public void Code()
         {
-            b.Field = 5;
-            b.Field = 6;
-            b.Field = 7;
-
+            double x = 0;
+            x = 1 * 5;
+            x = 2 * 5;
+            x = 3 * 5;
+            x = 4 * 5;
+            x = 5 * 5;
         }
     }
 }
