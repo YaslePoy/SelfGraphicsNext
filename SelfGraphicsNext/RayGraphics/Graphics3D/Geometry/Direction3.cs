@@ -1,5 +1,6 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
@@ -22,24 +23,20 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public Point3 GetVector()
         {
-            Point3 vec = new Point3();
             var vertRatio = Vertical.Cos;
-            vec.Z = Vertical.Sin;
-            vec.X = Horisontal.Cos * vertRatio;
-            vec.Y = Horisontal.Sin * vertRatio;
-            return vec;
+            return new Point3(Horisontal.Cos * vertRatio, Horisontal.Sin * vertRatio, Vertical.Sin);
         }
 
         public void SetDirection(Point3 vector)
         {
             var vec = vector.Normalised();
-            Horisontal = new Direction(Math.Atan(vec.Y / vec.X).ToDegrees());
-            if (vec.X > 0 && vec.Y > 0)
-                Vertical = new Direction(Math.Asin(vec.Z).ToDegrees());
+            Horisontal = new Direction(Math.Atan(vec.Vector.Y / vec.Vector.X).ToDegrees());
+            if (vec.Vector.X > 0 && vec.Vector.Y > 0)
+                Vertical = new Direction(Math.Asin(vec.Vector.Z).ToDegrees());
             else
             {
                 double finalH = 0;
-                var preH = new Direction(Math.Asin(vec.Z).ToDegrees()).AngleGrads;
+                var preH = new Direction(Math.Asin(vec.Vector.Z).ToDegrees()).AngleGrads;
                 if (preH is > 0 and < 180)
                     finalH = 90 + (90 - preH);
                 else

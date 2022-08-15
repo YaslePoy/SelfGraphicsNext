@@ -17,7 +17,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Normal = normal;
             Color = Color.White;
             if (ends.Count == 3)
-                DRatio = (-points.First().X) * Normal.X + (-points.First().Y) * Normal.Y + (-points.First().Z) * Normal.Z;
+                DRatio = (-points[0].Vector.X) * Normal.Vector.X + (-points[0].Vector.Y) * Normal.Vector.Y + (-points[0].Vector.Z) * Normal.Vector.Z;
         }
 
         public bool Colide(Ray3 ray, out Point3 colision)
@@ -26,8 +26,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             var mpl = ray.Direction.GetVector();
             var xyz = ray.Position;
             var abc = Normal;
-            double upper = DRatio + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z;
-            double lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z;
+            double upper = DRatio + abc.Vector.X * xyz.Vector.X + abc.Vector.Y * xyz.Vector.Y + abc.Vector.Z * xyz.Vector.Z;
+            double lower = abc.Vector.X * mpl.Vector.X + abc.Vector.Y * mpl.Vector.Y + abc.Vector.Z * mpl.Vector.Z;
             if (lower == 0 && upper == 0)
                 return false;
             if (upper > 0 && lower == 0)
@@ -39,26 +39,26 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision.Color = Color;
             colision.SetDistanceTo(ray.Position);
             Point[] poins = new Point[4];
-            if (Normal.X != 0)
+            if (Normal.Vector.X != 0)
             {
-                poins[0] = new Point(colision.Y, colision.Z);
-                poins[1] = new Point(points[0].Y, points[0].Z);
-                poins[2] = new Point(points[1].Y, points[1].Z);
-                poins[3] = new Point(points[2].Y, points[2].Z);
+                poins[0] = new Point(colision.Vector.Y, colision.Vector.Z);
+                poins[1] = new Point(points[0].Vector.Y, points[0].Vector.Z);
+                poins[2] = new Point(points[1].Vector.Y, points[1].Vector.Z);
+                poins[3] = new Point(points[2].Vector.Y, points[2].Vector.Z);
             }    
             else if (Normal.Y != 0)
             {
-                poins[0] = new Point(colision.X, colision.Z);
-                poins[1] = new Point(points[0].X, points[0].Z);
-                poins[2] = new Point(points[1].X, points[1].Z);
-                poins[3] = new Point(points[2].X, points[2].Z);
+                poins[0] = new Point(colision.Vector.X, colision.Vector.Z);
+                poins[1] = new Point(points[0].Vector.X, points[0].Vector.Z);
+                poins[2] = new Point(points[1].Vector.X, points[1].Vector.Z);
+                poins[3] = new Point(points[2].Vector.X, points[2].Vector.Z);
             }
             else
             {
-                poins[0] = new Point(colision.X, colision.Y);
-                poins[1] = new Point(points[0].X, points[0].Y);
-                poins[2] = new Point(points[1].X, points[1].Y);
-                poins[3] = new Point(points[2].X, points[2].Y);
+                poins[0] = new Point(colision.Vector.X, colision.Vector.Y);
+                poins[1] = new Point(points[0].Vector.X, points[0].Vector.Y);
+                poins[2] = new Point(points[1].Vector.X, points[1].Vector.Y);
+                poins[3] = new Point(points[2].Vector.X, points[2].Vector.Y);
             }
             return Utils.PoinInTringle(poins);
         }

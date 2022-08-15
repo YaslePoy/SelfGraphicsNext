@@ -1,11 +1,15 @@
-﻿using BenchmarkDotNet;
-using System.Numerics;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using System;
 using System.Drawing;
+using System.Numerics;
 
 namespace Bencher
 {
+    public class Data
+    {
+        public int Prop { get; set; }
+        public int Field;
+    }
     public static class Utils
     {
         public static double Round(this double a, int r = 4) => Math.Round(a, r);
@@ -101,27 +105,37 @@ namespace Bencher
     }
     public class Benchmarks
     {
-        public Vector3 DotNetVecA;
-        public Vector3 DotNetVecB;
-        public Point3 MyVecA;
-        public Point3 MyVecB;
+        //public Vector3 DotNetVecA;
+        //public Vector3 DotNetVecB;
+        //public Point3 MyVecA;
+        //public Point3 MyVecB;
+        public Data a;
+        public Data b;
+
         public Benchmarks()
         {
-            DotNetVecA = new Vector3(1, 2, 3);
-            MyVecA = new Point3(1, 2, 3);
-            DotNetVecB = new Vector3(4, 5, 6);
-            MyVecB = new Point3(4, 5, 6);
+            //DotNetVecA = new Vector3(1, 2, 3);
+            //MyVecA = new Point3(1, 2, 3);
+            //DotNetVecB = new Vector3(4, 5, 6);
+            //MyVecB = new Point3(4, 5, 6);
+             a = new Data();
+            b = new Data();
         }
-        [Benchmark(Baseline = true)]
-        public void DotNetLen()
+        [Benchmark]
+        public void Property()
         {
-            var len = DotNetVecA == DotNetVecB;
+            a.Prop = 5;
+            a.Prop = 6;
+            a.Prop = 7;
         }
 
         [Benchmark]
-        public void MyLen()
+        public void Field()
         {
-            var len = MyVecA == MyVecB;
+            b.Field = 5;
+            b.Field = 6;
+            b.Field = 7;
+
         }
     }
 }

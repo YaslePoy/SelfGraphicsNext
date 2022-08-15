@@ -29,10 +29,11 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio, true);
+            camera.RenderSceneMulti(scene, mRatio, false);
             //while (camera.Rendering.State != RenderState.Ready) ;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
+            TimeSpan record = TimeSpan.FromSeconds(5);
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -55,7 +56,16 @@ namespace SelfGraphicsNext
                         {
                             if (camera.Rendering.State == RenderState.Ready)
                             {
-                                Console.WriteLine(camera.Rendering.RenderTime);
+                                if (record > camera.Rendering.RenderTime)
+                                {
+                                    Console.WriteLine($"New Record: {camera.Rendering.RenderTime}");
+                                    record = camera.Rendering.RenderTime;
+                                }
+                                else
+                                {
+                                    Console.WriteLine(camera.Rendering.RenderTime);
+                                }
+                                GC.Collect();
                                 camera.RenderSceneMulti(scene, mRatio);
                             }
                         }
