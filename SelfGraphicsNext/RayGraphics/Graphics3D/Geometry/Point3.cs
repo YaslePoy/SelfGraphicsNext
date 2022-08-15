@@ -8,11 +8,11 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
     {
         public static Point3 Zero = new Point3(0, 0, 0);
         public static Point3 One = new Point3(1, 1, 1);
-        public double Lenght => (X.Pow() + Y.Pow() + Z.Pow()).Sqrt();
+        public double Lenght => data.Length();
         Vector3 data;
         public double X { get => data.X; set => data.X = (float)value; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        public double Y { get => data.Y; set => data.Y = (float)value; }
+        public double Z { get => data.Z; set => data.Z = (float)value; }
         public double Distance { get; set; }
         public Color Color { get; set; } = Color.White;
         public Point3()
@@ -34,6 +34,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             Color = color;
         }
+        public Point3(Vector3 xyz)
+        {
+            data = xyz;
+        }
         public Point3 Rounded(int k = 4)
         {
             return new Point3(X.Round(k), Y.Round(k), Z.Round(k), Color);
@@ -45,19 +49,20 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Y.Round(k);
             Z.Round(k);
         }
-        public static Point3 operator +(Point3 point1, Point3 point2) => new Point3(point1.X + point2.X, point1.Y + point2.Y, point1.Z + point2.Z, point1.Color);
+        public static Point3 operator +(Point3 point1, Point3 point2) => new Point3(point1.data + point2.data) { Color = point1.Color};
 
-        public static Point3 operator -(Point3 point1, Point3 point2) => new Point3(point1.X - point2.X, point1.Y - point2.Y, point1.Z - point2.Z, point1.Color);
+        public static Point3 operator -(Point3 point1, Point3 point2) => new Point3(point1.data - point2.data) { Color = point1.Color };
 
-        public static Point3 operator *(Point3 point1, double k) => new Point3(point1.X * k, point1.Y * k, point1.Z * k, point1.Color);
+        public static Point3 operator *(Point3 point1, double k) => new Point3(point1.data * (float)k) { Color = point1.Color };
 
-        public static bool operator ==(Point3 point1, Point3 point2) => point1.Equals(point2);
 
-        public static bool operator !=(Point3 point1, Point3 point2) => !point1.Equals(point2);
+        public static bool operator ==(Point3 point1, Point3 point2) => point1.data == point2.data;
+
+        public static bool operator !=(Point3 point1, Point3 point2) => point1.data != point2.data;
 
         public void SetDistanceTo(Point3 p) => Distance = (this - p).Lenght;
 
-        public double GetDistanceTo(Point3 p) => (this - p).Lenght;
+        public double GetDistanceTo(Point3 p) => (data - p.data).Length();
 
         public override string ToString()
         {
@@ -73,7 +78,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             if (!(obj is Point3))
                 return false;
             Point3 p = (Point3)obj;
-            return p.X == X && p.Y == Y && p.Z == Z;
+            return data == p.data;
         }
         public Point3 Normalised()
         {

@@ -9,13 +9,15 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Color Color { get; set; }
         public readonly List<Point3> points;
         public readonly Point3 Normal;
-        public double DRatio => (-points.First().X) * Normal.X + (-points.First().Y) * Normal.Y + (-points.First().Z) * Normal.Z;
+        public double DRatio;
 
         public Polygon(List<Point3> ends, Point3 normal)
         {
             points = ends;
             Normal = normal;
             Color = Color.White;
+            if (ends.Count == 3)
+                DRatio = (-points.First().X) * Normal.X + (-points.First().Y) * Normal.Y + (-points.First().Z) * Normal.Z;
         }
 
         public bool Colide(Ray3 ray, out Point3 colision)

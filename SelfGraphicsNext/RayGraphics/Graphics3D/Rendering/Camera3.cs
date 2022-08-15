@@ -78,7 +78,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                         try
                         {
                             Color finalColor = colider.Aim.Color;
-                            if (scene.Light != null)
+                            if (!(scene.Light is null))
                             {
                                 var norm = result.ColidedPoligon.Normal;
                                 var toLight = scene.Light - result.Colision;

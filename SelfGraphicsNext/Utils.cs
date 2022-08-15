@@ -8,6 +8,9 @@ namespace SelfGraphicsNext
 {
     static class Utils
     {
+
+        public const double ToRad = 0.017453292519943295769236907684886;
+        public const double ToDeg = 57.295779513082320876798154814105;
         public static double Pow(this double a, int r = 2) => Math.Pow(a, r);
 
         public static double Round(this double a, int r = 4) => Math.Round(a, r);
@@ -24,22 +27,17 @@ namespace SelfGraphicsNext
 
         public static double ToRadians(this double a)
         {
-            return ToRads(a);
+            return a * ToRad;
         }
         public static double ToDegrees(this double radians)
         {
-            var pre = radians;
-            pre *= 180;
-            pre /= Math.PI;
-            return pre;
+            return radians * ToDeg;
         }
 
         public static double ToRads(double angle)
         {
-            var pre = angle;
-            pre /= 180;
-            pre *= Math.PI;
-            return pre;
+
+            return angle * ToRad;
         }
 
         public static double AVG(List<double> nums)
