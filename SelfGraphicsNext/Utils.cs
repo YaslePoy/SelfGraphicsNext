@@ -236,7 +236,7 @@ namespace SelfGraphicsNext
             public ColisionResult GetOk()
             {
                 ColisionResult res = new ColisionResult();
-                res.Codiled = isColided;
+                res.Colided = isColided;
                 if (isColided)
                     res.Colision = colPoint.ToDefault();
                 return res;

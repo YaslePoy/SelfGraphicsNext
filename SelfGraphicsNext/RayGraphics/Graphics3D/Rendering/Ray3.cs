@@ -6,10 +6,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
     public class Ray3
     {
         public Direction3 Direction;
-        public Point3 Position { get; set; }
-        public Point3 Aim { get; set; }
+        public Point3 Position;
+        public Point3 Aim;
 
-        public Point ImagePosition { get; set; }
+        public Point ImagePosition;
         public Ray3(Direction3 direction, Point3 position)
         {
             Direction = direction;
@@ -36,7 +36,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             {
                 PolygonGroup groups = scene.Objects[i];
                 var res = groups.Colide(this);
-                if (res.Codiled)
+                if (res.Colided)
                     results.Add(res);
             }
             if (results.Count > 0)
@@ -45,7 +45,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 Aim = current.Colision;
                 return current;
             }
-            return new ColisionResult() { Codiled = false };
+            return new ColisionResult() { Colided = false };
         }
 
         public ColisionResult CollideInSceneIns(Scene scene, Polygon pol)
@@ -55,7 +55,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             {
                 PolygonGroup groups = scene.Objects[i];
                 var res = groups.ColideIns(this, pol);
-                if (res.Codiled)
+                if (res.Colided)
                     results.Add(res);
             }
             if (results.Count > 0)
@@ -64,7 +64,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 Aim = current.Colision;
                 return current;
             }
-            return new ColisionResult() { Codiled = false };
+            return new ColisionResult() { Colided = false };
         }
         public override string ToString()
         {

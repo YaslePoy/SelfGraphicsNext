@@ -6,7 +6,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
     public class Polygon
     {
-        public Color Color { get; set; }
+        public Color Color;
         public readonly List<Point3> points;
         public readonly Point3 Normal;
         public double DRatio;
@@ -18,11 +18,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Color = Color.White;
             if (ends.Count == 3)
                 DRatio = (-points[0].Vector.X) * Normal.Vector.X + (-points[0].Vector.Y) * Normal.Vector.Y + (-points[0].Vector.Z) * Normal.Vector.Z;
+            else
+                DRatio = 0;
         }
 
         public bool Colide(Ray3 ray, out Point3 colision)
         {
-            colision = null;
+            colision = new Point3();
             var mpl = ray.Direction.GetVector();
             var xyz = ray.Position;
             var abc = Normal;
@@ -62,6 +64,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             }
             return Utils.PoinInTringle(poins);
         }
+
+        //public static bool operator ==(Polygon p1, Polygon p2) => p1.DRatio == p2.DRatio;
+        //public static bool operator !=(Polygon p1, Polygon p2) => p1.DRatio != p2.DRatio;
 
     }
 }

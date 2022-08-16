@@ -6,8 +6,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
     public struct Direction3 
     {
-        public Direction Horisontal { get; set; }
-        public Direction Vertical { get; set; }
+        public Direction Horisontal;
+        public Direction Vertical;
 
         public Direction3(double horisontal, double vertical)
         {
@@ -23,8 +23,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public Point3 GetVector()
         {
-            var vertRatio = Vertical.Cos;
-            return new Point3(Horisontal.Cos * vertRatio, Horisontal.Sin * vertRatio, Vertical.Sin);
+            var vertRatio = Math.Cos(Vertical.AngleGrads * Utils.ToRad);
+            return new Point3(Math.Cos(Horisontal.AngleGrads * Utils.ToRad) * vertRatio, Math.Sin(Horisontal.AngleGrads * Utils.ToRad) * vertRatio, Math.Sin(Vertical.AngleGrads * Utils.ToRad));
         }
 
         public void SetDirection(Point3 vector)

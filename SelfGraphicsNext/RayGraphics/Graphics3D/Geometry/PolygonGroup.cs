@@ -5,7 +5,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
     public class PolygonGroup
     {
-        public Color Color { get; set; }
+        public Color Color;
         public List<Polygon> Surface;
         public string Name;
         public PolygonGroup(List<Polygon> surface)
@@ -33,10 +33,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 colResult.GroupName = Name;
                 colResult.RaySource = ray.Position;
                 colResult.Color = Color;
-                colResult.Codiled = true;
+                colResult.Colided = true;
                 return colResult;
             }
-            colResult.Codiled = false;
+            colResult.Colided = false;
             return colResult;
         }
         public ColisionResult ColideIns(Ray3 ray, Polygon pol)
@@ -61,10 +61,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 colResult.GroupName = Name;
                 colResult.RaySource = ray.Position;
                 colResult.Color = Color;
-                colResult.Codiled = true;
+                colResult.Colided = true;
                 return colResult;
             }
-            colResult.Codiled = false;
+            colResult.Colided = false;
             return colResult;
         }
     }

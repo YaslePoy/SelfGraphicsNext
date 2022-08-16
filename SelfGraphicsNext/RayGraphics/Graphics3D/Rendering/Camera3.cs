@@ -73,12 +73,12 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     //foreach (Ray3 colider in rays)
                     //{
                     var result = colider.CollideInScene(scene);
-                    if (result.Codiled)
+                    if (result.Colided)
                     {
                         try
                         {
                             Color finalColor = colider.Aim.Color;
-                            if (!(scene.Light is null))
+                            if (scene.Light != new Point3())
                             {
                                 var norm = result.ColidedPoligon.Normal;
                                 var toLight = scene.Light - result.Colision;
@@ -94,7 +94,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 Ray3 shadowRay = new Ray3(result.Colision);
                                 shadowRay.Direction.SetDirection(toLight);
                                 var shadowRes = shadowRay.CollideInSceneIns(scene, result.ColidedPoligon);
-                                if (shadowRes.Codiled)
+                                if (shadowRes.Colided)
                                 {
                                     kRatio =0;
                                 }
@@ -116,7 +116,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             Rendering.Start();
-
             var renderTask =Task.Run(() => Parallel.ForEach(renderGroups, renderPool));
             if (wait)
                 while (!renderTask.IsCompleted) ;

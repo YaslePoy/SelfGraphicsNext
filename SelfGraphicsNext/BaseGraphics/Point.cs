@@ -10,13 +10,13 @@ namespace SelfGraphicsNext.BaseGraphics
         {
             return new Vector2f((float)X, (float)Y);
         }
-        public double Distance { get; set; }
+        public double Distance;
 
-        public double X { get; set; }
+        public double X;
 
-        public double Y { get; set; }
+        public double Y;
 
-        public Color Color { get; set; } = Color.Yellow;
+        public Color Color = Color.Yellow;
 
         public Point(double x, double y)
         {

@@ -4,10 +4,10 @@ using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public class Point3
+    public struct Point3
     {
-        public static Point3 Zero = new Point3(0, 0, 0);
-        public static Point3 One = new Point3(1, 1, 1);
+        public static Point3 Zero = new Point3(Vector3.Zero);
+        public static Point3 One = new Point3(Vector3.One);
         public double Lenght => Vector.Length();
         public Vector3 Vector;
         public double X { get => Vector.X; set => Vector.X = (float)value; }
@@ -18,16 +18,19 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Point3()
         {
             Vector = new Vector3();
+            Distance = 0;
         }
 
 
         public Point3(Point xy)
         {
             Vector = new Vector3((float)xy.X, (float)xy.Y, 0);
+            Distance = 0;
         }
         public Point3(double x, double y, double z)
         {
             Vector = new Vector3((float)x, (float)y, (float)z);
+            Distance = 0;           
         }
 
         public Point3(double x, double y, double z, Color color) : this(x, y, z)
@@ -37,6 +40,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Point3(Vector3 xyz)
         {
             Vector = xyz;
+            Distance = 0;
         }
         public Point3 Rounded(int k = 3)
         {
@@ -60,7 +64,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public static bool operator !=(Point3 point1, Point3 point2) => point1.Vector != point2.Vector;
 
-        public void SetDistanceTo(Point3 p) => Distance = (this - p).Lenght;
+        public void SetDistanceTo(Point3 p) => Distance = (Vector - p.Vector).Length();
 
         public double GetDistanceTo(Point3 p) => (Vector - p.Vector).Length();
 
@@ -69,17 +73,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             return $"[{X.Round()}:{Y.Round()}:{Z.Round()}]";
         }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj == null && this is null)
-                return true;
-            if (obj == null)
-                return false;
-            if (!(obj is Point3))
-                return false;
-            Point3 p = (Point3)obj;
-            return Vector == p.Vector;
-        }
         public Point3 Normalised()
         {
             var len = this.GetDistanceTo(Point3.Zero);

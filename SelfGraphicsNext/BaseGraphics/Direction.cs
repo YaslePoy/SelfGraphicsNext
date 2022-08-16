@@ -86,9 +86,9 @@
         {
             return $"{AngleGrads.Round(4)}°";
         }
-        public double Sin => AngleGrads.Sin();
-        public double Cos => AngleGrads.Cos();
-        public double Tan => AngleGrads.Tan();
+        public double Sin => Math.Sin(AngleGrads * Utils.ToRad);
+        public double Cos => Math.Cos(AngleGrads * Utils.ToRad);
+        public double Tan => Math.Tan(AngleGrads * Utils.ToRad);
 
         public double Radians => AngleGrads.ToRadians();
 
