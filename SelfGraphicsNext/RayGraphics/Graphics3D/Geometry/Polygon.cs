@@ -1,5 +1,6 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
+using System.Numerics;
 using SFML.Graphics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
@@ -40,27 +41,27 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision = xyz + (mpl * tRatio);
             colision.Color = Color;
             colision.SetDistanceTo(ray.Position);
-            Point[] poins = new Point[4];
+            Vector2[] poins = new Vector2[4];
             if (Normal.Vector.X != 0)
             {
-                poins[0] = new Point(colision.Vector.Y, colision.Vector.Z);
-                poins[1] = new Point(points[0].Vector.Y, points[0].Vector.Z);
-                poins[2] = new Point(points[1].Vector.Y, points[1].Vector.Z);
-                poins[3] = new Point(points[2].Vector.Y, points[2].Vector.Z);
-            }    
+                poins[0] = new Vector2(colision.Vector.Y, colision.Vector.Z);
+                poins[1] = new Vector2(points[0].Vector.Y, points[0].Vector.Z);
+                poins[2] = new Vector2(points[1].Vector.Y, points[1].Vector.Z);
+                poins[3] = new Vector2(points[2].Vector.Y, points[2].Vector.Z);
+            }
             else if (Normal.Y != 0)
             {
-                poins[0] = new Point(colision.Vector.X, colision.Vector.Z);
-                poins[1] = new Point(points[0].Vector.X, points[0].Vector.Z);
-                poins[2] = new Point(points[1].Vector.X, points[1].Vector.Z);
-                poins[3] = new Point(points[2].Vector.X, points[2].Vector.Z);
+                poins[0] = new Vector2(colision.Vector.X, colision.Vector.Z);
+                poins[1] = new Vector2(points[0].Vector.X, points[0].Vector.Z);
+                poins[2] = new Vector2(points[1].Vector.X, points[1].Vector.Z);
+                poins[3] = new Vector2(points[2].Vector.X, points[2].Vector.Z);
             }
             else
             {
-                poins[0] = new Point(colision.Vector.X, colision.Vector.Y);
-                poins[1] = new Point(points[0].Vector.X, points[0].Vector.Y);
-                poins[2] = new Point(points[1].Vector.X, points[1].Vector.Y);
-                poins[3] = new Point(points[2].Vector.X, points[2].Vector.Y);
+                poins[0] = new Vector2(colision.Vector.X, colision.Vector.Y);
+                poins[1] = new Vector2(points[0].Vector.X, points[0].Vector.Y);
+                poins[2] = new Vector2(points[1].Vector.X, points[1].Vector.Y);
+                poins[3] = new Vector2(points[2].Vector.X, points[2].Vector.Y);
             }
             return Utils.PoinInTringle(poins);
         }

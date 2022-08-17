@@ -75,7 +75,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public Point3 Normalised()
         {
-            var len = this.GetDistanceTo(Point3.Zero);
+            var len = Vector.Length();
             return this * (1 / len);
         }
 

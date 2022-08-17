@@ -116,7 +116,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             Rendering.Start();
-            var renderTask =Task.Run(() => Parallel.ForEach(renderGroups, renderPool));
+            var renderTask =Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k}, renderPool));
             if (wait)
                 while (!renderTask.IsCompleted) ;
 

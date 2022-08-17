@@ -2109,23 +2109,13 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "SFML.Net": "2.5.0",
-          "SelfGToolsLib": "1.0.0"
+          "SFML.Net": "2.5.0"
         },
         "compile": {
           "bin/placeholder/SelfGraphicsNext.dll": {}
         },
         "runtime": {
           "bin/placeholder/SelfGraphicsNext.dll": {}
-        }
-      },
-      "SelfGToolsLib/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/SelfGToolsLib.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/SelfGToolsLib.dll": {}
         }
       }
     }
@@ -6797,11 +6787,6 @@
       "type": "project",
       "path": "../SelfGraphicsNext/SelfGraphicsNext.csproj",
       "msbuildProject": "../SelfGraphicsNext/SelfGraphicsNext.csproj"
-    },
-    "SelfGToolsLib/1.0.0": {
-      "type": "project",
-      "path": "../SelfGToolsLib/SelfGToolsLib.vcxproj",
-      "msbuildProject": "../SelfGToolsLib/SelfGToolsLib.vcxproj"
     }
   },
   "projectFileDependencyGroups": {

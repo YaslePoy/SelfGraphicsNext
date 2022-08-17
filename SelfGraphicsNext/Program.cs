@@ -13,7 +13,7 @@ namespace SelfGraphicsNext
         public static int k = 200;
         public static int x = 1 * k;
         public static int y = 1 * k;
-        public const int mRatio = 8;
+        public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
         static bool benchMode = true;

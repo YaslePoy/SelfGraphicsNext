@@ -1,10 +1,5 @@
 ﻿using SFML.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 {
@@ -13,6 +8,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         public static Color GetColor(string mtlPath, string materialName)
         {
             bool isCurrMaterial = false;
+            if (!File.Exists(mtlPath))
+                return Color.White;
             foreach (var str in File.ReadAllLines(mtlPath))
             {
                 if (str == $"newmtl {materialName}")
@@ -26,7 +23,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
 
             }
-
             return new Color();
         }
     }
