@@ -44,7 +44,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             colision.Color = Color;
             colision.Distance = (colision.Vector - ray.Position.Vector).Length();
             Vector2[] poins = new Vector2[4];
-            Vector3[] vectors = new Vector3[] { points[0].Vector, points[1].Vector, points[2].Vector };
             if (Normal.Vector.X != 0)
             {
                 poins[0] = new Vector2(colision.Vector.Y, colision.Vector.Z);
