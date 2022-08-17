@@ -29,7 +29,7 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio, false); 
+            camera.RenderSceneMulti(scene, mRatio, true); 
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.FromSeconds(5);
@@ -74,7 +74,7 @@ namespace SelfGraphicsNext
                 }
                 _rw.Display();
             }
-
+            Console.ReadKey();
             static void _rw_MouseMoved()
             {
 

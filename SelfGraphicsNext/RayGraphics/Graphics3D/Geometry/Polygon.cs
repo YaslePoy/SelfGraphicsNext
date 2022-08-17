@@ -10,7 +10,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Color Color;
         public readonly List<Point3> points;
         public readonly Point3 Normal;
-        public double DRatio;
+        public readonly double DRatio;
 
         public Polygon(List<Point3> ends, Point3 normal)
         {
@@ -26,11 +26,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public bool Colide(Ray3 ray, out Point3 colision)
         {
             colision = new Point3();
-            var mpl = ray.Direction.GetVector();
-            var xyz = ray.Position;
-            var abc = Normal;
-            double upper = DRatio + abc.Vector.X * xyz.Vector.X + abc.Vector.Y * xyz.Vector.Y + abc.Vector.Z * xyz.Vector.Z;
-            double lower = abc.Vector.X * mpl.Vector.X + abc.Vector.Y * mpl.Vector.Y + abc.Vector.Z * mpl.Vector.Z;
+            var vertRatio = Math.Cos(ray.Direction.Vertical.AngleGrads * Utils.ToRad);
+            var dirHor = ray.Direction.Horisontal.AngleGrads * Utils.ToRad;
+            var mpl = new Vector3((float)(Math.Cos(dirHor) * vertRatio), (float)(Math.Sin(dirHor) * vertRatio), (float)Math.Sin(ray.Direction.Vertical.AngleGrads * Utils.ToRad));
+            var xyz = ray.Position.Vector;
+            var abc = Normal.Vector;
+            double upper = DRatio + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z;
+            double lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z;
             if (lower == 0 && upper == 0)
                 return false;
             if (upper > 0 && lower == 0)
@@ -38,10 +40,11 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             var tRatio = -(upper / lower);
             if (tRatio < 0)
                 return false;
-            colision = xyz + (mpl * tRatio);
+            colision = new Point3(xyz + (mpl * (float)tRatio));
             colision.Color = Color;
-            colision.SetDistanceTo(ray.Position);
+            colision.Distance = (colision.Vector - ray.Position.Vector).Length();
             Vector2[] poins = new Vector2[4];
+            Vector3[] vectors = new Vector3[] { points[0].Vector, points[1].Vector, points[2].Vector };
             if (Normal.Vector.X != 0)
             {
                 poins[0] = new Vector2(colision.Vector.Y, colision.Vector.Z);

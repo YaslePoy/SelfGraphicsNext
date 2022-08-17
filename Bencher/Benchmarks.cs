@@ -7,12 +7,7 @@ namespace Bencher
 {
     public class Data
     {
-        public int Prop { get; set; }
-        public int Field;
-        public static double FiveSqrtRoot(double a)
-        {
-            return a * 5;
-        }
+        public Vector3 Vector;
     }
     public static class Utils
     {
@@ -109,43 +104,24 @@ namespace Bencher
     }
     public class Benchmarks
     {
-        //public Vector3 DotNetVecA;
-        //public Vector3 DotNetVecB;
-        //public Point3 MyVecA;
-        //public Point3 MyVecB;
-        public Data a;
-        public Data b;
+        Data data;
 
         public Benchmarks()
         {
-            //DotNetVecA = new Vector3(1, 2, 3);
-            //MyVecA = new Point3(1, 2, 3);
-            //DotNetVecB = new Vector3(4, 5, 6);
-            //MyVecB = new Point3(4, 5, 6);
-             a = new Data();
-            b = new Data();
+            data = new Data();
+            data.Vector = new Vector3(1, 2, 3);
         }
         [Benchmark]
-        public void Method()
+        public void Stright()
         {
-            double x = 0;
-            x = Data.FiveSqrtRoot(1);
-            x = Data.FiveSqrtRoot(2);
-            x = Data.FiveSqrtRoot(3);
-            x = Data.FiveSqrtRoot(4);
-            x = Data.FiveSqrtRoot(5);
-
+            var x = data.Vector.X + data.Vector.Y + data.Vector.Z;
         }
 
         [Benchmark]
-        public void Code()
+        public void Variable()
         {
-            double x = 0;
-            x = 1 * 5;
-            x = 2 * 5;
-            x = 3 * 5;
-            x = 4 * 5;
-            x = 5 * 5;
+            Vector3 v = data.Vector;
+            var x = v.X + v.Y + v.Z;
         }
     }
 }

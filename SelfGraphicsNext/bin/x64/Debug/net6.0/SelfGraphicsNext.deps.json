@@ -8,8 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "SelfGraphicsNext/1.0.0": {
         "dependencies": {
-          "SFML.Net": "2.5.0",
-          "SelfGToolsLib": "1.0.0"
+          "SFML.Net": "2.5.0"
         },
         "runtime": {
           "SelfGraphicsNext.dll": {}

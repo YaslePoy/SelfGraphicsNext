@@ -116,11 +116,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             Rendering.Start();
-            var renderTask =Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k}, renderPool));
             if (wait)
-                while (!renderTask.IsCompleted) ;
-
-            
+                Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k }, renderPool);
+            else 
+                Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k}, renderPool));       
         }
     }
 }
