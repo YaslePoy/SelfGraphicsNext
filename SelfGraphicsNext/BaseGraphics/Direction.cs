@@ -2,6 +2,7 @@
 {
     public struct Direction
     {
+        public float AngleGradsF = 0;
         public double AngleGrads = 0;
         public Direction(double degrees)
         {
@@ -10,6 +11,7 @@
                 degrees = 360 + degrees;
             degrees = degrees % 360;
             AngleGrads = degrees;
+            AngleGradsF = (float)degrees;
         }
 
         public static bool operator ==(Direction dir1, Direction dir2) => dir1.AngleGrads == dir2.AngleGrads;
@@ -80,6 +82,7 @@
             AngleGrads %= 360;
             if (AngleGrads < 0)
                 AngleGrads = 360 + AngleGrads;
+            AngleGradsF = (float)degrees;
         }
 
         public override string ToString()

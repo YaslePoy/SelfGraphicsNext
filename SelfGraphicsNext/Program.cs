@@ -20,7 +20,7 @@ namespace SelfGraphicsNext
         static bool drawInfo = false;
         public static void Main(string[] args)
         {
-            scene = Scene.LoadSceneObj(@"C:\Users\Mical\Projects\BlenderProjects\outs\Tests\ReShadowTest.obj");
+            scene = Scene.LoadSceneObj(@"RenderModels\ReShadowTest.obj");
             scene.Light = new Point3(0, 2, 2);
             camera = new Camera3(new Viewer(70, new Point3(-10, 0, 0), new Direction3(0, 0), x, y));
             _rw = new RenderWindow(new VideoMode((uint)x, (uint)y), "SGN test", Styles.Close);
@@ -29,11 +29,11 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio, true);
+            camera.RenderSceneMulti(scene, mRatio, false);
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.FromSeconds(5);
-            int recordCounter = 10;
+            int recordCounter = 20;
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -54,30 +54,27 @@ namespace SelfGraphicsNext
                         }
                         if (benchMode)
                         {
-                            //µs
                             if (camera.Rendering.State == RenderState.Ready)
                             {  
                                 recordCounter--;
 
-                                var timeStr = camera.Rendering.RenderTime.ToString("s','ffffff' us'");
+                                var timeStr = camera.Rendering.RenderTime.ToString("s','ffff");
                                 if (record > camera.Rendering.RenderTime)
                                 {
                                     Console.WriteLine($"New Record: {timeStr}");
                                     record = camera.Rendering.RenderTime;
-                                    recordCounter = 10;
+                                    recordCounter = 20;
                                 }
                                 else
                                 {
                                     if (recordCounter == 0)
                                     {
-                                        Console.WriteLine($"{timeStr} Record steel {record.ToString("s','ffffff' us'")}");
-                                        recordCounter = 10;
+                                        Console.WriteLine($"{timeStr} Record steel {record.ToString("s','ffff")}");
+                                        recordCounter = 20;
                                     }
-
-                                    else
-                                        Console.WriteLine(timeStr);
+                                    //else
+                                    //    Console.WriteLine(timeStr);
                                 }
-                                //File.AppendAllText("timeLog.txt", camera.Rendering.RenderTime.ToString("s','ffff") + "\n");
                                 camera.RenderSceneMulti(scene, mRatio);
                             }
                         }
@@ -173,7 +170,6 @@ namespace SelfGraphicsNext
                 }
             }
         }
-
         private static void _rw_KeyReleased(object? sender, KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.F1)
