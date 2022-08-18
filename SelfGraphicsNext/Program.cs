@@ -29,10 +29,11 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio, true); 
+            camera.RenderSceneMulti(scene, mRatio, true);
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.FromSeconds(5);
+            int recordCounter = 10;
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -53,16 +54,28 @@ namespace SelfGraphicsNext
                         }
                         if (benchMode)
                         {
+                            //µs
                             if (camera.Rendering.State == RenderState.Ready)
-                            {
+                            {  
+                                recordCounter--;
+
+                                var timeStr = camera.Rendering.RenderTime.ToString("s','ffffff' us'");
                                 if (record > camera.Rendering.RenderTime)
                                 {
-                                    Console.WriteLine($"New Record: {camera.Rendering.RenderTime.ToString("s','ffff")}");
+                                    Console.WriteLine($"New Record: {timeStr}");
                                     record = camera.Rendering.RenderTime;
+                                    recordCounter = 10;
                                 }
                                 else
                                 {
-                                    Console.WriteLine(camera.Rendering.RenderTime.ToString("s','ffff"));
+                                    if (recordCounter == 0)
+                                    {
+                                        Console.WriteLine($"{timeStr} Record steel {record.ToString("s','ffffff' us'")}");
+                                        recordCounter = 10;
+                                    }
+
+                                    else
+                                        Console.WriteLine(timeStr);
                                 }
                                 //File.AppendAllText("timeLog.txt", camera.Rendering.RenderTime.ToString("s','ffff") + "\n");
                                 camera.RenderSceneMulti(scene, mRatio);

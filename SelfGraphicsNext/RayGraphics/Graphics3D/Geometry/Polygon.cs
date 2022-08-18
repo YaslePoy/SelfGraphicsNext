@@ -1,24 +1,25 @@
-﻿using SelfGraphicsNext.BaseGraphics;
-using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
-using System.Numerics;
+﻿using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
+using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
     public class Polygon
     {
         public Color Color;
-        public readonly List<Point3> points;
+        public readonly Point3[] points;
         public readonly Point3 Normal;
         public readonly double DRatio;
+        public Plane PlanaData;
 
         public Polygon(List<Point3> ends, Point3 normal)
         {
-            points = ends;
+            points = ends.ToArray();
             Normal = normal;
             Color = Color.White;
             if (ends.Count == 3)
-                DRatio = (-points[0].Vector.X) * Normal.Vector.X + (-points[0].Vector.Y) * Normal.Vector.Y + (-points[0].Vector.Z) * Normal.Vector.Z;
+                DRatio = Vector3.Dot(-points[0].Vector, Normal.Vector);
+            //PlanaData = Plane.CreateFromVertices(points[0].Vector, points[1].Vector, points[2].Vector);
             else
                 DRatio = 0;
         }
@@ -31,8 +32,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             var mpl = new Vector3((float)(Math.Cos(dirHor) * vertRatio), (float)(Math.Sin(dirHor) * vertRatio), (float)Math.Sin(ray.Direction.Vertical.AngleGrads * Utils.ToRad));
             var xyz = ray.Position.Vector;
             var abc = Normal.Vector;
-            double upper = DRatio + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z;
-            double lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z;
+            double upper = DRatio + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z/*Plane.DotCoordinate(PlanaData, xyz)*/;
+            float lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z/*Plane.DotNormal(PlanaData, mpl)*/;
             if (lower == 0 && upper == 0)
                 return false;
             if (upper > 0 && lower == 0)
@@ -42,7 +43,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 return false;
             colision = new Point3(xyz + (mpl * (float)tRatio));
             colision.Color = Color;
-            colision.Distance = (colision.Vector - ray.Position.Vector).Length();
+            colision.Distance = /*(colision.Vector - ray.Position.Vector).Length()*/Vector3.Distance(colision.Vector, xyz);
             Vector2[] poins = new Vector2[4];
             if (Normal.Vector.X != 0)
             {

@@ -20,8 +20,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             Vector = new Vector3();
             Distance = 0;
         }
-
-
         public Point3(Point xy)
         {
             Vector = new Vector3((float)xy.X, (float)xy.Y, 0);
@@ -64,9 +62,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public static bool operator !=(Point3 point1, Point3 point2) => point1.Vector != point2.Vector;
 
-        public void SetDistanceTo(Point3 p) => Distance = (Vector - p.Vector).Length();
+        public void SetDistanceTo(Point3 p) => Distance = /*(Vector - p.Vector).Length()*/Vector3.Distance(Vector, p.Vector);
 
-        public double GetDistanceTo(Point3 p) => (Vector - p.Vector).Length();
+        public double GetDistanceTo(Point3 p) => /*(Vector - p.Vector).Length()*/Vector3.Distance(Vector, p.Vector);
 
         public override string ToString()
         {

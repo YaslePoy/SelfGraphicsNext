@@ -70,7 +70,7 @@ namespace Bencher
         public static bool operator ==(Point3 point1, Point3 point2) => point1.data == point2.data;
 
         public static bool operator !=(Point3 point1, Point3 point2) => point1.data != point2.data;
-
+        public double GetDistanceToVec(Point3 p) => Vector3.Distance(data, p.data);
         public void SetDistanceTo(Point3 p) => Distance = (this - p).Lenght;
 
         public double GetDistanceTo(Point3 p) => (this - p).Lenght;
@@ -104,24 +104,23 @@ namespace Bencher
     }
     public class Benchmarks
     {
-        Data data;
-
+        Point3 a;
+        Point3 b;
         public Benchmarks()
         {
-            data = new Data();
-            data.Vector = new Vector3(1, 2, 3);
+            a = new Point3(1, 2, 3);
+            b = new Point3(2, 3, 4);
         }
         [Benchmark]
-        public void Stright()
+        public void DotNet()
         {
-            var x = data.Vector.X + data.Vector.Y + data.Vector.Z;
+            var x = a.GetDistanceToVec(b);
         }
 
         [Benchmark]
-        public void Variable()
+        public void My()
         {
-            Vector3 v = data.Vector;
-            var x = v.X + v.Y + v.Z;
+            var x = a.GetDistanceToVec(b);
         }
     }
 }
