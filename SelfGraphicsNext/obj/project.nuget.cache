@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "eiMBqFpscx5+i7RFF2PinQoEqHgGzVO/ZfsU8OwyAQh3zOOGgyhxfXVBQVx7/99OOjygrwrlVKFV9DgVoIrzQg==",
+  "dgSpecHash": "AjGld4mpwD5BHPQGVRkwcjWhOad32/oVMWymBoyVNC0JoGD1vd6q9fLdUKFubv5M+hKpoE03tvbO8RJp62H2vQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mical\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+  "projectFilePath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Mical\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
-    "C:\\Users\\Mical\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
-    "C:\\Users\\Mical\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
-    "C:\\Users\\Mical\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
-    "C:\\Users\\Mical\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
-    "C:\\Users\\Mical\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+    "C:\\Users\\Mimm\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\Mimm\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\Mimm\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\Mimm\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\Mimm\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\Mimm\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
   ],
   "logs": []
 }

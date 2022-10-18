@@ -27,13 +27,11 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public bool Colide(Ray3 ray, out Point3 colision)
         {
             colision = new Point3();
-            var vertRatio = MathF.Cos(ray.Direction.Vertical.AngleGradsF * Utils.ToRadF);
-            var dirHor = ray.Direction.Horisontal.AngleGradsF * Utils.ToRadF;
-            var mpl = new Vector3(MathF.Cos(dirHor) * vertRatio, MathF.Sin(dirHor) * vertRatio, MathF.Sin(ray.Direction.Vertical.AngleGradsF * Utils.ToRadF));
+            var mpl = ray.Direction;
             var xyz = ray.Position.Vector;
             var abc = Normal.Vector;
-            float upper = PlanaData.D + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z/*Plane.DotCoordinate(PlanaData, xyz)*/;
-            float lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z/*Plane.DotNormal(PlanaData, mpl)*/;
+            float upper = PlanaData.D + abc.X * xyz.X + abc.Y * xyz.Y + abc.Z * xyz.Z;
+            float lower = abc.X * mpl.X + abc.Y * mpl.Y + abc.Z * mpl.Z;
             if (lower == 0 && upper == 0)
                 return false;
             if (upper > 0 && lower == 0)
@@ -43,7 +41,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 return false;
             colision = new Point3(xyz + (mpl * (float)tRatio));
             colision.Color = Color;
-            colision.Distance = /*(colision.Vector - ray.Position.Vector).Length()*/Vector3.Distance(colision.Vector, xyz);
+            colision.Distance = Vector3.Distance(colision.Vector, xyz);
             Vector2[] poins = new Vector2[4];
             if (Normal.Vector.X != 0)
             {
