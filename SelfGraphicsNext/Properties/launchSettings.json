@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SelfGraphicsNext": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\RunConfig.json\""
+    }
+  }
+}

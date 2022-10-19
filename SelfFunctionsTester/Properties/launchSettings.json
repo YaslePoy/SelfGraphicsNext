@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SelfFunctionsTester": {
+      "commandName": "Project",
+      "commandLineArgs": "\"test\""
+    }
+  }
+}

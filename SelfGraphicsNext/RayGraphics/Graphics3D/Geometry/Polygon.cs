@@ -66,9 +66,5 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             }
             return Utils.PoinInTringle(poins);
         }
-
-        //public static bool operator ==(Polygon p1, Polygon p2) => p1.DRatio == p2.DRatio;
-        //public static bool operator !=(Polygon p1, Polygon p2) => p1.DRatio != p2.DRatio;
-
     }
 }

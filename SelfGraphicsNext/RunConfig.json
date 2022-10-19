@@ -1,0 +1,20 @@
+{
+  "Model": "RenderModels\\ReShadowTest.obj",
+  "FOW": 90,
+  "SceneLight": {
+    "X": 0,
+    "Y": 2,
+    "Z": 2
+  },
+  "Position": {
+    "X": -5,
+    "Y": 0,
+    "Z": 2
+  },
+  "Direction": {
+    "HorisontalView": 0,
+    "VertivalView": -20
+  },
+  "XResolution": 150,
+  "YResolution": 150
+}

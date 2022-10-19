@@ -1,4 +1,6 @@
-﻿namespace SelfGraphicsNext.BaseGraphics
+﻿using System.Text.Json.Serialization;
+
+namespace SelfGraphicsNext.BaseGraphics
 {
     public struct Direction
     {
@@ -84,17 +86,19 @@
                 AngleGrads = 360 + AngleGrads;
             AngleGradsF = (float)degrees;
         }
-
         public override string ToString()
         {
             return $"{AngleGrads.Round(4)}°";
         }
+        [JsonIgnore]
         public double Sin => Math.Sin(AngleGrads * Utils.ToRad);
+        [JsonIgnore]
         public double Cos => Math.Cos(AngleGrads * Utils.ToRad);
+        [JsonIgnore]
         public double Tan => Math.Tan(AngleGrads * Utils.ToRad);
-
+        [JsonIgnore]
         public double Radians => AngleGrads.ToRadians();
-
+        [JsonIgnore]
         public Direction Rounded => new Direction(AngleGrads.Round(1));
 
         public int Quater()

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfGrTester", "SelfGrTeste
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SelfGToolsLib", "SelfGToolsLib\SelfGToolsLib.vcxproj", "{0616E87E-D22F-4C4D-8FA7-F272D61711EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bencher", "Bencher\Bencher.csproj", "{FF7CDD53-0199-4854-86D2-0FA1AB7D961D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bencher", "Bencher\Bencher.csproj", "{FF7CDD53-0199-4854-86D2-0FA1AB7D961D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelfFunctionsTester", "SelfFunctionsTester\SelfFunctionsTester.csproj", "{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,22 @@ Global
 		{FF7CDD53-0199-4854-86D2-0FA1AB7D961D}.Release|x64.Build.0 = Release|Any CPU
 		{FF7CDD53-0199-4854-86D2-0FA1AB7D961D}.Release|x86.ActiveCfg = Release|Any CPU
 		{FF7CDD53-0199-4854-86D2-0FA1AB7D961D}.Release|x86.Build.0 = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|x64.Build.0 = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Debug|x86.Build.0 = Debug|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|ARM32.Build.0 = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|x64.ActiveCfg = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|x64.Build.0 = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|x86.ActiveCfg = Release|Any CPU
+		{4A0AA0AD-5F81-4993-8F38-FBB82B337E4E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

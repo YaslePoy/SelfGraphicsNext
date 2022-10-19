@@ -27,5 +27,15 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             Width = width;
             Height = height;
         }
+        public ViewerSer GetForSer()=> new ViewerSer() { FOW = FOW, Position = Position, Direction = Direction, Height = Height, Width = Width, FOWVertical=FOWVertical };
+    }
+    public class ViewerSer
+    {
+        public double FOW { get; set; }
+        public Point3 Position { get; set; }
+        public Direction3 Direction { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public double FOWVertical { get; set; }
     }
 }

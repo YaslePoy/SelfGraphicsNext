@@ -1,7 +1,10 @@
-﻿using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
+﻿using SelfGraphicsNext.BaseGraphics;
+using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using SFML.Window;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SelfGraphicsNext
 {
@@ -10,26 +13,30 @@ namespace SelfGraphicsNext
         public static Scene scene;
         public static RenderWindow _rw;
         public static Camera3 camera;
-        public static int k = 330;
-        public static int x = 1 * k;
-        public static int y = 1 * k;
         public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
         static bool benchMode = false;
         static bool drawInfo = false;
+        static RunConfig RunConfig;
+        static string rgPath;
+        static Direction localLightDirection;
         public static void Main(string[] args)
         {
-            scene = Scene.LoadSceneObj(@"RenderModels\ReShadowTest.obj");
-            scene.Light = new Point3(0, 2, 2);
-            camera = new Camera3(new Viewer(70, new Point3(-10, 0, 0), new Direction3(0, 0), x, y));
-            _rw = new RenderWindow(new VideoMode((uint)x, (uint)y), "SGN test", Styles.None);
+            localLightDirection = new Direction(0);
+            Console.WriteLine(args[0]);
+            rgPath = args[0];
+            RunConfig = JsonSerializer.Deserialize<RunConfig>(File.ReadAllText(rgPath));
+            var cfg = RunConfig.Get();
+            scene = cfg.scene;
+            camera = cfg.camera;
+            _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN test", Styles.None);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
-            camera.RenderSceneMulti(scene, mRatio, false);
+            //camera.RenderSceneMulti(scene, mRatio, false);
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
@@ -41,6 +48,9 @@ namespace SelfGraphicsNext
                 {
                     _rw_MouseMoved();
                     {
+                        scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
+                        localLightDirection += 2;
+                        camera.RenderSceneMulti(scene, mRatio, true);
                         _rw.Draw(new Sprite(new Texture(camera.Rendering.OutputImage)));
                         if (drawInfo)
                         {
@@ -52,12 +62,12 @@ namespace SelfGraphicsNext
                             Text infoText = new Text(info, font, 18);
                             _rw.Draw(infoText);
                         }
+                        
                         if (benchMode)
                         {
                             if (camera.Rendering.State == RenderState.Ready)
                             {
                                 recordCounter--;
-
                                 var timeStr = camera.Rendering.RenderTime.ToString("s','ffff");
                                 if (record > camera.Rendering.RenderTime)
                                 {
@@ -75,6 +85,9 @@ namespace SelfGraphicsNext
                                     //else
                                     //    Console.WriteLine(timeStr);
                                 }
+                                RunConfig.SceneLight = new EasyPoint() { X = localLightDirection.Cos * 2, Y = localLightDirection.Sin, Z = 2 };
+                                scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
+                                localLightDirection += 5;
                                 camera.RenderSceneMulti(scene, mRatio);
                             }
                         }
@@ -170,6 +183,25 @@ namespace SelfGraphicsNext
                         continue;
                     updateImg();
                 }
+                if (Keyboard.IsKeyPressed(Keyboard.Key.F5))
+                {
+                    while (Keyboard.IsKeyPressed(Keyboard.Key.F5))
+                        continue;
+                    RunConfig = JsonSerializer.Deserialize<RunConfig>(File.ReadAllText(rgPath));
+                    var cfg = RunConfig.Get();
+                    camera.Rendering.Stop();
+                    scene = cfg.scene;
+                    camera = cfg.camera;
+                    _rw.Close();
+                    _rw.Dispose();
+                    _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN test", Styles.None);
+                    _rw.Closed += (o, e) => _rw.Close();
+                    _rw.SetActive(true);
+                    _rw.Display();
+                    _rw.SetFramerateLimit(60);
+                    _rw.KeyReleased += _rw_KeyReleased;
+                }
+
             }
         }
         private static void _rw_KeyReleased(object? sender, KeyEventArgs e)

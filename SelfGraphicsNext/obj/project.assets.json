@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+      "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
       "projectName": "SelfGraphicsNext",
-      "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+      "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
       "packagesPath": "C:\\Users\\Mimm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
+      "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mimm\\AppData\\Roaming\\NuGet\\NuGet.Config",
