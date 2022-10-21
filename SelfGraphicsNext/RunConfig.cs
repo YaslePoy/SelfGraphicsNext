@@ -19,9 +19,11 @@ namespace SelfGraphicsNext
         public EasyDirection Direction { get; set; }
         public int XResolution { get; set; }
         public int YResolution { get; set; }
+        public bool UseCuda { get; set; }
+
         public (Scene scene, Camera3 camera) Get()
         {
-            var scene = Scene.LoadSceneObj(Model);
+            var scene = Scene.LoadSceneObj(Model, UseCuda);
             scene.Light = SceneLight.Get();
             Viewer viewer = new Viewer(FOW, Position.Get(), Direction.Get(), XResolution, YResolution);
             Camera3 cam = new Camera3(viewer);

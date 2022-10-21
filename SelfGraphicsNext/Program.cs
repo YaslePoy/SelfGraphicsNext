@@ -3,8 +3,12 @@ using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using SFML.Window;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Font = SFML.Graphics.Font;
 
 namespace SelfGraphicsNext
 {
@@ -30,7 +34,8 @@ namespace SelfGraphicsNext
             var cfg = RunConfig.Get();
             scene = cfg.scene;
             camera = cfg.camera;
-            _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN test", Styles.None);
+            scene.LoadModel();
+            _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN", Styles.None);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);
             _rw.Display();
@@ -41,6 +46,8 @@ namespace SelfGraphicsNext
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
             int recordCounter = 20;
+            //camera.RenderSceneCUDA(scene);
+            camera.RenderSceneCUDA(scene);
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -48,9 +55,8 @@ namespace SelfGraphicsNext
                 {
                     _rw_MouseMoved();
                     {
-                        scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
-                        localLightDirection += 2;
-                        camera.RenderSceneMulti(scene, mRatio, true);
+                        //scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
+                        //localLightDirection += 2;
                         _rw.Draw(new Sprite(new Texture(camera.Rendering.OutputImage)));
                         if (drawInfo)
                         {
@@ -62,7 +68,6 @@ namespace SelfGraphicsNext
                             Text infoText = new Text(info, font, 18);
                             _rw.Draw(infoText);
                         }
-                        
                         if (benchMode)
                         {
                             if (camera.Rendering.State == RenderState.Ready)
@@ -200,6 +205,7 @@ namespace SelfGraphicsNext
                     _rw.Display();
                     _rw.SetFramerateLimit(60);
                     _rw.KeyReleased += _rw_KeyReleased;
+                    //camera.RenderSceneCUDA(scene);
                 }
 
             }

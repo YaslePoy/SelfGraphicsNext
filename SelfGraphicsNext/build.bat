@@ -1,0 +1,1 @@
+nvcc --ptx rayWork.cu

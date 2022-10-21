@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;x86;ARM32;x64</Platforms>
     <StartupObject>SelfGraphicsNext.Run</StartupObject>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -42,11 +43,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="RaySickness .cu" />
+    <None Remove="RaySickness.cu" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ManagedCuda" Version="10.0.0" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="RaySickness.cu" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +79,12 @@
     <None Update="GangSmallYuxian-Rpep6.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="raySickness.ptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="rayWork.ptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="RenderModels\ReShadowTest.mtl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -75,5 +92,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties runconfig_1json__JsonSchema="https://ffizer.github.io/ffizer/ffizer.schema.json" /></VisualStudio></ProjectExtensions>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\build.bat" />
+  </Target>
 
 </Project>

@@ -164,3 +164,10 @@ C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraph
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Debug\net6.0\SelfGraphicsNext.pdb
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Debug\net6.0\SelfGraphicsNext.genruntimeconfig.cache
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\obj\x64\Debug\net6.0\ref\SelfGraphicsNext.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\ManagedCuda.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\rayWork.ptx

@@ -9,7 +9,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Color Color;
         public readonly Point3[] points;
         public readonly Point3 Normal;
-        public readonly double DRatio;
         public Plane PlanaData;
 
         public Polygon(List<Point3> ends, Point3 normal)
@@ -20,8 +19,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             if (ends.Count == 3)
                 //DRatio = Vector3.Dot(-points[0].Vector, Normal.Vector);
                 PlanaData = Plane.CreateFromVertices(points[0].Vector, points[1].Vector, points[2].Vector);
-            else
-                DRatio = 0;
         }
 
         public bool Colide(Ray3 ray, out Point3 colision)

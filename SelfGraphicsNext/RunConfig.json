@@ -1,20 +1,21 @@
 {
-  "Model": "RenderModels\\ReShadowTest.obj",
-  "FOW": 90,
+  "Model": "C:\\Users\\Mimm\\Projects\\BlenderProjects\\outs\\plane.obj",
+  "FOW": 70,
   "SceneLight": {
-    "X": 0,
+    "X": 2,
     "Y": 2,
     "Z": 2
   },
   "Position": {
-    "X": -5,
+    "X": -4,
     "Y": 0,
-    "Z": 2
+    "Z": 0
   },
   "Direction": {
     "HorisontalView": 0,
-    "VertivalView": -20
+    "VertivalView": 0
   },
-  "XResolution": 150,
-  "YResolution": 150
+  "XResolution": 100,
+  "YResolution": 100,
+  "UseCuda": true
 }

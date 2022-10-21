@@ -1,4 +1,5 @@
-﻿using SelfGraphicsNext.BaseGraphics;
+﻿using ManagedCuda.VectorTypes;
+using SelfGraphicsNext.BaseGraphics;
 using SFML.Graphics;
 using System.Numerics;
 
@@ -45,6 +46,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             return new Point3(X.Round(k), Y.Round(k), Z.Round(k), Color);
         }
 
+        public float3 GetFloat3()
+        {
+            return new float3((float)X, (float)Y, (float)Z);
+        }
         public void Round(int k = 3)
         {
             X.Round(k);

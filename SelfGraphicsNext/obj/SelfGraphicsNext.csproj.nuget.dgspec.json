@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "ManagedCuda": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
             "SFML.Net": {
               "target": "Package",
               "version": "[2.5.0, )"

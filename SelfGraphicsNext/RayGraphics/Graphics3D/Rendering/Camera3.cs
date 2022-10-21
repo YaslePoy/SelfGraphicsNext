@@ -1,7 +1,8 @@
-﻿using SelfGraphicsNext.BaseGraphics;
+﻿using ManagedCuda;
+using ManagedCuda.VectorTypes;
+using SelfGraphicsNext.BaseGraphics;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SFML.Graphics;
-using System.Collections.Generic;
 using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
@@ -70,21 +71,21 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 var toLight = scene.Light.Vector - result.Colision.Vector;
                                 double kRatio = Vector3.Dot(norm, toLight);
                                 //kRatio /= norm.Lenght * toLight.Lenght;
-                                if (kRatio < 0)
-                                {
-                                    //kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 2;
-                                    //if (norm.Z < 0)
-                                    //    kRatio = 0;
-                                    kRatio = 0;
-                                }
+                                //if (kRatio < 0)
+                                //{
+                                //    //kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 2;
+                                //    //if (norm.Z < 0)
+                                //    //    kRatio = 0;
+                                //    kRatio = 0;
+                                //}
                                 Ray3 shadowRay = new Ray3(Vector3.Normalize(toLight), result.Colision);
                                 var shadowRes = shadowRay.CollideInSceneIns(scene, result.ColidedPoligon);
                                 if (shadowRes.Colided)
                                 {
                                     kRatio =0;
                                 }
-                                kRatio = Math.Pow(kRatio, 0.3);
-                                finalColor = Utils.Mult(finalColor, kRatio.Abs());
+                                kRatio = Math.Pow(kRatio.Abs(), 0.3);
+                                finalColor = Utils.Mult(finalColor, kRatio);
                             }
                             Rendering.SetPixel(colider.ImagePosition, finalColor);
                         }
@@ -104,6 +105,50 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k }, renderPool);
             else 
                 Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k}, renderPool));       
+        }
+        public void RenderSceneCUDA(Scene scene, bool wait = false)
+        {
+            if (Rendering.State == RenderState.Active)
+                Rendering.Stop();
+            if (Rendering.State == RenderState.Ready || Rendering.State == RenderState.Stopped)
+                Rendering.Clear();
+            Rendering.Start();
+            var FOWV = ViewState.FOWVertical;
+            var step = ViewState.FOW / ViewState.Width;
+            var startfx = ViewState.Direction.Horisontal.AngleGrads - (ViewState.FOW / 2);
+            var startfy = ViewState.Direction.Vertical.AngleGrads + (FOWV / 2);
+            var currentDir = new Direction3(startfx, startfy);
+            var fowHalf = ViewState.FOW / 2;
+            var matrixSize = Utils.Tan(fowHalf);
+            var pixStep = matrixSize / (ViewState.Width / 2);
+            List<Ray3> rays = new List<Ray3>();
+            var dirs = ViewState.Direction.GetDirectionsByResolution((int)ViewState.Width, (int)ViewState.Height, ViewState.FOW, FOWV);
+            float3[] totalRays = new float3[Rendering.TotalPixels];
+            int index = 0;
+            for (int i = 0; i < ViewState.Height; i++)
+            {
+                for (int j = 0; j < ViewState.Width; j++)
+                {
+                    totalRays[index] = dirs[j, i].GetVector().GetFloat3();
+                    index++;
+                }
+            }
+            var position = ViewState.Position.GetFloat3();
+            CudaDeviceVariable<float3> d_pos = position;
+            CudaDeviceVariable<float3> d_rays = totalRays;
+            CudaDeviceVariable<float3> d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
+            scene.cudaDevice.GridDimensions = (Rendering.TotalPixels + 255) / 256;
+            scene.cudaDevice.Run(d_rays.DevicePointer, position,totalRays.Length, d_out.DevicePointer);
+            float3[] colors = d_out;
+            index = 0;
+            for (int i = 0; i < ViewState.Height; i++)
+            {
+                for (int j = 0; j < ViewState.Width; j++)
+                {
+                    Rendering.SetPixel(new Point(j, i), new Color((byte)colors[i].x, (byte)colors[i].y, (byte)colors[i].z));
+                    index++;
+                }
+            }
         }
     }
 }

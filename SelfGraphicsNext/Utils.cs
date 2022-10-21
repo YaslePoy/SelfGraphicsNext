@@ -4,6 +4,7 @@ using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using ManagedCuda;
 
 namespace SelfGraphicsNext
 {
@@ -135,7 +136,6 @@ namespace SelfGraphicsNext
             }
             return final;
         }
-
         public static bool PoinInTringle(Vector2[] pts)
         {
             float a = (pts[1].X - pts[0].X) * (pts[2].Y - pts[1].Y) - (pts[2].X - pts[1].X) * (pts[1].Y - pts[0].Y);
@@ -186,6 +186,10 @@ namespace SelfGraphicsNext
         //        return 2;
         //    }
         //}
-        
+        public static CudaContext ctx;
+        public static void UpdateCudaContex()
+        {
+            ctx = new CudaContext(0);
+        }
     }
 }
