@@ -22,7 +22,7 @@
 			blue.z = 255;
 			//outColors[i] = baseColor;
 			float minDist;
-			minDist = 512000000;
+			minDist = 10000000;
 			float3 out;
 			//out = base
 			for (int j = 0; j < CountOfTrns; j++)
@@ -46,6 +46,7 @@
 						float newLen = sqrt(pow(newPoint.x, 2) + pow(newPoint.y, 2) + pow(newPoint.z, 2));
 						bool around = newLen < minDist;
 						if (around) {
+
 							newPoint.x += xyz.x;
 							newPoint.y += xyz.y;
 							newPoint.z += xyz.z;
@@ -86,13 +87,19 @@
 							b = (pts[2].x - pts[0].x) * (pts[3].y - pts[2].y) - (pts[3].x - pts[2].x) * (pts[2].y - pts[0].y);
 							float c;
 							c = (pts[3].x - pts[0].x) * (pts[1].y - pts[3].y) - (pts[1].x - pts[3].x) * (pts[3].y - pts[0].y);
-							bool isIn = (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
+							bool isIn = (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0) || (a == 0 || b == 0 || c == 0);
 							if (isIn) {
 								minDist = newLen;
-								out = red;
 							}
 							else {
-								out = green;
+							}
+						}
+						else {
+							out.x = newLen;
+							out.y = minDist;
+							if (out.x > 4) {
+								out.x = 255;
+								out.y = 255;
 							}
 						}
 					}

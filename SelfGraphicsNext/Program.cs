@@ -107,8 +107,10 @@ namespace SelfGraphicsNext
             {
                 void updateImg()
                 {
-                    if (camera.Rendering.State != RenderState.Active)
-                        camera.RenderSceneMulti(scene, mRatio);
+                    //if (camera.Rendering.State != RenderState.Active)
+                    //    camera.RenderSceneCUDA(scene);
+                    camera.RenderSceneCUDA(scene);
+
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                 {
@@ -205,7 +207,7 @@ namespace SelfGraphicsNext
                     _rw.Display();
                     _rw.SetFramerateLimit(60);
                     _rw.KeyReleased += _rw_KeyReleased;
-                    //camera.RenderSceneCUDA(scene);
+                    camera.RenderSceneCUDA(scene);
                 }
 
             }

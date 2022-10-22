@@ -145,7 +145,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             {
                 for (int j = 0; j < ViewState.Width; j++)
                 {
-                    Rendering.SetPixel(new Point(j, i), new Color((byte)colors[i].x, (byte)colors[i].y, (byte)colors[i].z));
+                    Rendering.SetPixel(new Point(j, i), new Color((byte)(colors[index].x * 40f), (byte)(colors[index].y * 40f), (byte)(colors[index].z * 40f)));
                     index++;
                 }
             }
