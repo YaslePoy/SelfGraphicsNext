@@ -7,7 +7,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
     {
         float3[] totalDirs;
 
-        void updateDirectionList()
+        public void UpdateDirectionList()
         {
             var FOWV = FOWVertical;
             var step = FOW / width;
@@ -39,7 +39,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             set
             {
                 fow = value;
-                updateDirectionList();
+                UpdateDirectionList();
             }
         }
         public Point3 Position;
@@ -47,21 +47,21 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             set
             {
                 viewDir = value;
-                updateDirectionList();
+                UpdateDirectionList();
             }
         }
         public int Width { get => width; 
             set
             {
                 width = value;
-                updateDirectionList();
+                UpdateDirectionList();
             }
         }
         public int Height { get => height; 
             set
             {
                 height = value;
-                updateDirectionList();
+                UpdateDirectionList();
             }
         }
         public double FOWVertical => FOW / Width * Height;
@@ -76,6 +76,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             viewDir = direction;
             this.width = width;
             this.height = height;
+            UpdateDirectionList();
         }
         public float3[] RenderDirections => totalDirs;
         public ViewerSer GetForSer() => new ViewerSer() { FOW = FOW, Position = Position, Direction = Direction, Height = Height, Width = Width, FOWVertical = FOWVertical };

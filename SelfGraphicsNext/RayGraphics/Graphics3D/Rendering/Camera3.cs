@@ -116,34 +116,15 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             if (Rendering.State == RenderState.Ready || Rendering.State == RenderState.Stopped)
                 Rendering.Clear();
             Rendering.Start();
-            var FOWV = ViewState.FOWVertical;
-            var step = ViewState.FOW / ViewState.Width;
-            var startfx = ViewState.Direction.Horisontal.AngleGrads - (ViewState.FOW / 2);
-            var startfy = ViewState.Direction.Vertical.AngleGrads + (FOWV / 2);
-            var currentDir = new Direction3(startfx, startfy);
-            var fowHalf = ViewState.FOW / 2;
-            var matrixSize = Utils.Tan(fowHalf);
-            var pixStep = matrixSize / (ViewState.Width / 2);
-            List<Ray3> rays = new List<Ray3>();
-            var dirs = ViewState.Direction.GetDirectionsByResolution((int)ViewState.Width, (int)ViewState.Height, ViewState.FOW, FOWV);
-            float3[] totalRays = new float3[Rendering.TotalPixels];
-            int index = 0;
-            for (int i = 0; i < ViewState.Height; i++)
-            {
-                for (int j = 0; j < ViewState.Width; j++)
-                {
-                    totalRays[index] = dirs[j, i].GetVector().GetFloat3();
-                    index++;
-                }
-            }
+            var tRays = ViewState.RenderDirections;
             var position = ViewState.Position.GetFloat3();
             d_pos = position;
-            d_rays = totalRays;
+            d_rays = tRays;
             d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
             scene.cudaDevice.GridDimensions = (Rendering.TotalPixels + 255) / 256;
-            scene.cudaDevice.Run(d_rays.DevicePointer, position,totalRays.Length, d_out.DevicePointer);
+            scene.cudaDevice.Run(d_rays.DevicePointer,position, ViewState.Width * ViewState.Height, d_out.DevicePointer);
             float3[] colors = d_out;
-            index = 0;
+            int index = 0;
             for (int i = 0; i < ViewState.Height; i++)
             {
                 for (int j = 0; j < ViewState.Width; j++)

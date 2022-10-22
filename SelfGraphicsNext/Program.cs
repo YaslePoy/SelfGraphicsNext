@@ -22,7 +22,7 @@ namespace SelfGraphicsNext
         public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
-        static bool benchMode = true;
+        static bool benchMode = false;
         static bool drawInfo = false;
         public static bool animation = false;
         static RunConfig RunConfig;
@@ -44,6 +44,7 @@ namespace SelfGraphicsNext
             _rw.Display();
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
+            _rw.SetFramerateLimit(60);
             //camera.RenderSceneMulti(scene, mRatio, false);
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
@@ -62,8 +63,7 @@ namespace SelfGraphicsNext
                         {
                             localLightDirection += 5;
                             camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) *4;
-                            camera.ViewState.Direction.Horisontal = localLightDirection;
-                            camera.ViewState.Direction.Horisontal.AddВegrees(180);
+                            camera.ViewState.Direction = new Direction3(-localLightDirection.AngleGrads, 0);
                             camera.RenderSceneCUDA(scene);
 
                         }
@@ -115,10 +115,11 @@ namespace SelfGraphicsNext
             Console.ReadKey();
             static void _rw_MouseMoved()
             {
+                if (benchMode)
+                        return;
                 void updateImg()
                 {
-                    //if (camera.Rendering.State != RenderState.Active)
-                    //    camera.RenderSceneCUDA(scene);
+                    camera.ViewState.UpdateDirectionList();
                     camera.RenderSceneCUDA(scene);
 
                 }
@@ -126,35 +127,34 @@ namespace SelfGraphicsNext
                 {
                     while (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                         continue;
-                    camera.ViewState.Direction.Vertical += 10;
+                    camera.ViewState.Direction.AddVertical(10);
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                 {
                     while (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                         continue;
-                    camera.ViewState.Direction.Vertical -= 10;
+                    camera.ViewState.Direction.AddVertical(-10);
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                 {
                     while (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                         continue;
-                    camera.ViewState.Direction.Horisontal -= 10;
+                    camera.ViewState.Direction.AddHorisontal(-10);
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 {
                     while (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                         continue;
-                    camera.ViewState.Direction.Horisontal += 10;
+                    camera.ViewState.Direction.AddHorisontal(10);
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.W))
                 {
                     while (Keyboard.IsKeyPressed(Keyboard.Key.W))
                         continue;
-                    //camera.ViewState.Position.X += 1;
                     camera.ViewState.Position += camera.ViewState.Direction.GetVector();
                     updateImg();
                 }

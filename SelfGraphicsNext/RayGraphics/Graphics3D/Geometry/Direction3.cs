@@ -78,7 +78,14 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             return new Direction3(d1.Horisontal.AngleGrads - d2.Horisontal.AngleGrads, d1.Vertical.AngleGrads - d2.Vertical.AngleGrads);
         }
-
+        public void AddHorisontal(double angle)
+        {
+            Horisontal.AddDegrees(angle);
+        }
+        public void AddVertical(double angle)
+        {
+            Vertical.AddDegrees(angle);
+        }
         public Direction3[,] GetDirectionsByResolution(int xRes, int yRes, double xFow, double yFow)
         {
             Direction3[,] result = new Direction3[xRes, yRes];

@@ -56,29 +56,29 @@ namespace SelfGraphicsNext.BaseGraphics
         }
         public static Direction operator +(Direction dir, double degrees)
         {
-            dir.AddВegrees(degrees);
+            dir.AddDegrees(degrees);
             return dir;
         }
 
         public static Direction operator -(Direction dir, double degrees)
         {
-            dir.AddВegrees(-degrees);
+            dir.AddDegrees(-degrees);
             return dir;
         }
 
         public static Direction operator +(Direction dir, Direction degrees)
         {
-            dir.AddВegrees(degrees.AngleGrads);
+            dir.AddDegrees(degrees.AngleGrads);
             return dir;
         }
 
         public static Direction operator -(Direction dir, Direction degrees)
         {
-            dir.AddВegrees(-degrees.AngleGrads);
+            dir.AddDegrees(-degrees.AngleGrads);
             return dir;
         }
 
-        public void AddВegrees(double degrees)
+        public void AddDegrees(double degrees)
         {
             AngleGrads += degrees;
             AngleGrads %= 360;
