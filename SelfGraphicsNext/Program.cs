@@ -3,11 +3,13 @@ using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using SFML.Window;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static SFML.Graphics.Font;
 using Font = SFML.Graphics.Font;
 
 namespace SelfGraphicsNext
@@ -20,8 +22,9 @@ namespace SelfGraphicsNext
         public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
-        static bool benchMode = false;
+        static bool benchMode = true;
         static bool drawInfo = false;
+        public static bool animation = false;
         static RunConfig RunConfig;
         static string rgPath;
         static Direction localLightDirection;
@@ -46,8 +49,8 @@ namespace SelfGraphicsNext
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
             int recordCounter = 20;
-            //camera.RenderSceneCUDA(scene);
             camera.RenderSceneCUDA(scene);
+
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -55,9 +58,15 @@ namespace SelfGraphicsNext
                 {
                     _rw_MouseMoved();
                     {
-                        //scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
-                        //localLightDirection += 2;
-                        _rw.Draw(new Sprite(new Texture(camera.Rendering.OutputImage)));
+                        if (animation)
+                        {
+                            localLightDirection += 5;
+                            camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) *4;
+                            camera.ViewState.Direction.Horisontal = localLightDirection;
+                            camera.ViewState.Direction.Horisontal.AddВegrees(180);
+                            camera.RenderSceneCUDA(scene);
+
+                        }
                         if (drawInfo)
                         {
                             string info = $"Resolution: {camera.ViewState.Width}x{camera.ViewState.Height}\n" +
@@ -72,11 +81,10 @@ namespace SelfGraphicsNext
                         {
                             if (camera.Rendering.State == RenderState.Ready)
                             {
-                                recordCounter--;
                                 var timeStr = camera.Rendering.RenderTime.ToString("s','ffff");
                                 if (record > camera.Rendering.RenderTime)
                                 {
-                                    Console.WriteLine($"New Record: {timeStr}");
+                                    Console.WriteLine($"New Record: {timeStr}({MathF.Round(1000f / camera.Rendering.RenderTime.Milliseconds, 1)}FPS)");
                                     record = camera.Rendering.RenderTime;
                                     recordCounter = 20;
                                 }
@@ -90,17 +98,19 @@ namespace SelfGraphicsNext
                                     //else
                                     //    Console.WriteLine(timeStr);
                                 }
-                                RunConfig.SceneLight = new EasyPoint() { X = localLightDirection.Cos * 2, Y = localLightDirection.Sin, Z = 2 };
-                                scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
-                                localLightDirection += 5;
-                                camera.RenderSceneMulti(scene, mRatio);
+                                camera.RenderSceneCUDA(scene);
                             }
+
                         }
+                        _rw.Draw(new Sprite(new Texture(camera.Rendering.OutputImage)));
+
                         if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                             _rw.Close();
                     }
-                }
+                }                
                 _rw.Display();
+
+
             }
             Console.ReadKey();
             static void _rw_MouseMoved()

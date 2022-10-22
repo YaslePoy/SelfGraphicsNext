@@ -9,6 +9,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 {
     public class Camera3
     {
+        CudaDeviceVariable<float3> d_pos;
+        CudaDeviceVariable<float3> d_rays;
+        CudaDeviceVariable<float3> d_out;
         public Viewer ViewState;
         public RenderData Rendering;
         public Camera3(Viewer view)
@@ -46,7 +49,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     gID++;
                     if (gID == k)
                         gID = 0;
-
+                    
                 }
             }
             void renderPool(List<Ray3> rays)
@@ -134,9 +137,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             var position = ViewState.Position.GetFloat3();
-            CudaDeviceVariable<float3> d_pos = position;
-            CudaDeviceVariable<float3> d_rays = totalRays;
-            CudaDeviceVariable<float3> d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
+            d_pos = position;
+            d_rays = totalRays;
+            d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
             scene.cudaDevice.GridDimensions = (Rendering.TotalPixels + 255) / 256;
             scene.cudaDevice.Run(d_rays.DevicePointer, position,totalRays.Length, d_out.DevicePointer);
             float3[] colors = d_out;
@@ -145,10 +148,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             {
                 for (int j = 0; j < ViewState.Width; j++)
                 {
-                    Rendering.SetPixel(new Point(j, i), new Color((byte)(colors[index].x * 40f), (byte)(colors[index].y * 40f), (byte)(colors[index].z * 40f)));
+                    Rendering.SetPixel(new Point(j, i), new Color((byte)(colors[index].x), (byte)(colors[index].y), (byte)(colors[index].z)));
                     index++;
                 }
             }
+            d_pos.Dispose();
+            d_rays.Dispose();
+            d_out.Dispose();
         }
     }
 }

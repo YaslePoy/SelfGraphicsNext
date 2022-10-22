@@ -1,5 +1,5 @@
 {
-  "Model": "C:\\Users\\Mimm\\Projects\\BlenderProjects\\outs\\plane.obj",
+  "Model": "C:\\Users\\Mimm\\Projects\\BlenderProjects\\outs\\multiColorCube.obj",
   "FOW": 70,
   "SceneLight": {
     "X": 2,
@@ -15,7 +15,7 @@
     "HorisontalView": 0,
     "VertivalView": 0
   },
-  "XResolution": 300,
-  "YResolution": 300,
+  "XResolution": 400,
+  "YResolution": 400,
   "UseCuda": true
 }
