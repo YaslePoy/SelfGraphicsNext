@@ -12,6 +12,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
         CudaDeviceVariable<float3> d_pos;
         CudaDeviceVariable<float3> d_rays;
         CudaDeviceVariable<float3> d_out;
+        CudaDeviceVariable<float3> d_light;
         public Viewer ViewState;
         public RenderData Rendering;
         public Camera3(Viewer view)
@@ -49,7 +50,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                     gID++;
                     if (gID == k)
                         gID = 0;
-                    
+
                 }
             }
             void renderPool(List<Ray3> rays)
@@ -85,7 +86,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 var shadowRes = shadowRay.CollideInSceneIns(scene, result.ColidedPoligon);
                                 if (shadowRes.Colided)
                                 {
-                                    kRatio =0;
+                                    kRatio = 0;
                                 }
                                 kRatio = Math.Pow(kRatio.Abs(), 0.3);
                                 finalColor = Utils.Mult(finalColor, kRatio);
@@ -106,8 +107,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             }
             if (wait)
                 Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k }, renderPool);
-            else 
-                Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k}, renderPool));       
+            else
+                Task.Run(() => Parallel.ForEach(renderGroups, new ParallelOptions() { MaxDegreeOfParallelism = k }, renderPool));
         }
         public void RenderSceneCUDA(Scene scene, bool wait = false)
         {
@@ -118,11 +119,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             Rendering.Start();
             var tRays = ViewState.RenderDirections;
             var position = ViewState.Position.GetFloat3();
+            var light = scene.Light.GetFloat3();
+            d_light = light;
             d_pos = position;
             d_rays = tRays;
             d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
             scene.cudaDevice.GridDimensions = (Rendering.TotalPixels + 255) / 256;
-            scene.cudaDevice.Run(d_rays.DevicePointer,position, ViewState.Width * ViewState.Height, d_out.DevicePointer);
+            scene.cudaDevice.Run(d_rays.DevicePointer, position, ViewState.Width * ViewState.Height, light, d_out.DevicePointer);
             float3[] colors = d_out;
             int index = 0;
             for (int i = 0; i < ViewState.Height; i++)

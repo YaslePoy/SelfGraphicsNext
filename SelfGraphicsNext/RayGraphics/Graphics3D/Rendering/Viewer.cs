@@ -43,13 +43,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             }
         }
         public Point3 Position;
-        public Direction3 Direction { get => viewDir; 
-            set
-            {
-                viewDir = value;
-                UpdateDirectionList();
-            }
-        }
+        public Direction3 Direction;
         public int Width { get => width; 
             set
             {

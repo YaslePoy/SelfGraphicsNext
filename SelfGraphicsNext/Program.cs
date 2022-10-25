@@ -22,14 +22,17 @@ namespace SelfGraphicsNext
         public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
-        static bool benchMode = false;
+        static bool benchMode = true;
         static bool drawInfo = false;
         public static bool animation = false;
         static RunConfig RunConfig;
         static string rgPath;
         static Direction localLightDirection;
+        static bool lockMouse = false;
+        static double mouseRatio;
         public static void Main(string[] args)
         {
+
             localLightDirection = new Direction(0);
             Console.WriteLine(args[0]);
             rgPath = args[0];
@@ -45,7 +48,7 @@ namespace SelfGraphicsNext
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
             _rw.SetFramerateLimit(60);
-            //camera.RenderSceneMulti(scene, mRatio, false);
+            _rw.MouseMoved += _rw_MouseMoved;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
@@ -57,12 +60,12 @@ namespace SelfGraphicsNext
                 _rw.Clear();
                 _rw.DispatchEvents();
                 {
-                    _rw_MouseMoved();
+                    _rwKeyboard();
                     {
                         if (animation)
                         {
                             localLightDirection += 5;
-                            camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) *4;
+                            camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) * 4;
                             camera.ViewState.Direction = new Direction3(-localLightDirection.AngleGrads, 0);
                             camera.RenderSceneCUDA(scene);
 
@@ -107,16 +110,16 @@ namespace SelfGraphicsNext
                         if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                             _rw.Close();
                     }
-                }                
+                }
                 _rw.Display();
 
 
             }
             Console.ReadKey();
-            static void _rw_MouseMoved()
+            static void _rwKeyboard()
             {
                 if (benchMode)
-                        return;
+                    return;
                 void updateImg()
                 {
                     camera.ViewState.UpdateDirectionList();
@@ -125,79 +128,83 @@ namespace SelfGraphicsNext
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.Up))
-                        continue;
-                    camera.ViewState.Direction.AddVertical(10);
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.Up))
+                    //    continue;
+                    camera.ViewState.Direction.AddVertical(1);
+                    camera.ViewState.UpdateDirectionList();
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.Down))
-                        continue;
-                    camera.ViewState.Direction.AddVertical(-10);
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.Down))
+                    //    continue;
+                    camera.ViewState.Direction.AddVertical(-1);
+                    camera.ViewState.UpdateDirectionList();
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.Left))
-                        continue;
-                    camera.ViewState.Direction.AddHorisontal(-10);
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.Left))
+                    //    continue;
+                    camera.ViewState.Direction.AddHorisontal(-1);
+                    camera.ViewState.UpdateDirectionList();
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.Right))
-                        continue;
-                    camera.ViewState.Direction.AddHorisontal(10);
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.Right))
+                    //    continue;
+                    camera.ViewState.Direction.AddHorisontal(1);
+                    camera.ViewState.UpdateDirectionList();
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.W))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.W))
-                        continue;
-                    camera.ViewState.Position += camera.ViewState.Direction.GetVector();
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.W))
+                    //    continue;
+                    camera.ViewState.Position += camera.ViewState.Direction.GetVector() * 0.1;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.S))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.S))
-                        continue;
-                    camera.ViewState.Position -= camera.ViewState.Direction.GetVector();
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.S))
+                    //    continue;
+                    camera.ViewState.Position -= camera.ViewState.Direction.GetVector() * 0.1;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.A))
-                        continue;
-                    camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(-90, 0)).GetVector();
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.A))
+                    //    continue;
+                    camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(-90, 0)).GetVector() * 0.1;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.D))
-                        continue;
-                    camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(90, 0)).GetVector();
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.D))
+                    //    continue;
+                    camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(90, 0)).GetVector() * 0.1;
 
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.Q))
-                        continue;
-                    camera.ViewState.Position.Z += 1;
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.Q))
+                    //    continue;
+                    camera.ViewState.Position.Z += 0.1;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.E))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.E))
-                        continue;
-                    camera.ViewState.Position.Z -= 1;
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.E))
+                    //    continue;
+                    camera.ViewState.Position.Z -= 0.1;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.R))
                 {
-                    while (Keyboard.IsKeyPressed(Keyboard.Key.R))
-                        continue;
+                    //while (Keyboard.IsKeyPressed(Keyboard.Key.R))
+                    //    continue;
                     updateImg();
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.F5))
@@ -219,9 +226,32 @@ namespace SelfGraphicsNext
                     _rw.KeyReleased += _rw_KeyReleased;
                     camera.RenderSceneCUDA(scene);
                 }
-
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                {
+                    while (Mouse.IsButtonPressed(Mouse.Button.Left)) ;
+                    lockMouse = !lockMouse;
+                    _rw.SetMouseCursorVisible(!lockMouse);
+                    Mouse.SetPosition(new SFML.System.Vector2i(RunConfig.XResolution, RunConfig.YResolution) / 2, _rw);
+                }
             }
         }
+
+        private static void _rw_MouseMoved(object? sender, MouseMoveEventArgs e)
+        {
+            if (!lockMouse)
+                return;
+            var basePos = new SFML.System.Vector2i(RunConfig.XResolution, RunConfig.YResolution) / 2;
+            var delta = basePos - new SFML.System.Vector2i(e.X, e.Y);
+            if (delta.X > 0 || delta.Y > 0)
+            {
+                camera.ViewState.Direction += new Direction3(delta.X, delta.Y);
+                camera.ViewState.UpdateDirectionList();
+                Mouse.SetPosition(basePos, _rw);
+                camera.RenderSceneCUDA(scene);
+            }
+
+        }
+
         private static void _rw_KeyReleased(object? sender, KeyEventArgs e)
         {
             if (e.Code == Keyboard.Key.F1)

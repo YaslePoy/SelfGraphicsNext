@@ -1,9 +1,10 @@
 {
-  "Model": "C:\\Users\\Mimm\\Projects\\BlenderProjects\\outs\\multiColorCube.obj",
+  "Model": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\RenderModels\\ReShadowTest.obj",
   "FOW": 70,
   "SceneLight": {
-    "X": 2,
-    "Y": 2,
+
+    "X": -2,
+    "Y": -2,
     "Z": 2
   },
   "Position": {

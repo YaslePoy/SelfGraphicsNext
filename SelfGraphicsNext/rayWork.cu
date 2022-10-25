@@ -7,7 +7,7 @@
 	__constant__ float3 normals[512];
 	__constant__ float dRatios[512];
 	__constant__ float3 colors[512];
-	__global__ void resultPixel(const float3* rays, const float3 xyz, const int count, float3* outColors) {
+	__global__ void resultPixel(const float3* rays, const float3 xyz, const int count,const float3 light, float3* outColors) {
 		int i = blockDim.x * blockIdx.x + threadIdx.x;
 		if (i < count) {
 			float3 mpl = rays[i];
@@ -91,8 +91,16 @@
 					bool around = newLen
 						< minDist;
 					if (newLen < minDist) {
-						minDist = newLen;
-						out = colors[j];
+						float ratio;
+						ratio = (light.x - newPoint.x) * abc.x
+						+(light.y - newPoint.y) * abc.y
+						+ (light.z - newPoint.z) * abc.z;
+					minDist = newLen;
+					ratio = pow(ratio, 0.3);
+					out = colors[j];
+					out.x *= ratio;
+					out.y *= ratio;
+					out.z *= ratio;
 					}
 				}				
 			}
