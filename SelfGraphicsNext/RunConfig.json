@@ -16,7 +16,7 @@
     "HorisontalView": 0,
     "VertivalView": 0
   },
-  "XResolution": 400,
-  "YResolution": 400,
+  "XResolution": 500,
+  "YResolution": 500,
   "UseCuda": true
 }

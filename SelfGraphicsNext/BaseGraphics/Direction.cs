@@ -78,6 +78,11 @@ namespace SelfGraphicsNext.BaseGraphics
             return dir;
         }
 
+        public static implicit operator Direction(double v)
+        {
+            return new Direction(v);
+        }
+
         public void AddDegrees(double degrees)
         {
             AngleGrads += degrees;

@@ -27,7 +27,7 @@
 			out = baseColor;
 			float3 newPoint;
 			int skip;
-			bool coled;
+			bool coled = false;
 			for (int j = 0; j < CountOfTrns; j++)
 			{
 				float3 abc = normals[j];
@@ -97,14 +97,15 @@
 						ratio = (light.x - newPoint.x) * abc.x
 						+(light.y - newPoint.y) * abc.y
 						+ (light.z - newPoint.z) * abc.z;
-					minDist = newLen;
-					ratio = pow(ratio, 0.3);
-					out = colors[j];
-					out.x *= ratio;
-					out.y *= ratio;
-					out.z *= ratio;
-					skip = j;
-					coled = true;
+						minDist = newLen;
+						
+						ratio = pow(ratio, 0.3);
+						out = colors[j];
+						out.x *= ratio;
+						out.y *= ratio;
+						out.z *= ratio;
+						skip = j;
+						coled = true;
 					}
 				}				
 			}
@@ -191,9 +192,9 @@
 					}
 				}
 				if (shadow) {
-					out.x = 0;
-					out.y = 0;
-					out.z = 0;
+					out.x /= 4;
+					out.y /= 4;
+					out.z /= 4;
 				}
 			}
 			outColors[i] = out;

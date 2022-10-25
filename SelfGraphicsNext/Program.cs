@@ -22,9 +22,9 @@ namespace SelfGraphicsNext
         public const int mRatio = 16;
         public static Task process;
         public static bool deb = false;
-        static bool benchMode = true;
+        static bool benchMode = false;
         static bool drawInfo = false;
-        public static bool animation = false;
+        public static bool animation = true;
         static RunConfig RunConfig;
         static string rgPath;
         static Direction localLightDirection;
@@ -64,9 +64,10 @@ namespace SelfGraphicsNext
                     {
                         if (animation)
                         {
-                            localLightDirection += 5;
-                            camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) * 4;
-                            camera.ViewState.Direction = new Direction3(-localLightDirection.AngleGrads, 0);
+                            localLightDirection = 90;
+                            //camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) * 4;
+                            //camera.ViewState.Direction = new Direction3(-localLightDirection.AngleGrads, 0);
+                            scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0.75) * 2;
                             camera.RenderSceneCUDA(scene);
 
                         }
