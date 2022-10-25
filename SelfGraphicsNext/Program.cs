@@ -48,7 +48,7 @@ namespace SelfGraphicsNext
             _rw.SetFramerateLimit(60);
             _rw.KeyReleased += _rw_KeyReleased;
             _rw.SetFramerateLimit(60);
-            _rw.MouseMoved += _rw_MouseMoved;
+            //_rw.MouseMoved += _rw_MouseMoved;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
@@ -226,13 +226,13 @@ namespace SelfGraphicsNext
                     _rw.KeyReleased += _rw_KeyReleased;
                     camera.RenderSceneCUDA(scene);
                 }
-                if (Mouse.IsButtonPressed(Mouse.Button.Left))
-                {
-                    while (Mouse.IsButtonPressed(Mouse.Button.Left)) ;
-                    lockMouse = !lockMouse;
-                    _rw.SetMouseCursorVisible(!lockMouse);
-                    Mouse.SetPosition(new SFML.System.Vector2i(RunConfig.XResolution, RunConfig.YResolution) / 2, _rw);
-                }
+                //if (Mouse.IsButtonPressed(Mouse.Button.Left))
+                //{
+                //    while (Mouse.IsButtonPressed(Mouse.Button.Left)) ;
+                //    lockMouse = !lockMouse;
+                //    _rw.SetMouseCursorVisible(!lockMouse);
+                //    Mouse.SetPosition(new SFML.System.Vector2i(RunConfig.XResolution, RunConfig.YResolution) / 2, _rw);
+                //}
             }
         }
 
