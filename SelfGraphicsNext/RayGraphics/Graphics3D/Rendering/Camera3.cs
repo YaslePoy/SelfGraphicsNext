@@ -74,14 +74,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                                 var norm = /*Vector3.Reflect(colider.Direction,  result.ColidedPoligon.Normal.Vector)*/result.ColidedPoligon.Normal.Vector;
                                 var toLight = scene.Light.Vector - result.Colision.Vector;
                                 double kRatio = Vector3.Dot(norm, toLight);
-                                //kRatio /= norm.Lenght * toLight.Lenght;
-                                //if (kRatio < 0)
-                                //{
-                                //    //kRatio = norm.ScalarMul(new Point3(0, 0, -1)) / 2;
-                                //    //if (norm.Z < 0)
-                                //    //    kRatio = 0;
-                                //    kRatio = 0;
-                                //}
                                 Ray3 shadowRay = new Ray3(Vector3.Normalize(toLight), result.Colision);
                                 var shadowRes = shadowRay.CollideInSceneIns(scene, result.ColidedPoligon);
                                 if (shadowRes.Colided)

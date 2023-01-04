@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wOdmZ6Aeo8/tcHFP963VlX67u/VvhnrEFx0BeyIh89/czpgbG/GxbWNG6ze9Ct8OpJDL5wzHFSh2e9SN/wgykg==",
+  "dgSpecHash": "fqrobwkUkpPRIkWW48F7PZhh7B92Ac248/Y8lOm8MivYOvlH6ZkHfLae2NElFLsn+uM78wLOc3VKrupheP8dzQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+  "projectFilePath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mimm\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
     "C:\\Users\\Mimm\\.nuget\\packages\\managedcuda\\10.0.0\\managedcuda.10.0.0.nupkg.sha512",

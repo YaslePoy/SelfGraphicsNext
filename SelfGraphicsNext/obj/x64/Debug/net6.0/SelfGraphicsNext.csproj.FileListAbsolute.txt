@@ -171,3 +171,4 @@ C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraph
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
 C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\rayWork.ptx
+C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\bin\x64\Debug\net6.0\rayWork.cu

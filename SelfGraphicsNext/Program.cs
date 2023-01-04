@@ -1,10 +1,12 @@
 ﻿using SelfGraphicsNext.BaseGraphics;
+using SelfGraphicsNext.Properties;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Geometry;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using SFML.Window;
 using System.Diagnostics;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
@@ -24,7 +26,7 @@ namespace SelfGraphicsNext
         public static bool deb = false;
         static bool benchMode = false;
         static bool drawInfo = false;
-        public static bool animation = true;
+        public static bool animation = false;
         static RunConfig RunConfig;
         static string rgPath;
         static Direction localLightDirection;
@@ -32,7 +34,6 @@ namespace SelfGraphicsNext
         static double mouseRatio;
         public static void Main(string[] args)
         {
-
             localLightDirection = new Direction(0);
             Console.WriteLine(args[0]);
             rgPath = args[0];
@@ -40,7 +41,8 @@ namespace SelfGraphicsNext
             var cfg = RunConfig.Get();
             scene = cfg.scene;
             camera = cfg.camera;
-            scene.LoadModel();
+            if (RunConfig.UseCuda)
+                scene.LoadModel();
             _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN", Styles.None);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);
@@ -53,8 +55,10 @@ namespace SelfGraphicsNext
             drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
             int recordCounter = 20;
-            camera.RenderSceneCUDA(scene);
-
+            if (RunConfig.UseCuda)
+                camera.RenderSceneCUDA(scene);
+            else
+                camera.RenderSceneMulti(scene, 16, false);
             while (_rw.IsOpen)
             {
                 _rw.Clear();
@@ -64,10 +68,10 @@ namespace SelfGraphicsNext
                     {
                         if (animation)
                         {
-                            localLightDirection = 90;
+                            localLightDirection = 130;
                             //camera.ViewState.Position = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0) * 4;
                             //camera.ViewState.Direction = new Direction3(-localLightDirection.AngleGrads, 0);
-                            scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 0.75) * 2;
+                            scene.Light = new Point3(localLightDirection.Cos, localLightDirection.Sin, 1) * 2;
                             camera.RenderSceneCUDA(scene);
 
                         }
@@ -102,7 +106,10 @@ namespace SelfGraphicsNext
                                     //else
                                     //    Console.WriteLine(timeStr);
                                 }
-                                camera.RenderSceneCUDA(scene);
+                                if (RunConfig.UseCuda)
+                                    camera.RenderSceneCUDA(scene);
+                                else
+                                    camera.RenderSceneMulti(scene, 16, true);
                             }
 
                         }
@@ -225,7 +232,10 @@ namespace SelfGraphicsNext
                     _rw.Display();
                     _rw.SetFramerateLimit(60);
                     _rw.KeyReleased += _rw_KeyReleased;
-                    camera.RenderSceneCUDA(scene);
+                    if (RunConfig.UseCuda)
+                        camera.RenderSceneCUDA(scene);
+                    else
+                        camera.RenderSceneMulti(scene, 16, false);
                 }
                 //if (Mouse.IsButtonPressed(Mouse.Button.Left))
                 //{

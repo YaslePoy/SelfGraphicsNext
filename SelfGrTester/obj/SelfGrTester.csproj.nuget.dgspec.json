@@ -1,32 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {}
+    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
+    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+        "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
         "projectName": "SelfGraphicsNext",
-        "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+        "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
         "packagesPath": "C:\\Users\\Mimm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
+        "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Mimm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,8 +42,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "ManagedCuda": {
               "target": "Package",
@@ -65,21 +70,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {
+    "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
+        "projectUniqueName": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
         "projectName": "SelfGrTester",
-        "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
+        "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGrTester\\SelfGrTester.csproj",
         "packagesPath": "C:\\Users\\Mimm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGrTester\\obj\\",
+        "outputPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGrTester\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Mimm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,14 +96,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
-                "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj"
+              "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj": {
+                "projectPath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj"
               }
             }
           }
@@ -108,24 +118,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[2.2.7, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[2.2.7, )"
-            },
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[16.11.0, )"
-            },
-            "coverlet.collector": {
-              "target": "Package",
-              "version": "[3.1.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -137,12 +129,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

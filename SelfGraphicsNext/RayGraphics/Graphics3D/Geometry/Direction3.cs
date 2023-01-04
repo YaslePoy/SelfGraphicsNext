@@ -24,7 +24,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public Point3 GetVector()
         {
             var vertRatio = Math.Cos(Vertical.AngleGrads * Utils.ToRad);
-            return new Point3(Math.Cos(Horisontal.AngleGrads * Utils.ToRad) * vertRatio, Math.Sin(Horisontal.AngleGrads * Utils.ToRad) * vertRatio, Math.Sin(Vertical.AngleGrads * Utils.ToRad));
+            return new Point3(Math.Cos(Horisontal.AngleGrads * Utils.ToRad) * vertRatio,
+                Math.Sin(Horisontal.AngleGrads * Utils.ToRad) * vertRatio,
+                Math.Sin(Vertical.AngleGrads * Utils.ToRad));
         }
 
         public void SetDirection(Point3 vector)
