@@ -109,15 +109,13 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             if (Rendering.State == RenderState.Ready || Rendering.State == RenderState.Stopped)
                 Rendering.Clear();
             Rendering.Start();
-            var tRays = ViewState.RenderDirections;
             var position = ViewState.Position.GetFloat3();
             var light = scene.Light.GetFloat3();
             d_light = light;
             d_pos = position;
-            d_rays = tRays;
             d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
-            scene.cudaDevice.GridDimensions = (Rendering.TotalPixels + 255) / 256;
-            scene.cudaDevice.Run(d_rays.DevicePointer, position, ViewState.Width * ViewState.Height, light, d_out.DevicePointer);
+            scene.cudaDevice.GridDimensions = new dim3((int)(ViewState.Width / scene.cudaDevice.BlockDimensions.x + 1), (int)(ViewState.Height / scene.cudaDevice.BlockDimensions.x + 1));
+            scene.cudaDevice.Run(new int2(ViewState.Width, ViewState.Height), position, light, (float)ViewState.FOW, new float2(ViewState.Direction.Horisontal.AngleGradsF, ViewState.Direction.Vertical.AngleGradsF), d_out.DevicePointer);
             float3[] colors = d_out;
             int index = 0;
             for (int i = 0; i < ViewState.Height; i++)
@@ -129,7 +127,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 }
             }
             d_pos.Dispose();
-            d_rays.Dispose();
             d_out.Dispose();
         }
     }

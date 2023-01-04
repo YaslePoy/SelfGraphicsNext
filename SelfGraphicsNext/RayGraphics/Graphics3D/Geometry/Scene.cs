@@ -82,7 +82,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             {
                 Utils.UpdateCudaContex();
                 cudaDevice = Utils.ctx.LoadKernel("rayWork.ptx", "resultPixel");
-                cudaDevice.BlockDimensions = 256;
+                cudaDevice.BlockDimensions = new dim3(16, 16);
             }
         }
 

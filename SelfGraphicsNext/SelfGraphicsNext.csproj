@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Remove="RaySickness .cu" />
     <None Remove="RaySickness.cu" />
+    <None Remove="rayWork.cu" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,13 @@
   <ItemGroup>
     <PackageReference Include="ManagedCuda" Version="10.0.0" />
     <PackageReference Include="SFML.Net" Version="2.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="rayWork.cu">
+      <Generator>C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\build.bat</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -78,10 +86,6 @@
     <None Update="raySickness.ptx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="rayWork.cu">
-      <Generator>C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGrGit\SelfGraphicsNext\SelfGraphicsNext\build.bat</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="rayWork.ptx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -94,5 +98,9 @@
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties runconfig_1json__JsonSchema="https://ffizer.github.io/ffizer/ffizer.schema.json" /></VisualStudio></ProjectExtensions>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="call C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGraphicsNext\SelfGraphicsNext\build.bat" />
+  </Target>
 
 </Project>

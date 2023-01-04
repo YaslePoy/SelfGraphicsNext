@@ -25,7 +25,7 @@ namespace SelfGraphicsNext
         public static Task process;
         public static bool deb = false;
         static bool benchMode = false;
-        static bool drawInfo = false;
+        static bool drawInfo = true;
         public static bool animation = false;
         static RunConfig RunConfig;
         static string rgPath;
@@ -52,7 +52,6 @@ namespace SelfGraphicsNext
             _rw.SetFramerateLimit(60);
             //_rw.MouseMoved += _rw_MouseMoved;
             Font font = new Font("GangSmallYuxian-Rpep6.ttf");
-            drawInfo = false;
             TimeSpan record = TimeSpan.MaxValue;
             int recordCounter = 20;
             if (RunConfig.UseCuda)
@@ -78,10 +77,12 @@ namespace SelfGraphicsNext
                         if (drawInfo)
                         {
                             string info = $"Resolution: {camera.ViewState.Width}x{camera.ViewState.Height}\n" +
-                                $"Rendering: {camera.Rendering.TotalPixels} / {camera.Rendering.RenderedPixels}\n" +
-                                $"% : {Math.Round((decimal)camera.Rendering.RenderedPixels / (decimal)camera.Rendering.TotalPixels * (decimal)100, 3)}\n" +
-                                $"Render time: {camera.Rendering.RenderTime}\n" +
-                                $"State: {Enum.GetName(camera.Rendering.State)}";
+                                //$"Rendering: {camera.Rendering.TotalPixels} / {camera.Rendering.RenderedPixels}\n" +
+                                //$"% : {Math.Round((decimal)camera.Rendering.RenderedPixels / (decimal)camera.Rendering.TotalPixels * (decimal)100, 3)}\n" +
+                                //$"Render time: {camera.Rendering.RenderTime}\n" +
+                                //$"State: {Enum.GetName(camera.Rendering.State)}";
+                                $"Posision: {camera.ViewState.Position}\n" +
+                                $"Veiw: {camera.ViewState.Direction}\n";
                             Text infoText = new Text(info, font, 18);
                             _rw.Draw(infoText);
                         }
@@ -128,64 +129,68 @@ namespace SelfGraphicsNext
             {
                 if (benchMode)
                     return;
+                bool update = false;
                 void updateImg()
                 {
-                    camera.ViewState.UpdateDirectionList();
+                    //camera.ViewState.UpdateDirectionList();
                     camera.RenderSceneCUDA(scene);
-
+                    string info = $"Resolution: {camera.ViewState.Width}x{camera.ViewState.Height}\n" +
+                                 //$"Rendering: {camera.Rendering.TotalPixels} / {camera.Rendering.RenderedPixels}\n" +
+                                 //$"% : {Math.Round((decimal)camera.Rendering.RenderedPixels / (decimal)camera.Rendering.TotalPixels * (decimal)100, 3)}\n" +
+                                 //$"Render time: {camera.Rendering.RenderTime}\n" +
+                                 //$"State: {Enum.GetName(camera.Rendering.State)}";
+                                 $"Posision: {camera.ViewState.Position}\n" +
+                                 $"Veiw: {camera.ViewState.Direction}\n";
+                    Console.WriteLine(info);
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                     //    continue;
                     camera.ViewState.Direction.AddVertical(1);
-                    camera.ViewState.UpdateDirectionList();
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                     //    continue;
                     camera.ViewState.Direction.AddVertical(-1);
-                    camera.ViewState.UpdateDirectionList();
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                     //    continue;
                     camera.ViewState.Direction.AddHorisontal(-1);
-                    camera.ViewState.UpdateDirectionList();
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                     //    continue;
                     camera.ViewState.Direction.AddHorisontal(1);
-                    camera.ViewState.UpdateDirectionList();
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.W))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.W))
                     //    continue;
                     camera.ViewState.Position += camera.ViewState.Direction.GetVector() * 0.1;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.S))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.S))
                     //    continue;
                     camera.ViewState.Position -= camera.ViewState.Direction.GetVector() * 0.1;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.A))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.A))
                     //    continue;
                     camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(-90, 0)).GetVector() * 0.1;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.D))
                 {
@@ -193,27 +198,27 @@ namespace SelfGraphicsNext
                     //    continue;
                     camera.ViewState.Position += (camera.ViewState.Direction + new Direction3(90, 0)).GetVector() * 0.1;
 
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Q))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Q))
                     //    continue;
                     camera.ViewState.Position.Z += 0.1;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.E))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.E))
                     //    continue;
                     camera.ViewState.Position.Z -= 0.1;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.R))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.R))
                     //    continue;
-                    updateImg();
+                    update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.F5))
                 {
@@ -226,7 +231,7 @@ namespace SelfGraphicsNext
                     camera = cfg.camera;
                     _rw.Close();
                     _rw.Dispose();
-                    _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN test", Styles.None);
+                    _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "Very good render picture", Styles.None);
                     _rw.Closed += (o, e) => _rw.Close();
                     _rw.SetActive(true);
                     _rw.Display();
@@ -244,6 +249,8 @@ namespace SelfGraphicsNext
                 //    _rw.SetMouseCursorVisible(!lockMouse);
                 //    Mouse.SetPosition(new SFML.System.Vector2i(RunConfig.XResolution, RunConfig.YResolution) / 2, _rw);
                 //}
+                if (update)
+                    updateImg();
             }
         }
 

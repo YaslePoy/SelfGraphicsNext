@@ -9,6 +9,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
 
         public void UpdateDirectionList()
         {
+            return;
             var FOWV = FOWVertical;
             var step = FOW / width;
             var startfx = Direction.Horisontal.AngleGrads - (FOW / 2);
