@@ -50,6 +50,10 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             return new float3((float)X, (float)Y, (float)Z);
         }
+        public double3 GetDouble3()
+        {
+            return new double3(X, Y, Z);
+        }
         public void Round(int k = 3)
         {
             X.Round(k);

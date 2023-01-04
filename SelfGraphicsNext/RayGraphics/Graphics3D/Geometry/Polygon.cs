@@ -1,9 +1,19 @@
-﻿using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
+﻿using ManagedCuda.VectorTypes;
+using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
 using SFML.Graphics;
 using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
+    public struct PolyginCUDA
+    {
+        public float3 p1;
+        public float3 p2;
+        public float3 p3;
+        public float3 nor;
+        public float3 col;
+        public float d;
+    }
     public class Polygon
     {
         public Color Color;
@@ -62,6 +72,14 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
                 poins[3] = new Vector2(points[2].Vector.X, points[2].Vector.Y);
             }
             return Utils.PoinInTringle(poins);
+        }
+        public PolyginCUDA GetCUDA()
+        {
+            return new PolyginCUDA() { p1 = points[0].GetFloat3(),
+                p2 = points[1].GetFloat3(),
+                p3 = points[2].GetFloat3(),
+                col = new float3(Color.R, Color.G, Color.B),
+                d = PlanaData.D, nor = Normal.GetFloat3() };
         }
     }
 }

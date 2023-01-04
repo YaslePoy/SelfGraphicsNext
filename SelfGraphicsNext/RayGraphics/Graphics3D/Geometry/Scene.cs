@@ -43,6 +43,19 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             cudaDevice.SetConstantVariable("dRatios", dratios);
             cudaDevice.SetConstantVariable("colors", colorsOfTrns);
         }
+        public List<PolyginCUDA> GetPolyons()
+        {
+            List<PolyginCUDA> plgns = new List<PolyginCUDA>();
+            for (int i = 0; i < Objects.Count; i++)
+            {
+                var group = Objects[i];
+                for (int j = 0; j < group.Surface.Count; j++)
+                {
+                    plgns.Add(Objects[i].Surface[j].GetCUDA());
+                }
+            }
+            return plgns;
+        }
         public (int total, float3[] pt1, float3[] pt2, float3[] pt3, float3[] nor, float[] drs, float3[] col) GetLoadData()
         {
             var totalCount = Objects.Sum(i => i.Surface.Count);
@@ -141,5 +154,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             }
             return scene;
         }
+
     }
 }

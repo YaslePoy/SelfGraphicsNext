@@ -1,4 +1,12 @@
 ﻿extern "C" {
+	typedef struct {
+		float3 p1;
+		float3 p2;
+		float3 p3;
+		float3 nor;
+		float3 col;
+		float d;
+	} Polygon;
 	__constant__ float ToRad = 0.017453292519943295769236907684886;
 	__constant__ float ToDeg = 57.295779513082320876798154814105;
 	__constant__ int CountOfTrns = 512;
@@ -8,7 +16,7 @@
 	__constant__ float3 normals[512];
 	__constant__ float dRatios[512];
 	__constant__ float3 colors[512];
-	__global__ void resultPixel(const int2 resolution, const float3 xyz, const float3 light, const float fow, const float2 view, float3* outColors) {
+	__global__ void resultPixel(const Polygon* pgs, const int2 resolution, const float3 xyz, const float3 light, const float fow, const float2 view, float3* outColors) {
 		int row = blockIdx.y * blockDim.y + threadIdx.y;
 		int col = blockIdx.x * blockDim.x + threadIdx.x;
 		int i = col + row * resolution.x;

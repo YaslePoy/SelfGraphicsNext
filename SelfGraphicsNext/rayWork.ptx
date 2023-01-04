@@ -29,12 +29,13 @@
 .global .align 4 .b8 __cudart_i2opi_f[24] = {65, 144, 67, 60, 153, 149, 98, 219, 192, 221, 52, 245, 209, 87, 39, 252, 41, 21, 68, 78, 110, 131, 249, 162};
 
 .visible .entry resultPixel(
-	.param .align 8 .b8 resultPixel_param_0[8],
-	.param .align 4 .b8 resultPixel_param_1[12],
+	.param .u64 resultPixel_param_0,
+	.param .align 8 .b8 resultPixel_param_1[8],
 	.param .align 4 .b8 resultPixel_param_2[12],
-	.param .f32 resultPixel_param_3,
-	.param .align 8 .b8 resultPixel_param_4[8],
-	.param .u64 resultPixel_param_5
+	.param .align 4 .b8 resultPixel_param_3[12],
+	.param .f32 resultPixel_param_4,
+	.param .align 8 .b8 resultPixel_param_5[8],
+	.param .u64 resultPixel_param_6
 )
 {
 	.local .align 4 .b8 	__local_depot0[28];
@@ -49,16 +50,16 @@
 
 
 	mov.u64 	%SPL, __local_depot0;
-	ld.param.f32 	%f202, [resultPixel_param_3];
-	ld.param.u64 	%rd118, [resultPixel_param_5];
-	ld.param.f32 	%f201, [resultPixel_param_2+8];
-	ld.param.f32 	%f200, [resultPixel_param_2+4];
-	ld.param.f32 	%f199, [resultPixel_param_2];
-	ld.param.f32 	%f198, [resultPixel_param_1+8];
-	ld.param.f32 	%f197, [resultPixel_param_1+4];
-	ld.param.f32 	%f196, [resultPixel_param_1];
-	ld.param.u32 	%r1, [resultPixel_param_0+4];
-	ld.param.u32 	%r4, [resultPixel_param_0];
+	ld.param.f32 	%f202, [resultPixel_param_4];
+	ld.param.u64 	%rd118, [resultPixel_param_6];
+	ld.param.f32 	%f201, [resultPixel_param_3+8];
+	ld.param.f32 	%f200, [resultPixel_param_3+4];
+	ld.param.f32 	%f199, [resultPixel_param_3];
+	ld.param.f32 	%f198, [resultPixel_param_2+8];
+	ld.param.f32 	%f197, [resultPixel_param_2+4];
+	ld.param.f32 	%f196, [resultPixel_param_2];
+	ld.param.u32 	%r1, [resultPixel_param_1+4];
+	ld.param.u32 	%r4, [resultPixel_param_1];
 	cvta.to.global.u64 	%rd119, %rd118;
 	add.u64 	%rd1, %SPL, 0;
 	mov.u32 	%r187, %ntid.y;
@@ -378,8 +379,8 @@ $L__BB0_25:
 	mov.u32 	%r597, %ntid.y;
 	mov.u32 	%r596, %ctaid.y;
 	mad.lo.s32 	%r595, %r596, %r597, %r598;
-	ld.param.u32 	%r594, [resultPixel_param_0+4];
-	ld.param.u32 	%r593, [resultPixel_param_0];
+	ld.param.u32 	%r594, [resultPixel_param_1+4];
+	ld.param.u32 	%r593, [resultPixel_param_1];
 	shr.u32 	%r242, %r594, 31;
 	add.s32 	%r243, %r594, %r242;
 	shr.s32 	%r244, %r243, 1;
@@ -523,7 +524,7 @@ $L__BB0_35:
 	mov.b64 	%fd111, {%r258, %r260};
 
 $L__BB0_38:
-	ld.param.f32 	%f584, [resultPixel_param_4+4];
+	ld.param.f32 	%f584, [resultPixel_param_5+4];
 	mov.f64 	%fd65, 0d3FF0000000000000;
 	sub.f64 	%fd66, %fd65, %fd111;
 	setp.eq.f32 	%p57, %f608, 0f3F800000;
@@ -534,7 +535,7 @@ $L__BB0_38:
 	@%p58 bra 	$L__BB0_88;
 
 	ld.const.f32 	%f589, [ToRad];
-	ld.param.f32 	%f588, [resultPixel_param_4+4];
+	ld.param.f32 	%f588, [resultPixel_param_5+4];
 	mul.f32 	%f32, %f588, %f589;
 	mul.f32 	%f325, %f32, 0f3F22F983;
 	cvt.rni.s32.f32 	%r628, %f325;
@@ -1035,7 +1036,7 @@ $L__BB0_87:
 	mov.f32 	%f609, %f55;
 
 $L__BB0_88:
-	ld.param.f32 	%f585, [resultPixel_param_4];
+	ld.param.f32 	%f585, [resultPixel_param_5];
 	mov.f32 	%f624, 0f3F800000;
 	sub.f32 	%f391, %f624, %f595;
 	setp.eq.f32 	%p99, %f15, 0f3F800000;
@@ -1046,7 +1047,7 @@ $L__BB0_88:
 	setp.eq.f32 	%p100, %f585, 0f00000000;
 	@%p100 bra 	$L__BB0_138;
 
-	ld.param.f32 	%f587, [resultPixel_param_4];
+	ld.param.f32 	%f587, [resultPixel_param_5];
 	ld.const.f32 	%f586, [ToRad];
 	mul.f32 	%f83, %f587, %f586;
 	mul.f32 	%f394, %f83, 0f3F22F983;
@@ -2404,7 +2405,7 @@ $L__BB0_213:
 	mov.b64 	%fd123, {%r585, %r587};
 
 $L__BB0_216:
-	ld.param.u64 	%rd258, [resultPixel_param_5];
+	ld.param.u64 	%rd258, [resultPixel_param_6];
 	mov.u32 	%r608, %tid.y;
 	mov.u32 	%r607, %ntid.y;
 	mov.u32 	%r606, %ctaid.y;
@@ -2413,7 +2414,7 @@ $L__BB0_216:
 	mov.u32 	%r603, %ctaid.x;
 	mad.lo.s32 	%r602, %r603, %r604, %r605;
 	mad.lo.s32 	%r601, %r606, %r607, %r608;
-	ld.param.u32 	%r600, [resultPixel_param_0];
+	ld.param.u32 	%r600, [resultPixel_param_1];
 	mad.lo.s32 	%r599, %r600, %r601, %r602;
 	mul.wide.s32 	%rd257, %r599, 12;
 	cvta.to.global.u64 	%rd256, %rd258;

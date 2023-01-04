@@ -133,14 +133,15 @@ namespace SelfGraphicsNext
                 void updateImg()
                 {
                     //camera.ViewState.UpdateDirectionList();
-                    camera.RenderSceneCUDA(scene);
+                    camera.RenderSceneCUDA(scene, wait:true);
                     string info = $"Resolution: {camera.ViewState.Width}x{camera.ViewState.Height}\n" +
                                  //$"Rendering: {camera.Rendering.TotalPixels} / {camera.Rendering.RenderedPixels}\n" +
                                  //$"% : {Math.Round((decimal)camera.Rendering.RenderedPixels / (decimal)camera.Rendering.TotalPixels * (decimal)100, 3)}\n" +
                                  //$"Render time: {camera.Rendering.RenderTime}\n" +
                                  //$"State: {Enum.GetName(camera.Rendering.State)}";
                                  $"Posision: {camera.ViewState.Position}\n" +
-                                 $"Veiw: {camera.ViewState.Direction}\n";
+                                 $"Veiw: {camera.ViewState.Direction}\n" +
+                                 $"Time: {camera.Rendering.RenderTime}\n";
                     Console.WriteLine(info);
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Up))

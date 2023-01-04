@@ -7,23 +7,31 @@ using System.Xml.Linq;
 
 namespace CudaTesting
 {
+    public struct testType
+    {
+        float a, b, c;
+        public override string ToString()
+        {
+            return a.ToString() + b.ToString() + c.ToString();
+        }
+    }
     internal class Program
     {
         static void Main(string[] args)
         {
-            int mode = 2;
-            if(mode == 1)
+            int mode = 1;
+            if (mode == 1)
             {
-            CudaContext ctx = new CudaContext(0);
-            CudaKernel kernel = ctx.LoadKernel("code.ptx", "func");
-            kernel.GridDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
-            kernel.BlockDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
-            CudaDeviceVariable<double3> out_cuda = new CudaDeviceVariable<double3>(81);
-            kernel.Run(out_cuda.DevicePointer, 90d, new double2(130, 70));
-            double3[] host = out_cuda;
-            LogCuda(host.ToList());
+                CudaContext ctx = new CudaContext(0);
+                CudaKernel kernel = ctx.LoadKernel("code.ptx", "func");
+                kernel.GridDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
+                kernel.BlockDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
+                CudaDeviceVariable<testType> out_cuda = new CudaDeviceVariable<testType>(81);
+                Console.Write(kernel.Run(out_cuda.DevicePointer, 90d, new double2(130, 70)));
+                testType[] host = out_cuda;
+                LogCuda(host.ToList());
             }
-            else if(mode == 2)
+            else if (mode == 2)
             {
                 var realDir = new Direction3(-45, 45);
                 realDir.AddHorisontal(130);
@@ -46,7 +54,7 @@ namespace CudaTesting
             }
 
 
-            
+
         }
         public static void LogCuda<T>(List<T> vals)
         {

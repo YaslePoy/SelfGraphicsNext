@@ -10,9 +10,8 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
     public class Camera3
     {
         CudaDeviceVariable<float3> d_pos;
-        CudaDeviceVariable<float3> d_rays;
         CudaDeviceVariable<float3> d_out;
-        CudaDeviceVariable<float3> d_light;
+        CudaDeviceVariable<PolyginCUDA> d_plgs;
         public Viewer ViewState;
         public RenderData Rendering;
         public Camera3(Viewer view)
@@ -111,11 +110,11 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             Rendering.Start();
             var position = ViewState.Position.GetFloat3();
             var light = scene.Light.GetFloat3();
-            d_light = light;
+            d_plgs = scene.GetPolyons().ToArray();
             d_pos = position;
             d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);
             scene.cudaDevice.GridDimensions = new dim3((int)(ViewState.Width / scene.cudaDevice.BlockDimensions.x + 1), (int)(ViewState.Height / scene.cudaDevice.BlockDimensions.x + 1));
-            scene.cudaDevice.Run(new int2(ViewState.Width, ViewState.Height), position, light, (float)ViewState.FOW, new float2(ViewState.Direction.Horisontal.AngleGradsF, ViewState.Direction.Vertical.AngleGradsF), d_out.DevicePointer);
+            scene.cudaDevice.Run(d_plgs, new int2(ViewState.Width, ViewState.Height), position, light, (float)ViewState.FOW, new float2(ViewState.Direction.Horisontal.AngleGradsF, ViewState.Direction.Vertical.AngleGradsF), d_out.DevicePointer);
             float3[] colors = d_out;
             int index = 0;
             for (int i = 0; i < ViewState.Height; i++)
@@ -128,6 +127,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             }
             d_pos.Dispose();
             d_out.Dispose();
+            d_plgs.Dispose();
         }
     }
 }
