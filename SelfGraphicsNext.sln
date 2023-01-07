@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfGraphicsNext", "SelfGra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CudaTesting", "CudaTesting\CudaTesting.csproj", "{EF2EC55F-95EC-4745-9BF6-0130B3384920}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SelfFunctionsTester", "SelfFunctionsTester\SelfFunctionsTester.csproj", "{8604FE03-1349-4FF8-9DCA-271138B116EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bencher", "Bencher\Bencher.csproj", "{FD3210C0-190C-4DC9-806F-E1BB1DD24161}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,38 @@ Global
 		{EF2EC55F-95EC-4745-9BF6-0130B3384920}.Release|x64.Build.0 = Release|Any CPU
 		{EF2EC55F-95EC-4745-9BF6-0130B3384920}.Release|x86.ActiveCfg = Release|Any CPU
 		{EF2EC55F-95EC-4745-9BF6-0130B3384920}.Release|x86.Build.0 = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|x64.Build.0 = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|ARM32.Build.0 = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|x64.Build.0 = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{8604FE03-1349-4FF8-9DCA-271138B116EB}.Release|x86.Build.0 = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|ARM32.ActiveCfg = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|ARM32.Build.0 = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|x64.Build.0 = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Debug|x86.Build.0 = Debug|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|ARM32.ActiveCfg = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|ARM32.Build.0 = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|x64.ActiveCfg = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|x64.Build.0 = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|x86.ActiveCfg = Release|Any CPU
+		{FD3210C0-190C-4DC9-806F-E1BB1DD24161}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using SFML.Graphics;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace SelfGraphicsNext
+namespace Here
 {
     static class Utils
     {

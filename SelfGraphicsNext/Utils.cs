@@ -191,5 +191,9 @@ namespace SelfGraphicsNext
         {
             ctx = new CudaContext(0);
         }
+        public static float norm3df(float x, float y, float z)
+        {
+            return MathF.Sqrt(x * x + y * y + z * z);
+        }
     }
 }

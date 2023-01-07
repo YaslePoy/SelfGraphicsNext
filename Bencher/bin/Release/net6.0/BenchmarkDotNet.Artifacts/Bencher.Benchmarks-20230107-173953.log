@@ -1,0 +1,5 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 /p:Deterministic=true /p:Optimize=true in C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGraphicsNext\Bencher\bin\Release\net6.0\f7bfefed-e731-4c37-9d1d-366c8f719d47

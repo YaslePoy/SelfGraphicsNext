@@ -41,8 +41,6 @@ namespace SelfGraphicsNext
             var cfg = RunConfig.Get();
             scene = cfg.scene;
             camera = cfg.camera;
-            if (RunConfig.UseCuda)
-                scene.LoadModel();
             _rw = new RenderWindow(new VideoMode((uint)RunConfig.XResolution, (uint)RunConfig.YResolution), "SGN", Styles.None);
             _rw.Closed += (o, e) => _rw.Close();
             _rw.SetActive(true);

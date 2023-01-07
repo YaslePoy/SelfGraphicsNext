@@ -102,25 +102,30 @@ namespace Bencher
             return X * vec.X + Y * vec.Y + Z * vec.Z;
         }
     }
+    
     public class Benchmarks
     {
-        Point3 a;
-        Point3 b;
+        Vector3 a;
+        Vector3 b;
         public Benchmarks()
         {
-            a = new Point3(1, 2, 3);
-            b = new Point3(2, 3, 4);
+            a = Vector3.Normalize(new Vector3(1, 2, 3));
+            b = Vector3.Normalize(new Vector3(4, 5, 6));
         }
         [Benchmark]
         public void DotNet()
         {
-            var x = a.GetDistanceToVec(b);
+            var x = Vector3.Reflect(a, b);
         }
 
         [Benchmark]
         public void My()
         {
-            var x = a.GetDistanceToVec(b);
+            var x = Reflect(a, b);
+        }
+        public static Vector3 Reflect(Vector3 ray, Vector3 normal)
+        {
+            return ray + normal * (MathF.Abs(Vector3.Dot(ray, normal)) * 2);
         }
     }
 }

@@ -2,16 +2,22 @@
 	__constant__ double ToRad = 0.017453292519943295769236907684886;
 	__constant__ double ToDeg = 57.295779513082320876798154814105;
 	typedef struct {
-		float a, b, c;
-	} testType ;
-	__global__ void func(testType* out) {
+		float3 p1;
+		float3 p2;
+		float3 p3;
+		float3 nor;
+		float3 col;
+		float d;
+	} PolygonCUDA;
+	__global__ void func(const PolygonCUDA* data, PolygonCUDA* out) {
 		int2 baseRes;
 		baseRes.x = blockDim.x * gridDim.x;
 		baseRes.y = blockDim.y * gridDim.y;
 		int col = blockIdx.y * blockDim.y + threadIdx.y;
 		int row = blockIdx.x * blockDim.x + threadIdx.x;
 		int i = col + row * baseRes.x;
-
+		PolygonCUDA pc = data[i];
+		out[i] = pc;
 		//double3 id;
 		//id.y = col;
 		//id.z = row;

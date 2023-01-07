@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ImportDirectoryBuildProps>false</ImportDirectoryBuildProps>
+    <ImportDirectoryBuildTargets>false</ImportDirectoryBuildTargets>
+    <AssemblyTitle>f7bfefed-e731-4c37-9d1d-366c8f719d47</AssemblyTitle>
+    <TargetFramework>net6.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+    <AssemblyName>f7bfefed-e731-4c37-9d1d-366c8f719d47</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <OutputPath>bin\Release</OutputPath>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+    <Deterministic>true</Deterministic>
+    <!-- needed for custom build configurations (only "Release" builds are optimized by default) -->
+    <Optimize Condition=" '$(Configuration)' != 'Debug' ">true</Optimize>
+    
+    <!-- we set LangVersion after  which might contain LangVersion copied from the benchmarks project -->
+    <LangVersion Condition="'$(LangVersion)' == '' Or ($([System.Char]::IsDigit('$(LangVersion)', 0)) And '$(LangVersion)' &lt; '7.3')">latest</LangVersion>
+    <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="f7bfefed-e731-4c37-9d1d-366c8f719d47.notcs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Mimm\Projects\VIsualStudioProjects\SelfGraphicsNext\Bencher\Bencher.csproj" />
+  </ItemGroup>
+  <PropertyGroup>
+<ServerGarbageCollection>false</ServerGarbageCollection>
+<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+</PropertyGroup>
+
+
+</Project>

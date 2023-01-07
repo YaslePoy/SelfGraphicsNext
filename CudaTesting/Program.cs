@@ -7,13 +7,14 @@ using System.Xml.Linq;
 
 namespace CudaTesting
 {
-    public struct testType
+    public struct PolygonCUDA
     {
-        float a, b, c;
-        public override string ToString()
-        {
-            return a.ToString() + b.ToString() + c.ToString();
-        }
+        public float3 p1;
+        public float3 p2;
+        public float3 p3;
+        public float3 nor;
+        public float3 col;
+        public float1 d;
     }
     internal class Program
     {
@@ -26,9 +27,16 @@ namespace CudaTesting
                 CudaKernel kernel = ctx.LoadKernel("code.ptx", "func");
                 kernel.GridDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
                 kernel.BlockDimensions = new ManagedCuda.VectorTypes.dim3(3, 3);
-                CudaDeviceVariable<testType> out_cuda = new CudaDeviceVariable<testType>(81);
-                Console.Write(kernel.Run(out_cuda.DevicePointer, 90d, new double2(130, 70)));
-                testType[] host = out_cuda;
+                CudaDeviceVariable<PolygonCUDA> out_cuda = new CudaDeviceVariable<PolygonCUDA>(81);
+                CudaDeviceVariable<PolygonCUDA> in_cuda;
+                PolygonCUDA[] pgs = new PolygonCUDA[81];
+                for (int i = 0; i < 81; i++)
+                {
+                    pgs[i] = new PolygonCUDA() { col = new float3(i, i, i), d = i };
+                }
+                in_cuda = pgs;
+                Console.Write(kernel.Run(in_cuda.DevicePointer, out_cuda.DevicePointer, 90d, new double2(130, 70)));
+                PolygonCUDA[] host = out_cuda;
                 LogCuda(host.ToList());
             }
             else if (mode == 2)

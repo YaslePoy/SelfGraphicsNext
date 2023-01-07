@@ -10,79 +10,20 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         public CudaKernel cudaDevice;
         public Point3 Light;
         public List<PolygonGroup> Objects;
-        public void LoadModel()
+        public List<PolygonCUDA> GetPolyons()
         {
-            var totalCount = Objects.Sum(i => i.Surface.Count);
-            cudaDevice.SetConstantVariable("CountOfTrns", totalCount);
-            float3[] PolPoint1 = new float3[totalCount];
-            float3[] PolPoint2 = new float3[totalCount];
-            float3[] PolPoint3 = new float3[totalCount];
-            float3[] normals = new float3[totalCount];
-            float3[] colorsOfTrns = new float3[totalCount];
-            float[] dratios = new float[totalCount];
-            int index = 0;
+            List<PolygonCUDA> plgns = new List<PolygonCUDA>();
             for (int i = 0; i < Objects.Count; i++)
             {
                 var group = Objects[i];
                 for (int j = 0; j < group.Surface.Count; j++)
                 {
-                    var polygon = group.Surface[j];
-                    PolPoint1[index] = polygon.points[0].GetFloat3();
-                    PolPoint2[index] = polygon.points[1].GetFloat3();
-                    PolPoint3[index] = polygon.points[2].GetFloat3();
-                    dratios[index] = (float)polygon.PlanaData.D;
-                    normals[index] = polygon.Normal.GetFloat3();
-                    colorsOfTrns[index] = new float3(polygon.Color.R, polygon.Color.G, polygon.Color.B);
-                    index++;
-                }
-            }
-            cudaDevice.SetConstantVariable("trPoint1", PolPoint1);
-            cudaDevice.SetConstantVariable("trPoint2", PolPoint2);
-            cudaDevice.SetConstantVariable("trPoint3", PolPoint3);
-            cudaDevice.SetConstantVariable("normals", normals);
-            cudaDevice.SetConstantVariable("dRatios", dratios);
-            cudaDevice.SetConstantVariable("colors", colorsOfTrns);
-        }
-        public List<PolyginCUDA> GetPolyons()
-        {
-            List<PolyginCUDA> plgns = new List<PolyginCUDA>();
-            for (int i = 0; i < Objects.Count; i++)
-            {
-                var group = Objects[i];
-                for (int j = 0; j < group.Surface.Count; j++)
-                {
-                    plgns.Add(Objects[i].Surface[j].GetCUDA());
+                    PolygonCUDA pg = Objects[i].Surface[j].GetCUDA();
+                    pg.objId = i;
+                    plgns.Add(pg);
                 }
             }
             return plgns;
-        }
-        public (int total, float3[] pt1, float3[] pt2, float3[] pt3, float3[] nor, float[] drs, float3[] col) GetLoadData()
-        {
-            var totalCount = Objects.Sum(i => i.Surface.Count);
-            
-            float3[] PolPoint1 = new float3[totalCount];
-            float3[] PolPoint2 = new float3[totalCount];
-            float3[] PolPoint3 = new float3[totalCount];
-            float3[] normals = new float3[totalCount];
-            float3[] colorsOfTrns = new float3[totalCount];
-            float[] dratios = new float[totalCount];
-            int index = 0;
-            for (int i = 0; i < Objects.Count; i++)
-            {
-                var group = Objects[i];
-                for (int j = 0; j < group.Surface.Count; j++)
-                {
-                    var polygon = group.Surface[j];
-                    PolPoint1[index] = polygon.points[0].GetFloat3();
-                    PolPoint2[index] = polygon.points[1].GetFloat3();
-                    PolPoint3[index] = polygon.points[2].GetFloat3();
-                    dratios[index] = (float)polygon.PlanaData.D;
-                    normals[index] = polygon.Normal.GetFloat3();
-                    colorsOfTrns[index] = new float3(polygon.Color.R, polygon.Color.G, polygon.Color.B);
-                    index++;
-                }
-            }
-            return (totalCount, PolPoint1, PolPoint2, PolPoint3, normals, dratios, colorsOfTrns);
         }
         public Scene(List<PolygonGroup> objects)
         {
@@ -95,7 +36,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             {
                 Utils.UpdateCudaContex();
                 cudaDevice = Utils.ctx.LoadKernel("rayWork.ptx", "resultPixel");
-                cudaDevice.BlockDimensions = new dim3(16, 16);
+                cudaDevice.BlockDimensions = new dim3(8, 8);
             }
         }
 

@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 <meta charset='utf-8' />
-<title>Bencher.Benchmarks-20220817-234326</title>
+<title>Bencher.Benchmarks-20230107-154142</title>
 
 <style type="text/css">
 	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
@@ -13,20 +13,20 @@
 </head>
 <body>
 <pre><code>
-BenchmarkDotNet=v0.13.1, OS=Windows 10.0.22000
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.22621
 AMD Ryzen 7 2700, 1 CPU, 16 logical and 8 physical cores
-.NET SDK=6.0.400
-  [Host]     : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT
-  Job-WGTDRL : .NET 6.0.8 (6.0.822.36306), X64 RyuJIT
+.NET SDK=7.0.101
+  [Host]     : .NET 6.0.12 (6.0.1222.56807), X64 RyuJIT
+  Job-HOYPOX : .NET 6.0.12 (6.0.1222.56807), X64 RyuJIT
 </code></pre>
 <pre><code>Platform=X64  Runtime=.NET 6.0  
 </code></pre>
 
 <table>
-<thead><tr><th>Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Allocated</th>
+<thead><tr><th>Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Allocated</th>
 </tr>
-</thead><tbody><tr><td>DotNet</td><td>0.3103 ns</td><td>0.0128 ns</td><td>0.0100 ns</td><td>-</td>
-</tr><tr><td>My</td><td>0.3142 ns</td><td>0.0149 ns</td><td>0.0124 ns</td><td>-</td>
+</thead><tbody><tr><td>DotNet</td><td>0.0008 ns</td><td>0.0031 ns</td><td>0.0029 ns</td><td>0.0 ns</td><td>-</td>
+</tr><tr><td>My</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0 ns</td><td>-</td>
 </tr></tbody></table>
 </body>
 </html>

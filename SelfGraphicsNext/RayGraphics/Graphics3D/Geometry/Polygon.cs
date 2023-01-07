@@ -5,14 +5,15 @@ using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 {
-    public struct PolyginCUDA
+    public struct PolygonCUDA
     {
+        public int objId;
         public float3 p1;
         public float3 p2;
         public float3 p3;
         public float3 nor;
         public float3 col;
-        public float d;
+        public float1 d;
     }
     public class Polygon
     {
@@ -73,9 +74,9 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
             }
             return Utils.PoinInTringle(poins);
         }
-        public PolyginCUDA GetCUDA()
+        public PolygonCUDA GetCUDA()
         {
-            return new PolyginCUDA() { p1 = points[0].GetFloat3(),
+            return new PolygonCUDA() { p1 = points[0].GetFloat3(),
                 p2 = points[1].GetFloat3(),
                 p3 = points[2].GetFloat3(),
                 col = new float3(Color.R, Color.G, Color.B),
