@@ -1,6 +1,7 @@
 ﻿using ManagedCuda;
 using ManagedCuda.VectorTypes;
 using SelfGraphicsNext.RayGraphics.Graphics3D.Rendering;
+using SFML.Graphics;
 using System.Globalization;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
@@ -29,7 +30,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             Objects = objects ?? throw new ArgumentNullException(nameof(objects));
         }
-        public Scene(bool useCUDA=false)
+        public Scene(bool useCUDA = false)
         {
             Objects = new List<PolygonGroup>();
             if (useCUDA)
@@ -42,55 +43,48 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
 
         public void Clear() => Objects.Clear();
 
-        public static Scene LoadSceneObj(string path, bool cuda=false)
+        public static Scene LoadSceneObj(string path, bool cuda = false)
         {
             Scene scene = new Scene(cuda);
-            var model = File.ReadAllLines(path).ToList();
-            var vertexs = new List<Point3>();
-            var normals = new List<Point3>();
-            {
-                model.RemoveAll(i => i.StartsWith("vt"));
-                foreach (var line in model)
-                {
-                    var coms = line.Split(' ');
-                    if (coms[0] == "v")
-                    {
-                        double x = double.Parse(coms[1], CultureInfo.InvariantCulture);
-                        double y = double.Parse(coms[2], CultureInfo.InvariantCulture);
-                        double z = double.Parse(coms[3], CultureInfo.InvariantCulture);
-                        vertexs.Add(new Point3(x, y, z));
-                    }
-                    if (coms[0] == "vn")
-                    {
-                        double x = double.Parse(coms[1], CultureInfo.InvariantCulture);
-                        double y = double.Parse(coms[2], CultureInfo.InvariantCulture);
-                        double z = double.Parse(coms[3], CultureInfo.InvariantCulture);
-                        normals.Add(new Point3(x, y, z));
-                    }
-                }
-                model.RemoveAll(i => i.StartsWith("v") || i.StartsWith("vn"));
-                foreach (var line in model)
-                {
-                    var coms = line.Split(' ').ToList();
-                    if (coms[0] == "o")
-                    {
-                        scene.Objects.Add( new PolygonGroup() { Name = coms[1]});
-                    }
-                    if (coms[0] == "usemtl")
-                        scene.Objects.Last().Color = MtlReader.GetColor(path.Split(".")[0] + ".mtl", coms[1]);
-                    if(coms[0] == "f")
-                    {
-                        coms.RemoveAt(0);
-                        List<Point3> points = new List<Point3>();
-                        foreach(var i in coms)
-                        {
-                            var pol = i.Split('/');
-                            points.Add(vertexs[int.Parse(pol[0]) - 1]);
-                        }
-                        Polygon localPol = new Polygon(points, normals[int.Parse(coms[0].Split('/').Last()) - 1]) { Color = scene.Objects.Last().Color};
-                        scene.Objects.Last().Surface.Add(localPol);
-                    }
+            MtlFile mtl = new MtlFile(path.Split(".")[0] + ".mtl");
 
+            var model = File.ReadAllLines(path).ToList();
+            var points = new List<Point3>();
+            var normals = new List<Point3>();
+
+            PolygonGroup currentObj = new PolygonGroup();
+            Color currentColor = new Color();
+            model.RemoveAll(i => i.StartsWith("vt"));
+            foreach (var line in model)
+            {
+                var coms = line.Split(' ');
+                switch (coms[0])
+                {
+                    case "v":
+                        points.Add(Point3.ParceVector(coms[1], coms[2], coms[3]));
+                        break;
+                    case "vn":
+                        normals.Add(Point3.ParceVector(coms[1], coms[2], coms[3]));
+                        break;
+                    case "o":
+                        currentObj = new PolygonGroup() { Name = coms[1] };
+                        scene.Objects.Add(currentObj);
+                        break;
+                    case "usemtl":
+                        currentColor = mtl[coms[1]];
+                        break;
+                    case "f":
+                        Point3 normal = new Point3();
+                        List<Point3> polPoints = new List<Point3>();
+                        for (int i = 1; i < 4; i++)
+                        {
+                            var parts = coms[i].Split("/").Select(i => Int32.Parse(i)).ToList();
+                            polPoints.Add(points[parts[0] - 1]);
+                            normal = normals[parts[2] - 1];
+                        }
+                        Polygon localPolygon = new Polygon(polPoints, normal) { Color = currentColor };
+                        currentObj.Surface.Add(localPolygon);
+                        break;
                 }
             }
             return scene;

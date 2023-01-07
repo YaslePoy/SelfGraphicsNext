@@ -2,7 +2,7 @@
   "profiles": {
     "SelfGraphicsNext": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\RunConfig.json\""
+      "commandLineArgs": "\"RunConfig.json\""
     }
   }
 }

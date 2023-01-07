@@ -112,7 +112,6 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
             var position = ViewState.Position.GetFloat3();
             var light = scene.Light.GetFloat3();
             var allPgs = scene.GetPolyons().ToArray();
-            var x = scene.cudaDevice.GetOccupancyMaxPotentialBlockSize();
             d_plgs = allPgs;
             d_pos = position;
             d_out = new CudaDeviceVariable<float3>(Rendering.TotalPixels);

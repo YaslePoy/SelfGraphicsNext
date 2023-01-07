@@ -146,28 +146,28 @@ namespace SelfGraphicsNext
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Up))
                     //    continue;
-                    camera.ViewState.Direction.AddVertical(1);
+                    camera.ViewState.Direction.AddVertical(2);
                     update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Down))
                     //    continue;
-                    camera.ViewState.Direction.AddVertical(-1);
+                    camera.ViewState.Direction.AddVertical(-2);
                     update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Left))
                     //    continue;
-                    camera.ViewState.Direction.AddHorisontal(-1);
+                    camera.ViewState.Direction.AddHorisontal(-2);
                     update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                 {
                     //while (Keyboard.IsKeyPressed(Keyboard.Key.Right))
                     //    continue;
-                    camera.ViewState.Direction.AddHorisontal(1);
+                    camera.ViewState.Direction.AddHorisontal(2);
                     update = true;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.W))

@@ -28,10 +28,14 @@
 		float3 newPoint;
 		float3 colPoint;
 		float3 abc;
+		float3 tol;
+
 		float2 temp;
 		float2 pts[4];
 		float2 tg;
 		int2 halfRes;
+
+		float tolLen;
 		float minDist = -1;
 		float colRatio = 1;
 		float upper;
@@ -85,7 +89,8 @@
 			dir.y = temp.y;
 		}
 
-		//Counting first colision point
+
+
 		for (int j = 0; j < polCount; j++)
 		{
 			pol = pgs[j];
@@ -152,9 +157,14 @@
 				}
 				if (around) {
 					minDist = newLen;
-					colRatio = (light.x - newPoint.x) * abc.x
-						+ (light.y - newPoint.y) * abc.y
-						+ (light.z - newPoint.z) * abc.z;
+					tol.x = light.x - newPoint.x;
+					tol.y = light.y - newPoint.y;
+					tol.z = light.z - newPoint.z;
+					colRatio = tol.x * abc.x
+						+ tol.y * abc.y
+						+ tol.z * abc.z;
+					tolLen = norm3df(tol.x, tol.y, tol.z);
+					colRatio /= tolLen;
 					if (colRatio < 0)
 						colRatio = 0;
 					out = pol.col;
@@ -184,7 +194,7 @@
 				if (l == 0 && u >= 0)
 					continue;
 				float t = -(u / l);
-				if (t < 0)
+				if (t < 0 || t > dirLen)
 					continue;
 				float3 sdPt;
 				sdPt.x = dir.x * t + pos.x;
@@ -232,9 +242,31 @@
 			}
 		}
 		if (shadow) {
-			colRatio *= 0.25;
+
+			colRatio *= 0.1;
 		}
-		colRatio = pow(abs(colRatio), 0.3);
+		/*float3 toNewp;
+		toNewp.x = colPoint.x - xyz.x;
+		toNewp.y = colPoint.y - xyz.y;
+		toNewp.z = colPoint.z - xyz.z;
+		tolLen = norm3df(tol.x, tol.y, tol.z);
+
+		if (norm3df(toNewp.x, toNewp.y, toNewp.z) < tolLen) {
+			float scTol = tol.x * dir.x + tol.y * dir.y + tol.z * dir.z;
+			scTol /= tolLen;
+			if (scTol > 0.999) {
+				out.x = 255;
+				out.y = 255;
+				out.z = 125;
+				colRatio = 1;
+			}
+		}*/
+
+
+
+		//Counting first colision point
+		if (norm)
+			colRatio = pow(abs(colRatio), 0.22);
 		out.x *= colRatio;
 		out.y *= colRatio;
 		out.z *= colRatio;

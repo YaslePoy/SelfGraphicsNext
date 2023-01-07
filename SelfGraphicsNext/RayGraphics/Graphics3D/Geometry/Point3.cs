@@ -1,6 +1,7 @@
 ﻿using ManagedCuda.VectorTypes;
 using SelfGraphicsNext.BaseGraphics;
 using SFML.Graphics;
+using System.Globalization;
 using System.Numerics;
 
 namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
@@ -36,6 +37,15 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Geometry
         {
             Color = color;
         }
+
+        public static Point3  ParceVector(params string[] vec)
+        {
+            double x = double.Parse(vec[0], CultureInfo.InvariantCulture);
+            double y = double.Parse(vec[1], CultureInfo.InvariantCulture);
+            double z = double.Parse(vec[2], CultureInfo.InvariantCulture);
+            return new Point3(x, y, z);
+        }
+
         public Point3(Vector3 xyz)
         {
             Vector = xyz;

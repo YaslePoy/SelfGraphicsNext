@@ -68,7 +68,7 @@ namespace SelfGraphicsNext.RayGraphics.Graphics3D.Rendering
                 throw new ArgumentException("Any resolution can't be zero");
             fow = fOW;
             Position = position;
-            viewDir = direction;
+            Direction = direction;
             this.width = width;
             this.height = height;
             UpdateDirectionList();
