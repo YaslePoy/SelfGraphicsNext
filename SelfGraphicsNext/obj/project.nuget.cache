@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XeeJ6AM70dOb5ht18umj9QurSVYM39UOzn/au1Ls8viEKh0MMtAHidVlUj0ZKcWKJDZNRCJJ9FwYcnxoCDgHCg==",
+  "dgSpecHash": "rOnbVGnYLqizNkUcTaQKJUr3NIZelaPUbZXszMJLMbP5YjDzPiKTHTbf7EODX3M2DuGwJP5UBmkx6ZhbIePYRw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mimm\\Projects\\VIsualStudioProjects\\SelfGrGit\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
+  "projectFilePath": "C:\\Users\\Mimm\\Projects\\VisualStudioProjects\\SelfGraphicsNext\\SelfGraphicsNext\\SelfGraphicsNext.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mimm\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
     "C:\\Users\\Mimm\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
